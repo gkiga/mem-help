@@ -4,7 +4,7 @@ How to get started:
 
 Clone the repo into your working directory using:
 
-`git clone add origin https://github.com/gkiga/mem-help.git`
+`git clone https://github.com/gkiga/mem-help.git`
 
 Run `bundle install` to install all the other gem dependencies in the project-app gemset.
 
