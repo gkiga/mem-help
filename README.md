@@ -2,7 +2,9 @@
 
 How to get started:
 
-Clone the repo into your working directory
+Clone the repo into your working directory using:
+`git remote add origin https://github.com/.../mem-help.git
+ git push -u origin master`
 
 Run `bundle install` to install all the other gem dependencies in the project-app gemset.
 
