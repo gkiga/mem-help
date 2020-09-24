@@ -2,6 +2,8 @@
 
 How to get started:
 
+Clone the repo into your working directory
+
 Run `bundle install` to install all the other gem dependencies in the project-app gemset.
 
 Run `yarn install` to install all the JS dependencies in a node_modules folder.
