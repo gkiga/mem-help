@@ -1,0 +1,19 @@
+<h1 class="text-center">
+Welcome to MemHelp!
+</h1>
+
+<p>On our site, you can</p>
+
+<ul>
+    <li>Connect to other Memphis students</li>
+    <li>Learn new skills</li>
+    <li>Earn volunteer hours</li>
+</ul>
+
+<p>What do you want to learn? See if there are any tutors available by searching categories!</p>
+
+<!--The Search form below is EMPTY at the moment -->
+<%= form_tag("/search", method: "get") do %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
