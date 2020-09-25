@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* theme */
+@import "../node_modules/bootswatch/dist/materia/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootswatch/dist/materia/bootswatch";
