@@ -32,21 +32,40 @@
           </li>
           
         </ul>
-        <ul>
+        <ul class="navbar-nav">
         <% if user_signed_in? %>
-          <li> <%= link_to "Hi, #{current_user.email}", edit_user_registration_path %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          
+            <%= link_to "Hi, #{current_user.email}", edit_user_registration_path, class: 'nav-link' %>
+          </li>
+         
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
         <% else %>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          
+            <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+          </li>
+         
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+          </li>
         <% end %>
-    </ul>
+      </ul>
+
+    <% flash.each do |key, message| %>
+    
+      <p><%= message %></p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    <% end %>
+
       
               
       </div>
     </nav>
 
-    
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+
 
       
 
