@@ -58,7 +58,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
  # Authentication
 gem 'devise'
-
-# Sunspot
-gem 'sunspot_rails'
-gem 'sunspot_solr'
