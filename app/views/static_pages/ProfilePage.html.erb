@@ -1,0 +1,33 @@
+<h1>User Profile</h1>
+
+<!-- Feedback form will go here -->
+ <div>
+   <%= label_tag "Name" %>
+   <%= text_field_tag "name", nil %>
+ </div>
+  <div>
+   <%= label_tag "Contact Info" %>
+   <%= text_field_tag "contactinfo", nil %>
+ </div>
+  <div>
+   <%= label_tag "Major" %>
+   <%= text_field_tag "major", nil %>
+ </div>
+  <div>
+   <%= label_tag "Interests" %>
+   <%= email_field_tag "interests", nil %>
+ </div>
+  <div>
+   <%= label_tag "Bio" %>
+   <%= text_field_tag "bio", nil %>
+ </div>
+  <div>
+   <%= label_tag "Teaching Methods" %>
+   <%= text_field_tag "tchmethod", nil %>
+ </div>
+  <div>
+   <%= label_tag "Volunter Hours" %>
+   <%= text_field_tag "vlthours", nil %>
+ </div>
+
+<%= submit_tag "Submit" %>
