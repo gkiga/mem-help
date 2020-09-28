@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get 'users', to: 'users#index', as: 'users'
+
   
     
 

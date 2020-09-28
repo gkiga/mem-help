@@ -5,7 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   def self.search(search)
-    where("lower(users.email) LIKE :search ", search: "%#{@parameter}%").uniq
+    if search
+      email = User.find_by(email: search)
+      if email
+        self.where(user_id: email)
+      else
+        @users = User.all 
+      end
+    else
+      @users = User.all
+    end
   end
 
 end
