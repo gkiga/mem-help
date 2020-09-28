@@ -7,4 +7,9 @@ class UserController < ApplicationController
         end
     end
 
+    def search
+        @parameter = params[:search].downcase
+        @results = User.all.where("lower(name) LIKE :search", search : "%#{@parameter}%")
+    end
+
 end
