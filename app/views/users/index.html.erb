@@ -7,7 +7,16 @@
 </p>
 <% end %>
 
-<% @results.each do |user|  %>
-    <%= user.email %><br>
-    <%= user.major %><br>
+
+<% @results.each do |user| %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= user.first_name%> <%= user.last_name%></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%=user.major %></h6>
+            <p class="card-text"> <%= user.bio %></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+    <br>
 <% end %>
