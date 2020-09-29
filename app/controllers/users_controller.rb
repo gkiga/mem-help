@@ -12,7 +12,11 @@ class UsersController < ApplicationController
             @results = User.all
         else 
             @parameter = params[:search].downcase
-            @results = User.all.where("lower(email) LIKE :search", search: "%#{@parameter}%")
+            @results = User.all.where("lower(email) LIKE :search OR
+                                       lower(first_name) LIKE :search OR
+                                       lower(last_name) LIKE :search OR
+                                       lower(interests) LIKE :search OR
+                                       lower(major) LIKE :search", search: "%#{@parameter}%")
         end
     end
 

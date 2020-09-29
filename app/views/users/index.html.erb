@@ -12,10 +12,9 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title"><%= user.first_name%> <%= user.last_name%></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%=user.major %></h6>
+            <h6 class="card-subtitle mb-2 text-muted"><%=user.major %> | <%= user.interests %></h6>
             <p class="card-text"> <%= user.bio %></p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="#" class="card-link"><%= link_to 'Find Out More', user_path(user) %></a>
         </div>
     </div>
     <br>
