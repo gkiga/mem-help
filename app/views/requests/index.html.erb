@@ -8,8 +8,8 @@ My Requests Page
 
 <h3>My Sent Requests</h3>
 <% requests.each do |request| %>
-<% if current_user.try(:id)==request.user_id %>
-  
+<%# if current_user.try(:id)==request.user_id %>
+<% if current_user.try(:email)==request.sender %> 
   <div id="<%= dom_id(request) %>">
      
     <hr class="solid">
