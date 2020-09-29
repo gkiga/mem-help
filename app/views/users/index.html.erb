@@ -1,0 +1,12 @@
+<h1>Find Tutors!</h1>
+
+<%= form_tag users_path, :method => "get" do %>
+<p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :email => nil %>
+</p>
+<% end %>
+
+<% @results.each do |user|  %>
+    <%= user.email %><br>
+<% end %>
