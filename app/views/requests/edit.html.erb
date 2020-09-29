@@ -26,16 +26,6 @@ Edit Request
   </div>
 <br>
 <br>
-<div>
-    <h5>Send to Email</h5>
-    <p>Please type in the email of the teacher you are requesting help from!</p>
-    <%= f.text_field :recipient%>
-  </div>
-  <div>
-    <h5>My Email</h5>
-    <p>Please type in the your email.</p>
-    <%= f.text_field :sender%>
-  </div>
   <div>
     <h5>Accept Request?</h5>
     <p>true for yes, or false for no</p>
@@ -46,6 +36,11 @@ Edit Request
     <p>true for yes, or false for no</p>
     <%= f.text_field :completedFlag%>
   </div>
+  <br>
+
   <%= f.submit "Update Request" %>
 
 <% end %>
+
+
+  

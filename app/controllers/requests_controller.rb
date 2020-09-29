@@ -24,9 +24,21 @@ class RequestsController < ApplicationController
          # new object from params
          request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
          # respond_to block
+         request.user_id = current_user.id
+         request.acceptedFlag = false
+         request.completedFlag = false
+         request.sender = current_user.email
+         #Need to change how sender and recipient work (based off profile?)
+         #request.sender = current_user.name
+         #request.teacher_id = request.profile_id
+         #request.recipient = user.profile_id.name ???
+         #attribute_name = "name"
+         #user = User.find(teacher_id)
+         #request.recipient = user[name]
          respond_to do |format|
              format.html do
                  if request.save
+                    
                      # success message
                      flash[:success] = "Request saved successfully"
                      # redirect to index
