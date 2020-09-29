@@ -16,6 +16,13 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        user = User.find(params[:id])
+        respond_to do |format|
+            format.html { render :show, locals: {user: user}}
+        end
+    end
+
     def user_params
         params.require(:user).permit(:email, :search)
     end
