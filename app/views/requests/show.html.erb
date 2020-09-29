@@ -1,0 +1,24 @@
+
+
+<!DOCTYPE html>
+<h1>My Request Show</h1>
+      
+ 
+<div class="container p-3 my-3 bg-primary text-white">
+
+<hr class="solid">
+      <div>Description: <%= request.description%></div>
+      <div>Category: <%= request.category%></div>
+      <div> Request Sender: <%= request.sender%></div>
+      <div>Request Recipient: <%= request.recipient %></div>
+      <div>Accepted?  <%= request.acceptedFlag%></div>
+      <div>Completed?  <%= request.completedFlag%></div>
+      
+     
+      <%= link_to '🖋', edit_request_path(request) %>
+      <%= button_to '🗑', request_path(request), method: :delete %>
+
+      </div>
+  </div>
+</div>    
+</html>

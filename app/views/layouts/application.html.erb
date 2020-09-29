@@ -30,7 +30,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Global Request Page</a>
           </li>
-          
+            <li class="nav-item">
+              <%= link_to 'My Requests', requests_path, class: 'nav-link' %>
+            </li>
         </ul>
         <ul class="navbar-nav">
         <% if user_signed_in? %>

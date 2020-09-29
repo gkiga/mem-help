@@ -1,0 +1,51 @@
+
+
+<h1 class="text-center">
+New Request
+</h1>
+
+<%= form_with model: request, url: requests_path, method: :post, local: true, scope: :request do |f| %>
+
+  <div>
+    <h5>Description of Your Request</h5>
+    <%= f.text_field :description %>
+  </div>
+<br>
+<br>
+  <div>
+    <h5>Category</h5>
+    <p>For example, art, music, or biology</p>
+    <%= f.text_field :category%>
+  </div>
+<br>
+<br>
+  <div>
+    <h5>Learning Preference</h5>
+    <p>For example, Pre-recorded videos, Live Videoconferencing, or 1-on-1 meeting in person</p>
+    <%= f.text_field :learningPreference%>
+  </div>
+<br>
+<br>
+<div>
+    <h5>Send to Email</h5>
+    <p>Please type in the email of the teacher you are requesting help from!</p>
+    <%= f.text_field :recipient%>
+  </div>
+  <div>
+    <h5>My Email</h5>
+    <p>Please type in the your email.</p>
+    <%= f.text_field :sender%>
+  </div>
+  <div>
+    <h5>Accept Request?</h5>
+    <p>true for yes, or false for no</p>
+    <%= f.text_field :acceptedFlag%>
+  </div>
+  <div>
+    <h5>Completed Request?</h5>
+    <p>true for yes, or false for no</p>
+    <%= f.text_field :completedFlag%>
+  </div>
+  <%= f.submit "Send Request" %>
+
+<% end %>

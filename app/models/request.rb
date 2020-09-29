@@ -14,4 +14,18 @@
 #  updated_at         :datetime         not null
 #
 class Request < ApplicationRecord
+    validates :description, presence: true
+    validates :category, presence: true
+    validates :learningPreference, presence: true
+    validates :recipient, presence: true
+    validates :sender, presence: true
+    #validates :completedFlag, presence: true ...Both are set to nil in yml file; necessitates test fail
+    #validates :acceptedFlag, presence: true
+    after_initialize :init
+
+    def init
+      self.completedFlag  ||= false          #will set the default value only if it's nil
+      self.acceptedFlag ||= false 
+  end  
+
 end

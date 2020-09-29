@@ -15,19 +15,19 @@
 #
 
 one:
-  description: MyString
-  category: MyString
-  learningPreference: MyString
-  recipient: MyString
-  sender: MyString
+  description: I want to learn pottery.
+  category: Arts and Crafts
+  learningPreference: Pre-recorded Video
+  recipient: alice@gmail.com
+  sender: bob@gmail.com
   acceptedFlag: false
   completedFlag: false
 
 two:
-  description: MyString
-  category: MyString
-  learningPreference: MyString
-  recipient: MyString
-  sender: MyString
+  description: I want to learn archery.
+  category: Sports
+  learningPreference: Live 1-on-1 Session
+  recipient: bob@gmail.com
+  sender: alice@gmail.com
   acceptedFlag: false
   completedFlag: false

@@ -1,0 +1,55 @@
+
+
+<h1 class="text-center">
+My Requests Page
+</h1>
+<%#link_to 'New Request', new_listing_request_path(listing) %>
+<%=link_to 'New Request', new_request_path %>
+
+<h3>My Sent Requests</h3>
+<% requests.each do |request| %>
+<% if current_user.try(:id)==request.user_id %>
+  
+  <div id="<%= dom_id(request) %>">
+     
+    <hr class="solid">
+     
+      <div>Description: <%= request.description%></div>
+      <div>Category: <%= request.category%></div>
+      <div> Request Sender: <%= request.sender%></div>
+      <div>Request Recipient: <%= request.recipient  %></div>
+      <div>Accepted?  <%= request.acceptedFlag%></div>
+      <div>Completed?  <%= request.completedFlag%></div>
+      
+
+      <%=link_to '🔎', request_path(request) %>
+      <%=link_to '🖋', edit_request_path(request) %>
+      <%=button_to '🗑', request_path(request), method: :delete %>
+    
+<% end %>
+<%end %>
+<br>
+<br>
+<h3>My Received Requests</h3>
+<% requests.each do |request| %>
+<% if current_user.try(:email)==request.recipient %>
+  
+  <div id="<%= dom_id(request) %>">
+     
+    <hr class="solid">
+     
+      <div>Description: <%= request.description%></div>
+      <div>Category: <%= request.category%></div>
+      <div> Request Sender: <%= request.sender%></div>
+      <div>Request Recipient: <%= request.recipient  %></div>
+      <div>Accepted?  <%= request.acceptedFlag%></div>
+      <div>Completed?  <%= request.completedFlag%></div>
+      
+
+      <%= link_to '🔎', request_path(request) %>
+      <%= link_to '🖋', edit_request_path(request) %>
+      <%= button_to '🗑', request_path(request), method: :delete %>
+    
+<% end %>
+<%end %>
+
