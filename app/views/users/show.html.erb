@@ -1,9 +1,16 @@
-<h1><%=user.first_name%> <%=user.last_name%></h1>
+<h1><%=user.first_name%> <%=user.last_name%></h1><br />
 
-<ul>
-    <li>Major: <%=user.major %> </li>
-    <li>Interests: <%=user.interests %> </li>
-    <li>Contact Info: <%=user.contact_info %> </li>
-    <li>Bio: <%=user.bio %> </li>
-    <li>Volunteer Hours: <%=user.volunteer_hours %> </li>
-</ul>
+<div class="card">
+  <div class="card-header">
+    <h5>About</h5>
+  </div>
+  <div class="card-body">
+  <h6><%=user.bio%></h6>
+    <ul>
+        <li>Major: <%=user.major %> </li>
+        <li>Interests: <%=user.interests %> </li>
+        <li>Contact Information: <%=user.contact_info %> </li>
+    </ul>
+    <a href="#" class="btn btn-primary">Direct Request</a>
+  </div>
+</div>

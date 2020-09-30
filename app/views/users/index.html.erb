@@ -2,20 +2,25 @@
 
 <%= form_tag users_path, :method => "get" do %>
 <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :search, params[:search], placeholder: "Enter Names or Categories", class: "form-control" %>
     <%= submit_tag "Search", :email => nil %>
 </p>
 <% end %>
 
-
-<% @results.each do |user| %>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><%= user.first_name%> <%= user.last_name%></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%=user.major %> | <%= user.interests %></h6>
-            <p class="card-text"> <%= user.bio %></p>
-            <a href="#" class="card-link"><%= link_to 'Find Out More', user_path(user) %></a>
-        </div>
+<div class="container">
+    <div class ="row">
+        <% @results.each do |user| %>
+            <div class="card container border-primary mb-3" style ="width: 25rem">
+                    <div class="card-header row justify-content-between">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= user.first_name%> <%= user.last_name%></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= user.interests %></h6>
+                            <p class="card-text"> <%= user.bio %></p>
+                            <a href="#" class="card-link"><%= link_to 'Find Out More', user_path(user) %></a>
+                        </div>
+                    </div>
+            </div>
+        <% end %>
+        <br />
     </div>
-    <br>
-<% end %>
+</div>
