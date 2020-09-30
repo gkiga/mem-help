@@ -12,12 +12,23 @@ class UsersController < ApplicationController
             @results = User.all
         else 
             @parameter = params[:search].downcase
-            @results = User.all.where("lower(email) LIKE :search", search: "%#{@parameter}%")
+            @results = User.all.where("lower(email) LIKE :search OR
+                                       lower(first_name) LIKE :search OR
+                                       lower(last_name) LIKE :search OR
+                                       lower(interests) LIKE :search OR
+                                       lower(major) LIKE :search", search: "%#{@parameter}%")
+        end
+    end
+
+    def show
+        user = User.find(params[:id])
+        respond_to do |format|
+            format.html { render :show, locals: {user: user}}
         end
     end
 
     def user_params
-        params.require(:user).permit(:email, :search)
+        params.require(:user).permit(:email, :first_name, :last_name, :bio, :search)
     end
 
 end

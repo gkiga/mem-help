@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+
+  #Profile Page
+  get 'users/:id', to: 'users#show', as: 'user'
+
+  get 'profile', to: 'static_pages#profile', as: 'profile'
   get 'users', to: 'users#index', as: 'users'
 
   
