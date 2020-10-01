@@ -1,22 +1,30 @@
-<h1 class="text-center">
-Welcome to MemHelp!
-</h1>
-
-<p>On our site, you can</p>
-
-<ul>
-    <li>Connect to other Memphis students</li>
-    <li>Learn new skills</li>
-    <li>Earn volunteer hours</li>
-</ul>
-
-<p>What do you want to learn? See if there are any tutors available by searching categories!</p>
-
 <!--The Search form below is EMPTY at the moment -->
 <%= form_tag users_path, :method => "get" do %>
-<p>
-    <%= search_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :email => nil %>
-</p>
-<% end %>
+<div id="page-content">
+  <div class="container" id="home-container">
+    <div class="jumbotron text-center text-white">
+      <h1 class="display-3">Welcome to MemHelp!</h1>
+      <p class="lead">On our site, you can.</p>
+      
+      <li> Connect to other Memphis students!</li>
+      <li>Learn new skills!</li>
+      <li> Earn volunteer hours!</li>
+      <hr class="my-4"> 
+      <p>What do you want to learn? See if there are any tutors available by searching categories!</p>
+        <p>
+        <%= search_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :email => nil %>
+      </p>
+       
+    </div>
+  </div>
+</div>
 
+ 
+<footer id="sticky-footer" class="navbar-expand-lg-50">
+  <div class="container text-center">
+    <large>Copyright &copy; MemHelp</large>
+  </div>
+</footer>
+
+<% end %>
