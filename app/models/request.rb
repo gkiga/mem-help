@@ -23,6 +23,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Request < ApplicationRecord
+
     validates :description, presence: true
     validates :category, presence: true
     validates :learningPreference, presence: true

@@ -1,55 +1,67 @@
-
-
+<!DOCTYPE html>
+<style>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+</style>
+<br>
+<br>
 <h1 class="text-center">
 My Requests Page
 </h1>
-<%#link_to 'New Request', new_listing_request_path(listing) %>
-<%=link_to 'New Request', new_request_path %>
-
-<h3>My Sent Requests</h3>
-<% requests.each do |request| %>
-<%# if current_user.try(:id)==request.user_id %>
-<%# if current_user.try(:email)==request.sender %>
-<% if current_user.try(:id)==request.user_id %>  
-  <div id="<%= dom_id(request) %>">
-    <hr class="solid">
-     
-      <div>Description: <%= request.description%></div>
-      <div>Category: <%= request.category%></div>
-      <div> Request Sender: <%= request.sender%></div>
-      <div>Request Recipient: <%= request.recipient  %></div>
-      <div>Accepted?  <%= request.acceptedFlag%></div>
-      <div>Completed?  <%= request.completedFlag%></div>
-      
-
-      <%=link_to '🔎', request_path(request) %>
-      <%=link_to '🖋', edit_request_path(request) %>
-      <%=button_to '🗑', request_path(request), method: :delete %>
-    
-<% end %>
-<%end %>
 <br>
 <br>
-<h3>My Received Requests</h3>
+<h3><p class="text-primary">My Sent Requests</p></h3>
 <% requests.each do |request| %>
-<% if current_user.try(:email)==request.recipient %>
+<% if current_user.try(:id)==request.user_id %>
   
   <div id="<%= dom_id(request) %>">
-     
-    <hr class="solid">
-     
-      <div>Description: <%= request.description%></div>
-      <div>Category: <%= request.category%></div>
-      <div> Request Sender: <%= request.sender%></div>
-      <div>Request Recipient: <%= request.recipient  %></div>
-      <div>Accepted?  <%= request.acceptedFlag%></div>
-      <div>Completed?  <%= request.completedFlag%></div>
-      
+    <div class="container card p-3 mb-2 bg-light text-dark">
+    <div class="card-body">
+    <div class = "text-left">
+    <ul>
+        <p><b>  Description: <%= request.description%></b></p>
+        <p><b>  Category: <%= request.category%></b></p>
+        <p><b>  Request Sender: <%= request.sender%> </b></p>
+        <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+    
 
       <%= link_to '🔎', request_path(request) %>
       <%= link_to '🖋', edit_request_path(request) %>
       <%= button_to '🗑', request_path(request), method: :delete %>
+     </ul>
+    </div>
+    </div>
+    </div>
+<% end %>
+<%end %>
+<br>
+<br>
+<h3><p class="text-primary">My Received Requests</p></h3>
+<% requests.each do |request| %>
+<% if current_user.try(:email)==request.recipient %>
+  
+  <div id="<%= dom_id(request) %>">
+    <div class="container card p-3 mb-2 bg-light text-dark">
+    <div class="card-body">
+    <div class = "text-left">
+    <ul>
+        <p><b>  Description: <%= request.description%></b></p>
+        <p><b>  Category: <%= request.category%></b></p>
+        <p><b>  Request Sender: <%= request.sender%> </b></p>
+        <p><b>  Request Recipient: <%= request.recipient %> </b></p>
     
+
+      <%= link_to '🔎', request_path(request) %>
+      <%= link_to '🖋', edit_request_path(request) %>
+      <%= button_to '🗑', request_path(request), method: :delete %>
+     </ul>
+    </div>
+    </div>
+    </div>
 <% end %>
 <%end %>
 
+<div class="card-body">

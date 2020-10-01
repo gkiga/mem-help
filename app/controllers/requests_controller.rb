@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
  def index
+    
          requests = Request.all
          respond_to do |format|
              format.html { render :index, locals: { requests: requests } }
@@ -19,7 +20,7 @@ class RequestsController < ApplicationController
              format.html { render :new, locals: { request: request } }
          end
      end
-
+    
     def create
          # new object from params
          request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
@@ -28,13 +29,6 @@ class RequestsController < ApplicationController
          request.acceptedFlag = false
          request.completedFlag = false
          request.sender = current_user.email
-         #Need to change how sender and recipient work (based off profile?)
-         #request.sender = current_user.name
-         #request.teacher_id = request.profile_id
-         #request.recipient = user.profile_id.name ???
-         #attribute_name = "name"
-         #user = User.find(teacher_id)
-         #request.recipient = user[name]
          respond_to do |format|
              format.html do
                  if request.save
@@ -96,5 +90,15 @@ class RequestsController < ApplicationController
             end
         end
     end
-
 end
+
+class DemoController
+    def index
+      @some_variable = "dlroW olleH"
+      @some_variable = backwards
+    end
+    private 
+    def backwards
+       @some_variable.reverse
+    end
+  end

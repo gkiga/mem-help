@@ -59,5 +59,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  # Authentication
 gem 'devise'
 
-# Adds model attributes/routes to top of model files/routes file
+# Annotations
 gem 'annotate', group: :development
+
+

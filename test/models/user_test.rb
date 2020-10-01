@@ -3,11 +3,19 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  bio                    :text
+#  contact_info           :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  interests              :string
+#  last_name              :string
+#  major                  :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  teaching_methods       :string
+#  volunteer_hours        :float
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

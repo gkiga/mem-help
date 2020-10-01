@@ -1,0 +1,22 @@
+<h1><%=user.first_name%> <%=user.last_name%></h1><br />
+
+<div class="card">
+  <div class="card-header">
+    <h5>About</h5>
+  </div>
+  <div class="card-body">
+  <h6><%=user.bio%></h6>
+    <ul>
+        
+        <li>Major: <%=user.major %> </li>
+        <li>Interests: <%=user.interests %> </li>
+        <li>Contact Information: <%=user.contact_info %> </li>
+        <li>Email: <%=user.email %> </li>
+        <li>Volunteer Hours: <%=user.volunteer_hours %> </li>
+    </ul>
+    <%#<a href="#" class="btn btn-primary">Direct Request</a>%>
+   
+      
+    <%= link_to "Direct Request", new_request_path, class: "btn btn-primary" %>
+  </div>
+</div>

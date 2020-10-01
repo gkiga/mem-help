@@ -5,41 +5,102 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  bio                    :text
+#  contact_info           :string
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  interests              :string
+#  last_name              :string
+#  major                  :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  teaching_methods       :string
+#  volunteer_hours        :float
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
 
 u1 = User.create!(
-    email: 'larry@email.com',
-    password: 'acedef'
+    first_name: 'Bobby',
+    last_name: 'Smith',
+    major: 'Computer Science',
+    contact_info: 'bobby@email.com',
+    email: 'bobby@email.com',
+    interests: 'Guitar',
+    volunteer_hours: 10.0,
+    bio: 'Hello! I can offer help with programing languages like Python or Java!',
+    password: 'password',
 )
 
 u2 = User.create!(
+    first_name: 'Jane',
+    last_name: 'Doe',
+    major: 'Undecided',
+    contact_info: '(901) 555-5555',
     email: 'jane@email.com',
-    password: '123456'
+    interests: 'Gardening',
+    volunteer_hours: 0.0,
+    bio: "Hey! I'm just on the site to learn some new skills! :)",
+    password: 'password',
 )
 u3 = User.create!(
-    email: 'alice@gmail.com',
+    first_name: 'Alice',
+    last_name: 'Akers',
+    major: 'Exercise Science',
+    contact_info: '(901) 444-4444',
+    email: 'alice@email.com',
+    interests: 'Music',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play music! :)",
     password: 'password',
-    
 )
 
 u4 = User.create!(
-    email: 'bob@gmail.com',
+    first_name: 'Cody',
+    last_name: 'Cain',
+    major: 'Biology',
+    contact_info: '(901) 333-3333',
+    email: 'cody@email.com',
+    interests: 'Sports',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play tennis! :)",
     password: 'password',
-   
-   
 )
 u5 = User.create!(
-    email: 'cody@gmail.com',
+    first_name: 'Daniel',
+    last_name: 'Dinks',
+    major: 'Chemistry',
+    contact_info: '(901) 222-2222',
+    email: 'daniel@email.com',
+    interests: 'Chess',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play chess! :)",
     password: 'password',
-   
 )
-
 u6 = User.create!(
-    email: 'daniel@gmail.com',
+    first_name: 'Ed',
+    last_name: 'Eizner',
+    major: 'Nursing',
+    contact_info: '(901) 111-1111',
+    email: 'ed@email.com',
+    interests: 'Botany',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to grow plants! :)",
     password: 'password',
-    
-    
 )
-
 #listing1 = Listing.create!(
  #   title: 'My Sent Requests',
   #  description: 'Requests that I have sent.',

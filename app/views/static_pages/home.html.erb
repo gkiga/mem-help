@@ -15,7 +15,8 @@ Welcome to MemHelp!
 <!--The Search form below is EMPTY at the moment -->
 <%= form_tag users_path, :method => "get" do %>
 <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= search_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :email => nil %>
 </p>
 <% end %>
+
