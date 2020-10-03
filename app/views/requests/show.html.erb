@@ -26,6 +26,7 @@
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Learning Preference: <%= request.learningPreference %> </b></p>
         <p><b>  Accepted?  Yes</b></p>
         <p><b>  Completed?  Yes</b></p>
       <p><b>Last Updated On:<%=request.updated_at%></b><%= button_to '🖋', edit_request_path(request), method: :get %></p>
@@ -49,6 +50,7 @@
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Learning Preference: <%= request.learningPreference %> </b></p>
         <p><b>  Accepted?  Yes</b></p>
         <p><b>  Completed?  No</b></p>
       <p><b>Last Updated On:<%=request.updated_at%></b><%= button_to '🖋', edit_request_path(request), method: :get %></p>
@@ -72,6 +74,7 @@
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Learning Preference: <%= request.learningPreference %> </b></p>
         <p><b>  Accepted?  No</b></p>
         <p><b>  Completed?  Yes</b></p>
       <p><b>Last Updated On:<%=request.updated_at%></h6><%= button_to '🖋', edit_request_path(request), method: :get %></b></p>
@@ -95,6 +98,7 @@
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Learning Preference: <%= request.learningPreference %> </b></p>
         <p><b>  Accepted?  No</b></p>
         <p><b>  Completed?  No</b></p>
       <p><b>Last Updated On:<%=request.updated_at%></b><%= button_to '🖋', edit_request_path(request), method: :get %></p>
