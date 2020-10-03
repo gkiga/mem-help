@@ -30,6 +30,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+         
   def self.search(search)
     if search
       email = User.find_by(email: search)

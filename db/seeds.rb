@@ -40,9 +40,9 @@ u1 = User.create!(
     contact_info: 'bobby@email.com',
     email: 'bobby@email.com',
     interests: 'Guitar',
-    volunteer_hours: 10,
+    volunteer_hours: 10.0,
     bio: 'Hello! I can offer help with programing languages like Python or Java!',
-    password: 'acedef'
+    password: 'password',
 )
 
 u2 = User.create!(
@@ -52,7 +52,157 @@ u2 = User.create!(
     contact_info: '(901) 555-5555',
     email: 'jane@email.com',
     interests: 'Gardening',
-    volunteer_hours: 0,
+    volunteer_hours: 0.0,
     bio: "Hey! I'm just on the site to learn some new skills! :)",
-    password: '123456'
+    password: 'password',
+)
+u3 = User.create!(
+    first_name: 'Alice',
+    last_name: 'Akers',
+    major: 'Exercise Science',
+    contact_info: '(901) 444-4444',
+    email: 'alice@email.com',
+    interests: 'Music',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play music! :)",
+    password: 'password',
+)
+
+u4 = User.create!(
+    first_name: 'Cody',
+    last_name: 'Cain',
+    major: 'Biology',
+    contact_info: '(901) 333-3333',
+    email: 'cody@email.com',
+    interests: 'Sports',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play tennis! :)",
+    password: 'password',
+)
+u5 = User.create!(
+    first_name: 'Daniel',
+    last_name: 'Dinks',
+    major: 'Chemistry',
+    contact_info: '(901) 222-2222',
+    email: 'daniel@email.com',
+    interests: 'Chess',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to play chess! :)",
+    password: 'password',
+)
+u6 = User.create!(
+    first_name: 'Ed',
+    last_name: 'Eizner',
+    major: 'Nursing',
+    contact_info: '(901) 111-1111',
+    email: 'ed@email.com',
+    interests: 'Botany',
+    volunteer_hours: 0.0,
+    bio: "Hey! I want to learn to grow plants! :)",
+    password: 'password',
+)
+#listing1 = Listing.create!(
+ #   title: 'My Sent Requests',
+  #  description: 'Requests that I have sent.',
+#)
+
+#listing2 = Listing.create!(
+ #   title: 'My Sent Requests',
+  #  description: 'Requests I have sent to others.',
+#)
+#listing3 = Listing.create!(
+ #   title: 'My Pending Requests',
+  #  description: 'Requests I have yet to accept or decline.',
+#)
+
+r1 = Request.create!(
+    #user: u1,
+    sender: 'Alice',
+    description: 'I want to learn to yodel!',
+    recipient: u2.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'Music',
+    learningPreference: 'Live 1-on-1 Session',
+   
+)
+r2 = Request.create!(
+    #user: u1,
+    sender: 'Alice',
+    description: 'I want to learn to cook Italian!',
+    recipient: u2.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'Cooking', 
+    learningPreference: 'Pre-recorded Video',
+)
+r3 = Request.create!(
+    #user: u1,
+    sender: 'Alice',
+    description: 'I want to learn to paint!',
+    recipient: u2.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'Home Improvement',
+    learningPreference: 'Pre-recorded Video',
+)
+r4 = Request.create!(
+    #user: u2,
+    sender: 'Bob',
+    description: 'I want to learn photography',
+    recipient: u3.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'Photography',
+    learningPreference: 'Live 1-on-1 Session',
+)
+r5 = Request.create!(
+    #user: u3,
+    sender: 'Cody',
+    description: 'I want to learn how to read Shakespeare!',
+    recipient: u1.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'English Literature',
+    learningPreference: 'Live Video Conferencing',
+)
+r6 = Request.create!(
+    #user: u3,
+    sender: 'Cody',
+    description: 'I want to learn physics!',
+    recipient: u2.email,
+    acceptedFlag: true,
+    completedFlag: false,
+    category: 'Science',
+    learningPreference: 'Live Video Conferencing',
+)
+r7 = Request.create!(
+    #user: u4,
+    sender: 'Daniel',
+    description: 'I want to learn legal history',
+    recipient: u1.email,
+    acceptedFlag: false,
+    completedFlag: false,
+    category: 'Law',
+    learningPreference: 'Live 1-on-1 Session',
+)
+r8 = Request.create!(
+    #user: u4,
+    sender: 'Daniel',
+    description: 'I want to learn how to play tennis!',
+    recipient: u2.email,
+    acceptedFlag: false,
+    completedFlag: false,
+    category: 'Sports',
+    learningPreference: 'Live 1-on-1 Session',
+)
+r9 = Request.create!(
+    #user: u4,
+    sender: 'Daniel',
+    description: 'I want to learn basketball!',
+    recipient: u3.email,
+    acceptedFlag: false,
+    completedFlag: false,
+    category: 'Sports',
+    learningPreference: 'Live 1-on-1 Session',
 )

@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     # end
 
     def index
+
+
         if params[:search].blank?
             @results = User.all
         else 
@@ -30,5 +32,4 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :bio, :search)
     end
-
 end
