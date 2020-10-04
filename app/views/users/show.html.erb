@@ -14,9 +14,16 @@
         <li>Email: <%=user.email %> </li>
         <li>Volunteer Hours: <%=user.volunteer_hours %> </li>
     </ul>
-    <%#<a href="#" class="btn btn-primary">Direct Request</a>%>
    
-      
-    <%= link_to "Direct Request", new_request_path, class: "btn btn-primary" %>
+    <% if user != current_user %>
+      <%= link_to "Direct Request", new_request_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
+
+<% if user == current_user %>
+  <br />
+  <div class="text-center">
+    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
+</div>
+<% end %>
