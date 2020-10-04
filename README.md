@@ -14,6 +14,4 @@ Run `rails db:migrate:reset` to create/reset the project databases.
 
 Run `rails db:seed` to obtain required seed data
 
-As a quick sanity check to make sure that things are working, you can run rails test. Although the app has no tests, the command should run without error.
-
-You can also run rails s and open http://localhost:3000 to confirm that the development server runs without error and the default page loads as expected.
+Finally, run `rails s` and open http://localhost:3000 to run the app
