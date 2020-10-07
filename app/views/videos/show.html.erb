@@ -5,14 +5,14 @@
   <%= @video.title %>
 </p>
 
-<div style="width:400px; height:400px">
-  <%= video_tag(url_for(@video.clip), style:"width:100%;height: auto",controls:"") %>
-</div>
-
 <p>
   <strong>Description:</strong>
   <%= @video.description %>
 </p>
 
-<%#= link_to 'Edit', edit_video_path(@video) %> |
+<div style="width:500px; height:500px">
+  <%= video_tag(url_for(@video.clip), style:"width:100%;height: auto",controls:"") %>
+</div>
+
+<%#= link_to 'Edit', edit_video_path(@video) %>
 <%#= link_to 'Back', videos_path %>

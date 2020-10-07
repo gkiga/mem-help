@@ -17,12 +17,12 @@ class VideosController < ApplicationController
   #   @video = Video.new
   # end
 
-  # # GET /videos/1/edit
-  # def edit
-  # end
+  # GET /videos/1/edit
+  def edit
+  end
 
-  # # POST /videos
-  # # POST /videos.json
+  # POST /videos
+  # POST /videos.json
   # def create
   #   @video = Video.new(video_params)
 

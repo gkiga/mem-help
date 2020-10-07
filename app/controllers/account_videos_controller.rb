@@ -1,5 +1,7 @@
 class AccountVideosController < ApplicationController
     before_action :authenticate_user!
+    before_action :require_permission, only: [:edit, :update, :destroy]
+
 
     def index
         videos = current_user.videos
@@ -30,5 +32,11 @@ class AccountVideosController < ApplicationController
             end
         end
     end
+
+    def require_permission
+        if Video.find(params[:id]).creator != current_user
+          redirect_to videos_path, flash: { error: "You do not have permission to do that." }
+        end
+      end
 
 end

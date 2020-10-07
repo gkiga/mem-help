@@ -21,10 +21,31 @@
   </div>
 </div>
 
+<br />
+
+<div class="card">
+  <div class="card-header">
+    <h5>Videos</h5>
+  </div>
+  <div class="card-body">
+    
+    <ul>
+    <% videos.each do |video| %>
+    <li>
+        <%= link_to video.title, video_path(video)%>
+    </li>
+
+    <% end %>
+    </ul>
+        
+  </div>
+</div>
+
+
 <% if user == current_user %>
   <br />
   <div class="text-center">
-    <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-primary text-center" %>
+    <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-primary text-center" %><br /><br >
     <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
 </div>
 <% end %>
