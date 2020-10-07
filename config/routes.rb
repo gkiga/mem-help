@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :videos
   devise_for :users
   #root route
   root to: redirect('/home', status:302)
