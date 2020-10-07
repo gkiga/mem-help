@@ -12,30 +12,30 @@ class VideosController < ApplicationController
   def show
   end
 
-  # GET /videos/new
-  def new
-    @video = Video.new
-  end
+  # # GET /videos/new
+  # def new
+  #   @video = Video.new
+  # end
 
-  # GET /videos/1/edit
-  def edit
-  end
+  # # GET /videos/1/edit
+  # def edit
+  # end
 
-  # POST /videos
-  # POST /videos.json
-  def create
-    @video = Video.new(video_params)
+  # # POST /videos
+  # # POST /videos.json
+  # def create
+  #   @video = Video.new(video_params)
 
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render :show, status: :created, location: @video }
-      else
-        format.html { render :new }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @video.save
+  #       format.html { redirect_to @video, notice: 'Video was successfully created.' }
+  #       format.json { render :show, status: :created, location: @video }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @video.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /videos/1
   # PATCH/PUT /videos/1.json
@@ -69,6 +69,6 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :clip)
+      params.require(:video).permit(:title, :description)
     end
 end

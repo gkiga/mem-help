@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :videos
   devise_for :users
   #root route
   root to: redirect('/home', status:302)
@@ -17,20 +16,24 @@ Rails.application.routes.draw do
   delete 'requests/:id', to: 'requests#destroy' # destroy
 
 
-
-    
+  # users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-
-  #Profile Page
   get 'users/:id', to: 'users#show', as: 'user'
 
   get 'profile', to: 'static_pages#profile', as: 'profile'
   get 'users', to: 'users#index', as: 'users'
 
-  
+  # videos
+  get 'account/videos', to: 'account_videos#index', as: 'account_videos'
+
+  get 'account/videos/new', to: 'account_videos#new', as: 'new_account_video'
+  post 'account/videos', to: 'account_videos#create' 
+
+  get '/videos/:id', to: 'videos#show', as: 'video'
+
     
 
 end
