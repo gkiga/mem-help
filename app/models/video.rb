@@ -9,4 +9,5 @@
 #  updated_at  :datetime         not null
 #
 class Video < ApplicationRecord
+    has_one_attached :clip
 end
