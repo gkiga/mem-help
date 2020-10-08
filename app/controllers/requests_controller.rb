@@ -49,7 +49,7 @@ class RequestsController < ApplicationController
 
     def edit
         request = Request.find(params[:id])
-        @user.avatar.attach(params[:avatar])
+        
         respond_to do |format|
             format.html { render :edit, locals: { request: request } }
         end
