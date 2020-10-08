@@ -20,7 +20,10 @@
     <% end %>
   </div>
 </div>
-
+  <% if user.avatar.attached? %>
+  <image src="<%=(url_for(user.avatar))%>">
+  <%end%>
+  
 <% if user == current_user %>
   <br />
   <div class="text-center">
