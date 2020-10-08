@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
- def index
+   
+ 
+    def index
     
          requests = Request.all
          respond_to do |format|
@@ -8,6 +10,7 @@ class RequestsController < ApplicationController
      end
 
     def show
+        #@user = User.find(params[:id])
         request = Request.find(params[:id])
         respond_to do |format|
             format.html { render :show, locals: { request: request } }
@@ -23,12 +26,13 @@ class RequestsController < ApplicationController
     
     def create
          # new object from params
+         
          request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
          # respond_to block
          request.user_id = current_user.id
          request.acceptedFlag = false
          request.completedFlag = false
-         request.sender = current_user.email
+         request.sender = current_user.id
          respond_to do |format|
              format.html do
                  if request.save
@@ -101,4 +105,5 @@ class DemoController
     def backwards
        @some_variable.reverse
     end
-  end
+end
+

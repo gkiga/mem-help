@@ -26,10 +26,9 @@ New Request
   </div>
 <br>
 <br>
-<div>
-    <h5>Teacher's Email</h5>
-    <%= f.text_field :recipient%>
-  </div>
+
+
+<%= f.hidden_field :recipient, :value => params[:recipient] %>
 
   <%= f.submit "Send Request" %>
 

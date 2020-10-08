@@ -41,7 +41,8 @@ My Requests Page
 <br>
 <h3><p class="text-primary">My Received Requests</p></h3>
 <% requests.each do |request| %>
-<% if current_user.try(:email)==request.recipient %>
+
+<% if current_user.try(:id)==request.recipient %>
   
   <div id="<%= dom_id(request) %>">
     <div class="container card p-3 mb-2 bg-light text-dark">
