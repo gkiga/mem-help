@@ -31,6 +31,7 @@
 
 <br />
 
+<% if user.videos.present? %>
 <div class="card">
   <div class="card-header">
     <h5>Videos</h5>
@@ -48,6 +49,7 @@
         
   </div>
 </div>
+<% end %>
 
 
 <% if user == current_user %>

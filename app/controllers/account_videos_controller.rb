@@ -33,6 +33,14 @@ class AccountVideosController < ApplicationController
         end
     end
 
+    def destroy
+        @video.destroy
+        respond_to do |format|
+            format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
+            format.json { head :no_content }
+        end
+    end
+
     def require_permission
         if Video.find(params[:id]).creator != current_user
           redirect_to videos_path, flash: { error: "You do not have permission to do that." }

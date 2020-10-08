@@ -62,4 +62,8 @@ gem 'devise'
 # Annotations
 gem 'annotate', group: :development
 
+# JQuery
+gem 'jquery-rails'
+
+
 
