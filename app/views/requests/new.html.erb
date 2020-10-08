@@ -13,17 +13,45 @@ New Request
 <br>
 <br>
   <div>
-    <h5>Category</h5>
-    <p>For example, art, music, or biology</p>
-    <%= f.text_field :category%>
+  <h5>Category</h5>
+  <div>
+    <%= radio_button_tag "art",true , true %>
+    <%= label_tag "reply_yes", 'Art' %>
   </div>
+  <div>
+    <%= radio_button_tag "Music", false, false %>
+    <%= label_tag "reply_no", 'Music' %>
+  </div>
+  <div>
+    <%= radio_button_tag "Biology", false, false %>
+    <%= label_tag "reply_no", 'Biology' %>
+  </div>
+  <div>
+  <%= f.text_field :category%>
+  </div
+</div>
+
+
+
 <br>
 <br>
   <div>
-    <h5>Learning Preference</h5>
-    <p>For example, Pre-recorded videos, Live Videoconferencing, or 1-on-1 meeting in person</p>
-    <%= f.text_field :learningPreference%>
-  </div>
+   <h5>Learning Preference</h5>
+   <div>
+     <%= radio_button_tag "videos",true , true %>
+     <%= label_tag "reply_videos", 'Prerecorded Videos' %>
+   </div>
+   <div>
+     <%= radio_button_tag "live_videoconferencing", false, false %>
+     <%= label_tag "reply_live_videoconferencing", 'Live Videoconferencing' %>
+   </div>
+   <div>
+     <%= radio_button_tag "1-on-1_meeting_in_person", false, false %>
+     <%= label_tag "reply_1-on-1_meeting_in_person", '1-on-1 Meeting in Person' %>
+   </div>
+ </div>
+
+
 <br>
 <br>
 <div>
