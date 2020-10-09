@@ -26,17 +26,19 @@ class RequestsController < ApplicationController
     
     def create
          # new object from params
-         
-         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
+         #@user = User.all
+         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag, :new_volunteer_hours, :recipient_name))
          # respond_to block
          request.user_id = current_user.id
          request.acceptedFlag = false
          request.completedFlag = false
-         request.sender = current_user.id
+         request.sender = [current_user.first_name, current_user.last_name].join(' ')
+        
          respond_to do |format|
              format.html do
                  if request.save
-                    
+                    #@user = User.find(params[:recipient])
+                   # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
                      flash[:success] = "Request saved successfully"
                      # redirect to index
@@ -49,6 +51,7 @@ class RequestsController < ApplicationController
                  end
              end
          end
+       
      end
 
     def edit

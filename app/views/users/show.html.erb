@@ -16,7 +16,8 @@
     </ul>
    
     <% if user != current_user %>
-      <%= link_to "Direct Request", new_request_path(:recipient => user.id), class: "btn btn-primary" %>
+      <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary") %>
+                                                                                    
     <% end %>
   </div>
 </div>
