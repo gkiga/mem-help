@@ -52,6 +52,7 @@ My Requests Page
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Accepted: <%= request.acceptedFlag %></ b></p>
     
 
       <%= link_to '🔎', request_path(request) %>
