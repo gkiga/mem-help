@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_192111) do
+ActiveRecord::Schema.define(version: 2020_10_08_234841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_192111) do
     t.string "description"
     t.string "category"
     t.string "learningPreference"
-    t.string "recipient"
+    t.integer "recipient"
     t.string "sender"
     t.boolean "acceptedFlag"
     t.boolean "completedFlag"

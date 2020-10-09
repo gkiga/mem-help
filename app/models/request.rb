@@ -8,7 +8,7 @@
 #  completedFlag      :boolean
 #  description        :string
 #  learningPreference :string
-#  recipient          :string
+#  recipient          :integer
 #  sender             :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

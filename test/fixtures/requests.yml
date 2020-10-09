@@ -8,7 +8,7 @@
 #  completedFlag      :boolean
 #  description        :string
 #  learningPreference :string
-#  recipient          :string
+#  recipient          :integer
 #  sender             :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -27,7 +27,7 @@ one:
   description: I want to learn pottery.
   category: Arts and Crafts
   learningPreference: Pre-recorded Video
-  recipient: alice@gmail.com
+  recipient: 2
   sender: bob@gmail.com
   acceptedFlag: false
   completedFlag: false
@@ -36,7 +36,7 @@ two:
   description: I want to learn archery.
   category: Sports
   learningPreference: Live 1-on-1 Session
-  recipient: bob@gmail.com
+  recipient: 1
   sender: alice@gmail.com
   acceptedFlag: false
   completedFlag: false
