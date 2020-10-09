@@ -15,4 +15,4 @@
 </div>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Delete', video_path(@video), method: :delete %>
