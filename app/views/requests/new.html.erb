@@ -12,44 +12,34 @@ New Request
   </div>
 <br>
 <br>
-  <div>
-  <h5>Category</h5>
-  <div>
-    <%= radio_button_tag "art",true , true %>
-    <%= label_tag "reply_yes", 'Art' %>
+
+  <div class="field">
+    <h5><%= f.label :category %></h5>
+
+    <%= f.radio_button :category, "Art"%> Art <br />
+
+    <%= f.radio_button :category, "Music"%> Music<br />
+
+    <%= f.radio_button :category, "Science"%> Science<br /><br />
+
+    <i>(You can enter your own category)</i><br />
+    <%= f.text_field :category %>
   </div>
-  <div>
-    <%= radio_button_tag "Music", false, false %>
-    <%= label_tag "reply_no", 'Music' %>
-  </div>
-  <div>
-    <%= radio_button_tag "Biology", false, false %>
-    <%= label_tag "reply_no", 'Biology' %>
-  </div>
-  <div>
-  <%= f.text_field :category%>
-  </div
-</div>
 
 
 
 <br>
 <br>
-  <div>
-   <h5>Learning Preference</h5>
-   <div>
-     <%= radio_button_tag "videos",true , true %>
-     <%= label_tag "reply_videos", 'Prerecorded Videos' %>
-   </div>
-   <div>
-     <%= radio_button_tag "live_videoconferencing", false, false %>
-     <%= label_tag "reply_live_videoconferencing", 'Live Videoconferencing' %>
-   </div>
-   <div>
-     <%= radio_button_tag "1-on-1_meeting_in_person", false, false %>
-     <%= label_tag "reply_1-on-1_meeting_in_person", '1-on-1 Meeting in Person' %>
-   </div>
- </div>
+
+   <div class="field">
+      <h5><%= f.label :learningPreference, "Learning Preference" %></h5>
+
+      <%= f.radio_button :learningPreference, "Prerecorded Video"%> Prerecorded Video<br />
+
+      <%= f.radio_button :learningPreference, "Live Zoom Meeting"%> Live Zoom Meeting<br />
+      
+      <%= f.radio_button :learningPreference, "1-in-1 in Person"%> 1-in-1 in Person<br />
+    </div>
 
 
 <br>
