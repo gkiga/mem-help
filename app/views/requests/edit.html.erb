@@ -26,18 +26,24 @@ Edit Request
   </div>
 <br>
 <br>
+<% if current_user.try(:id)==request.recipient %>
   <div>
     <h5>Accept Request?</h5>
-    <p>true for yes, or false for no</p>
-    <%= f.text_field :acceptedFlag%>
+     <%= radio_button_tag "acceptedFlag", true, true %>
+     <%= label_tag "acceptedFlag", 'Accept Request' %>
+    <%= radio_button_tag "acceptedFlag", false, false %>
+     <%= label_tag "acceptedFlag", 'Decline Request' %>
   </div>
+  
   <div>
     <h5>Completed Request?</h5>
-    <p>true for yes, or false for no</p>
-    <%= f.text_field :completedFlag%>
+      <%= radio_button_tag "completedFlag", true, true %>
+     <%= label_tag "completedFlag", 'Complete Request' %>
+    <%= radio_button_tag "completedFlag", false, false %>
+     <%= label_tag "completedFlag", 'Request Not Completed' %>
   </div>
   <br>
-
+  <%end%>
   <%= f.submit "Update Request" %>
 
 <% end %>

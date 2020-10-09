@@ -31,6 +31,8 @@ My Requests Page
       <%= link_to '🔎', request_path(request) %>
       <%= link_to '🖋', edit_request_path(request) %>
       <%= button_to '🗑', request_path(request), method: :delete %>
+      <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
+      
      </ul>
     </div>
     </div>
@@ -56,8 +58,7 @@ My Requests Page
     
 
       <%= link_to '🔎', request_path(request) %>
-      <%= link_to '🖋', edit_request_path(request) %>
-      <%= button_to '🗑', request_path(request), method: :delete %>
+      <%# link_to '🖋', edit_request_path(request) %>
      </ul>
     </div>
     </div>
