@@ -1,16 +1,11 @@
 <h1><%=user.first_name%> <%=user.last_name%></h1><br />
-<% if user.avatar.attached? %>
-  <%= image_tag((url_for(user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
-  <%end%>
+
 <div class="card">
   <div class="card-header">
     <h5>About</h5>
-    
   </div>
   <div class="card-body">
-  
   <h6><%=user.bio%></h6>
-  
     <ul>
         
         <li>Major: <%=user.major %> </li>
@@ -22,13 +17,38 @@
    
     <% if user != current_user %>
       <%= link_to "Direct Request", new_request_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
     <% end %>
+
   </div>
 </div>
+
+
+<br />
+
+<div class="card">
+  <div class="card-header">
+    <h5>Videos</h5>
+  </div>
+  <div class="card-body">
     
-<% if user == current_user %>
-  <br />
-  <div class="text-center">
-    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
+    <ul>
+      <% videos.each do |video| %>
+      <li>
+          <%= link_to video.title, video_path(video)%>
+      </li>
+
+      <% end %>
+    </ul>
+        
+    <% if user == current_user %>
+      <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-primary" %>
+    <% end %>
+
+  </div>
+
 </div>
-<% end %>
+
+
+

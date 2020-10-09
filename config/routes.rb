@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #homepage
   get 'home', to: 'static_pages#home', as: 'home'
 
+  # requests
   get 'requests', to: 'requests#index', as: 'requests' # index
   get 'requests/new', to: 'requests#new', as: 'new_request' # new
   post 'requests', to: 'requests#create' # create
@@ -16,20 +17,29 @@ Rails.application.routes.draw do
   delete 'requests/:id', to: 'requests#destroy' # destroy
 
 
-
-    
+  # users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-
-  #Profile Page
   get 'users/:id', to: 'users#show', as: 'user'
 
   get 'profile', to: 'static_pages#profile', as: 'profile'
   get 'users', to: 'users#index', as: 'users'
 
-  
+  # videos
+  get 'account/videos', to: 'account_videos#index', as: 'account_videos' # index
+
+  get 'account/videos/new', to: 'account_videos#new', as: 'new_account_video' # new
+  post 'account/videos', to: 'account_videos#create' # create
+
+  get '/videos/:id', to: 'videos#show', as: 'video' # show
+
+  get 'videos/:id/edit', to: 'videos#edit', as: 'edit_video' #edit
+  patch 'videos/:id', to: 'videos#update' # update
+  put 'videos/:id', to: 'videos#update' # update
+
+  delete 'videos/:id', to: 'videos#destroy' # delete
     
 
 end

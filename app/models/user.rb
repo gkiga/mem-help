@@ -70,4 +70,11 @@ class User < ApplicationRecord
     end
   end
 
+  has_many(
+    :videos,
+    class_name: 'Video',
+    foreign_key: 'user_id',
+    inverse_of: :creator
+  )
+
 end
