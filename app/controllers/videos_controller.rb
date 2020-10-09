@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /videos
   # GET /videos.json
@@ -58,6 +59,13 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to account_videos_path, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def require_permission
+    video = Video.find(params[:id])
+    if video.creator != current_user
+      redirect_to video_path(video), flash: { error: "You do not have permission to do that." }
     end
   end
 
