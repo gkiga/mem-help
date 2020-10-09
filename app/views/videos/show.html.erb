@@ -14,5 +14,7 @@
   <%= video_tag(url_for(@video.clip), style:"width:100%;height: auto",controls:"") %>
 </div>
 
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Delete', video_path(@video), method: :delete %>
+<% if current_user == @video.creator %>
+  <%= link_to 'Edit', edit_video_path(@video) %> |
+  <%= link_to 'Delete', video_path(@video), method: :delete %>
+<% end %>
