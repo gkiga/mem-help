@@ -56,6 +56,7 @@ class RequestsController < ApplicationController
 
     def edit
         request = Request.find(params[:id])
+        
         respond_to do |format|
             format.html { render :edit, locals: { request: request } }
         end
