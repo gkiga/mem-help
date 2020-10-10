@@ -16,7 +16,7 @@
     </ul>
    
     <% if user != current_user %>
-      <%= link_to "Direct Request", new_request_path, class: "btn btn-primary" %>
+      <%= link_to "Direct Request", new_request_path( :recipient => user.email ) %>
     <% end %>
   </div>
 </div>

@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
     end
 
      def new
-         request = Request.new
+         request = Request.new(params[:request])
          respond_to do |format|
              format.html { render :new, locals: { request: request } }
          end
@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
     
     def create
          # new object from params
-         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
+         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient, :sender, :acceptedFlag, :completedFlag))
          # respond_to block
          request.user_id = current_user.id
          request.acceptedFlag = false
