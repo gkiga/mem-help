@@ -26,11 +26,15 @@ My Requests Page
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
-    
+      
+  
+      <br>
 
-      <%= link_to '🔎', request_path(request) %>
-      <%= link_to '🖋', edit_request_path(request) %>
-      <%= button_to '🗑', request_path(request), method: :delete %>
+      <%= button_to 'See Request', request_path(request),:method => "get" %>
+      <br>
+      <%= button_to 'Edit Request', edit_request_path(request),:method => "get" %>
+      <br>
+      <%= button_to 'Close Out Request As Completed', request_path(request), method: :delete %>
       <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
       
      </ul>
@@ -55,9 +59,12 @@ My Requests Page
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
         <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
-    
-
-      <%= link_to '🔎', request_path(request) %>
+        
+       
+       <%#link_to 'Set Request Status as Declined', request_path(request.acceptedFlag = false), method: :patch %>
+  
+<br>
+      <%= button_to 'See Request', request_path(request),:method => "get" %>
       <%# link_to '🖋', edit_request_path(request) %>
      </ul>
     </div>

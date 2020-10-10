@@ -85,7 +85,11 @@ class RequestsController < ApplicationController
     def destroy
         # load existing object again from URL param
         request = Request.find(params[:id])
-        # destroy object
+        if current_user.try(:id)==request.user_id
+            user = User.find(request.recipient)
+            user.volunteer_hours += request.new_volunteer_hours
+            user.save
+        end
         request.destroy
         # respond_to block
         respond_to do |format|
