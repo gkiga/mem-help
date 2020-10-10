@@ -27,10 +27,13 @@ New Request
 <br>
 <br>
 <div>
-    <h5>Teacher's Email</h5>
-    <%= f.text_field :recipient%>
+    <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
+ <%= f.text_field :new_volunteer_hours%>
+    
   </div>
 
-  <%= f.submit "Send Request" %>
+<%= f.hidden_field :recipient, :value => params[:recipient] %>
+<%= f.hidden_field :recipient_name, :value => params[:recipient_name] %>
+<%= f.submit "Send Request" %>
 
 <% end %>

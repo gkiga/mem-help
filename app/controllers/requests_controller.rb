@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
- def index
+   before_action :authenticate_user!
+ 
+    def index
     
          requests = Request.all
          respond_to do |format|
@@ -8,6 +10,7 @@ class RequestsController < ApplicationController
      end
 
     def show
+        #@user = User.find(params[:id])
         request = Request.find(params[:id])
         respond_to do |format|
             format.html { render :show, locals: { request: request } }
@@ -23,16 +26,19 @@ class RequestsController < ApplicationController
     
     def create
          # new object from params
-         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
+         #@user = User.all
+         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag, :new_volunteer_hours, :recipient_name))
          # respond_to block
          request.user_id = current_user.id
          request.acceptedFlag = false
          request.completedFlag = false
-         request.sender = current_user.email
+         request.sender = [current_user.first_name, current_user.last_name].join(' ')
+        
          respond_to do |format|
              format.html do
                  if request.save
-                    
+                    #@user = User.find(params[:recipient])
+                   # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
                      flash[:success] = "Request saved successfully"
                      # redirect to index
@@ -45,6 +51,7 @@ class RequestsController < ApplicationController
                  end
              end
          end
+       
      end
 
     def edit
@@ -61,7 +68,7 @@ class RequestsController < ApplicationController
         # respond_to block
         respond_to do |format|
             format.html do
-                if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
+                if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))
                     # success message
                     flash[:success] = 'Request updated successfully'
                     # redirect to index
@@ -79,7 +86,11 @@ class RequestsController < ApplicationController
     def destroy
         # load existing object again from URL param
         request = Request.find(params[:id])
-        # destroy object
+        if current_user.try(:id)==request.user_id
+            user = User.find(request.recipient)
+            user.volunteer_hours += request.new_volunteer_hours
+            user.save
+        end
         request.destroy
         # respond_to block
         respond_to do |format|
@@ -102,4 +113,5 @@ class DemoController
     def backwards
        @some_variable.reverse
     end
-  end
+end
+

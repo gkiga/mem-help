@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'static_pages#profile', as: 'profile'
   get 'users', to: 'users#index', as: 'users'
+  #get "/users/id", to: "static_pages#profile"
+  
 
   # videos
   get 'account/videos', to: 'account_videos#index', as: 'account_videos' # index

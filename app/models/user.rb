@@ -29,6 +29,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         after_initialize :default_values
+
+         private
+           def default_values
+             self.volunteer_hours||= 0.0
+           end
+      
   has_one_attached :avatar
    after_commit :add_default_avatar, on: %i[create update]
          

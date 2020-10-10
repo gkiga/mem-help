@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_012336) do
+ActiveRecord::Schema.define(version: 2020_10_09_192807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,15 @@ ActiveRecord::Schema.define(version: 2020_10_08_012336) do
     t.string "description"
     t.string "category"
     t.string "learningPreference"
-    t.string "recipient"
+    t.integer "recipient"
     t.string "sender"
     t.boolean "acceptedFlag"
     t.boolean "completedFlag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.float "new_volunteer_hours"
+    t.string "recipient_name"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
