@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-   
+   before_action :authenticate_user!
  
     def index
     
@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
         # respond_to block
         respond_to do |format|
             format.html do
-                if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag))
+                if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))
                     # success message
                     flash[:success] = 'Request updated successfully'
                     # redirect to index

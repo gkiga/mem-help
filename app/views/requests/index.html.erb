@@ -31,10 +31,10 @@ My Requests Page
       <br>
 
       <%= button_to 'See Request', request_path(request),:method => "get" %>
+     
+      <%# button_to 'Edit Request', edit_request_path(request),:method => "get" %>
       <br>
-      <%= button_to 'Edit Request', edit_request_path(request),:method => "get" %>
-      <br>
-      <%= button_to 'Close Out Request As Completed', request_path(request), method: :delete %>
+      <%# button_to 'Close Out Request As Completed', request_path(request), method: :delete %>
       <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
       
      </ul>

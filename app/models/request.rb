@@ -33,11 +33,11 @@ class Request < ApplicationRecord
     validates :sender, presence: true
     #validates :completedFlag, presence: true ...Both are set to nil in yml file; necessitates test fail
     #validates :acceptedFlag, presence: true
-    after_initialize :init
+    #after_initialize :init
     #before_destroy -> { users.each {|u| u.group = nil; u.save}}
-    def init
-      self.completedFlag  ||= false          #will set the default value only if it's nil
+    #def init
+     # self.completedFlag  ||= false          #will set the default value only if it's nil
       
   end  
 
-end
+

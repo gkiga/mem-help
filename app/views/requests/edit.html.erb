@@ -5,7 +5,7 @@ Edit Request
 
 
 <%= form_with model: request, url: request_path, method: :patch, local: true, scope: :request do |f| %>
-
+<% if current_user.try(:id)==request.user_id %>
   <div>
     <h5>Description of Your Request</h5>
     <%= f.text_field :description %>
@@ -27,9 +27,12 @@ Edit Request
 <br>
 <br>
 
-<% if current_user.try(:id)==request.user_id %>
+<%#if current_user.try(:id)==request.user_id %>
 <div>
     <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
+ <%= f.text_field :new_volunteer_hours%>
+    
+  </div>
       <%# radio_button_tag "new_volunteer_hours", 1.00, 1.00 %>
      <%#label_tag "new_volunteer_hours", '1 Hour' %>
       <%# radio_button_tag "new_volunteer_hours", 2.00, 2.00 %>
@@ -39,13 +42,8 @@ Edit Request
          <%# radio_button_tag "new_volunteer_hours", 4.00, 4.00 %>
      <%# label_tag "new_volunteer_hours", '4 Hours' %>
      
-
- <%= f.text_field :new_volunteer_hours%>
-    
-
-
-  </div>
 <%end%>
+
 
 <% if current_user.try(:id)==request.recipient %>
   <div>
@@ -64,6 +62,7 @@ Edit Request
      <%= label_tag "completedFlag", 'Request Not Completed' %>
   </div>
   <br>
+  
   <%end%>
   <%= f.submit "Update Request" %>
 
