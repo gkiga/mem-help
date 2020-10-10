@@ -1,5 +1,9 @@
 <h1><%=user.first_name%> <%=user.last_name%></h1><br />
 
+<% if user.avatar.attached? %>
+  <%= image_tag((url_for(user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
+<%end%>
+
 <div class="card">
   <div class="card-header">
     <h5>About</h5>
