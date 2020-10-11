@@ -29,8 +29,41 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+         after_initialize :default_values
+
+         private
+           def default_values
+             self.volunteer_hours||= 0.0
+           end
+      
+  has_one_attached :avatar
+   after_commit :add_default_avatar, on: %i[create update]
          
+  def avatar_thumbnail
+    if avatar.attached?
+      avatar.variant(resize: '150x150').processed
+    else
+      '/default_profile.jpg'
+    end
+  end
+
+  private
+  def add_default_avatar
+    unless avatar.attached?
+      avatar.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'default_profile.jpg'
+          )
+        ), 
+        filename: 'default_profile.jpg',
+        content_type: 'image/jpg'
+      )
+    end
+
+   end
+
+
   def self.search(search)
     if search
       email = User.find_by(email: search)
@@ -43,5 +76,12 @@ class User < ApplicationRecord
       @users = User.all
     end
   end
+
+  has_many(
+    :videos,
+    class_name: 'Video',
+    foreign_key: 'user_id',
+    inverse_of: :creator
+  )
 
 end

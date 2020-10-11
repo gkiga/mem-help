@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    before_action :authenticate_user!
     # def index
     #     users = User.all
     #     respond_to do |f|
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     def show
         user = User.find(params[:id])
         respond_to do |format|
-            format.html { render :show, locals: {user: user}}
+            format.html { render :show, locals: {user: user, videos: user.videos}}
         end
     end
 

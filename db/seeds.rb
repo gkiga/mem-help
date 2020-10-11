@@ -40,7 +40,7 @@ u1 = User.create!(
     contact_info: 'bobby@email.com',
     email: 'bobby@email.com',
     interests: 'Guitar',
-    volunteer_hours: 10.0,
+    volunteer_hours: 0.0,
     bio: 'Hello! I can offer help with programing languages like Python or Java!',
     password: 'password',
 )
@@ -101,108 +101,113 @@ u6 = User.create!(
     bio: "Hey! I want to learn to grow plants! :)",
     password: 'password',
 )
-#listing1 = Listing.create!(
- #   title: 'My Sent Requests',
-  #  description: 'Requests that I have sent.',
-#)
-
-#listing2 = Listing.create!(
- #   title: 'My Sent Requests',
-  #  description: 'Requests I have sent to others.',
-#)
-#listing3 = Listing.create!(
- #   title: 'My Pending Requests',
-  #  description: 'Requests I have yet to accept or decline.',
-#)
 
 r1 = Request.create!(
     #user: u1,
-    sender: 'Alice',
+    sender: 'Alice Akers',
     description: 'I want to learn to yodel!',
-    recipient: u2.email,
+    recipient: 2,
     acceptedFlag: true,
     completedFlag: false,
     category: 'Music',
     learningPreference: 'Live 1-on-1 Session',
+    new_volunteer_hours: 2,
+    recipient_name: 'Jane Doe',
    
 )
 r2 = Request.create!(
     #user: u1,
-    sender: 'Alice',
+    sender: 'Alice Akers',
     description: 'I want to learn to cook Italian!',
-    recipient: u2.email,
+    recipient: 2,
     acceptedFlag: true,
     completedFlag: false,
     category: 'Cooking', 
     learningPreference: 'Pre-recorded Video',
+    new_volunteer_hours: 2,
+    recipient_name: 'Jane Doe',
 )
 r3 = Request.create!(
     #user: u1,
-    sender: 'Alice',
+    sender: 'Alice Akers',
     description: 'I want to learn to paint!',
-    recipient: u2.email,
+    recipient: 2,
     acceptedFlag: true,
     completedFlag: false,
     category: 'Home Improvement',
     learningPreference: 'Pre-recorded Video',
+    new_volunteer_hours: 2,
+    recipient_name: 'Jane Doe',
 )
 r4 = Request.create!(
     #user: u2,
-    sender: 'Bob',
+    sender: 'Alice Akers',
     description: 'I want to learn photography',
-    recipient: u3.email,
+    recipient: 1,
     acceptedFlag: true,
     completedFlag: false,
     category: 'Photography',
     learningPreference: 'Live 1-on-1 Session',
+    new_volunteer_hours: 2,
+    recipient_name: 'Bobby Smith'
 )
 r5 = Request.create!(
     #user: u3,
-    sender: 'Cody',
+    sender: 'Cody Cain',
     description: 'I want to learn how to read Shakespeare!',
-    recipient: u1.email,
+    recipient: 1,
     acceptedFlag: true,
     completedFlag: false,
     category: 'English Literature',
     learningPreference: 'Live Video Conferencing',
+    new_volunteer_hours: 2,
+    recipient_name: 'Bobby Smith'
 )
 r6 = Request.create!(
     #user: u3,
-    sender: 'Cody',
+    sender: 'Cody Cain',
     description: 'I want to learn physics!',
-    recipient: u2.email,
+    recipient: 1,
     acceptedFlag: true,
     completedFlag: false,
     category: 'Science',
     learningPreference: 'Live Video Conferencing',
+    new_volunteer_hours: 2,
+    recipient_name: 'Bobby Smith'
 )
 r7 = Request.create!(
     #user: u4,
-    sender: 'Daniel',
+    sender: 'Daniel Dinks',
     description: 'I want to learn legal history',
-    recipient: u1.email,
+    recipient: 3,
     acceptedFlag: false,
     completedFlag: false,
     category: 'Law',
     learningPreference: 'Live 1-on-1 Session',
+    new_volunteer_hours: 2,
+    recipient_name: 'Alice Akers',
 )
 r8 = Request.create!(
     #user: u4,
-    sender: 'Daniel',
+    sender: 'Daniel Dinks',
     description: 'I want to learn how to play tennis!',
-    recipient: u2.email,
+    recipient: 1,
     acceptedFlag: false,
     completedFlag: false,
     category: 'Sports',
     learningPreference: 'Live 1-on-1 Session',
+    new_volunteer_hours: 2,
+    recipient_name: 'Bobby Smith'
 )
 r9 = Request.create!(
     #user: u4,
-    sender: 'Daniel',
+    sender: 'Daniel Dinks',
     description: 'I want to learn basketball!',
-    recipient: u3.email,
+    recipient: 2,
     acceptedFlag: false,
     completedFlag: false,
     category: 'Sports',
     learningPreference: 'Live 1-on-1 Session',
+    new_volunteer_hours: 2,
+    recipient_name: 'Jane Doe',
 )

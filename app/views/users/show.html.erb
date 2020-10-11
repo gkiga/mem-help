@@ -1,5 +1,9 @@
 <h1><%=user.first_name%> <%=user.last_name%></h1><br />
 
+<% if user.avatar.attached? %>
+  <%= image_tag((url_for(user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
+<%end%>
+
 <div class="card">
   <div class="card-header">
     <h5>About</h5>
@@ -16,14 +20,43 @@
     </ul>
    
     <% if user != current_user %>
+<<<<<<< HEAD
       <%= link_to "Direct Request", new_request_path( :recipient => user.email ) %>
+=======
+      <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>                                                                               
+    <% else %>
+      <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
+>>>>>>> dfde10b2bdd8fa6451498322c058f9d351840ed2
     <% end %>
+
   </div>
 </div>
 
-<% if user == current_user %>
-  <br />
-  <div class="text-center">
-    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
+
+<br />
+
+<div class="card">
+  <div class="card-header">
+    <h5>Videos</h5>
+  </div>
+  <div class="card-body">
+    
+    <ul>
+      <% videos.each do |video| %>
+      <li>
+          <%= link_to video.title, video_path(video)%>
+      </li>
+
+      <% end %>
+    </ul>
+        
+    <% if user == current_user %>
+      <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-primary" %>
+    <% end %>
+
+  </div>
+
 </div>
-<% end %>
+
+
+
