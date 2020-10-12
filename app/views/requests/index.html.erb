@@ -107,15 +107,15 @@ html {
   <p style="color:green;"><strong>This request has been accepted by <%= request.recipient_name%>.</strong></p>
   <%end%>
   <% if request.acceptedFlag == false%>
-  <p style="color:#CC6633;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
+  <p style="color:#ed2f2f;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
   <%end%>
   
  
   <% if request.completedFlag == true%>
-  <p style="color:green;"><strong>This request has been completed and is awaiting <%= request.sender%>'s closure of request!</strong></p>
+  <p style="color:green;"><strong>This request has been completed and <%= request.recipient_name%> is awaiting your closure of request!</strong></p>
   <%end%>
   <% if request.completedFlag == false%>
-  <p style="color:#CC6633;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
+  <p style="color:#ed2f2f;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
   <%end%>
    </ul>
       <div class="text-center">
@@ -152,17 +152,17 @@ html {
     <ul>
       <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
       <% if request.acceptedFlag == true%>
-  <p style="color:green;"><strong>This request has been accepted by <%= request.recipient_name%>.</strong></p>
+  <p style="color:green;"><strong>You have accepted this request!.</strong></p>
   <%end%>
   <% if request.acceptedFlag == false%>
-  <p style="color:red;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
+  <p style="color:#ed2f2f;"><strong>You have not accepted this request. See request to change the status!</strong></p>
   <%end%>
  
   <% if request.completedFlag == true%>
-  <p style="color:green;"><strong>This request has been completed and is awaiting <%= request.sender%>'s closure of request.</strong></p>
+  <p style="color:green;"><strong>You have completed this request and we are awaiting <%= request.sender%>'s closure of request to award volunteer hours.</strong></p>
   <%end%>
   <% if request.completedFlag == false%>
-  <p style="color:#CC6633;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
+  <p style="color:#ed2f2f;"><strong>You have yet to complete <%= request.recipient_name%>'s request.</strong></p>
   <%end%>
 
    </ul>

@@ -95,23 +95,26 @@ html {
        <h5 style="text-align:center;"><b>Request Active Status:</b></h5>
        <br>
         <%  if request.try(:acceptedFlag?)==true %>
-        <p><strong>  <%= request.recipient_name %> has accepted this request!</strong></p>
+        <p style="color:green;"><strong>  <%= request.recipient_name %> has accepted this request!</strong></p>
         <%end%>
          <% if request.try(:acceptedFlag?)==false %>
-         <p><strong> <%= request.recipient_name %> has not yet accepted the request!</strong></p>
+         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has not yet accepted the request!</strong></p>
          <%end%>
          <% if request.try(:completedFlag?)==true %>
-        <p><strong>  This request has been completed and is waiting for <%= request.sender%> to close out the request!</p>
+        <p style="color:green;"><strong>  This request has been completed and is waiting for <%= request.sender%> to close out the request!</p>
         <%end%>
          <% if request.try(:completedFlag?)==false %>
-         <p><strong> <%= request.recipient_name %> has yet to complete the request!</strong></p>
+         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has yet to complete the request!</strong></p>
          <%end%>
        </ul>
     </div> 
        <div class="col-12">
       <p><strong>Last Updated On:<%=request.updated_at%><%= button_to 'Edit Request', edit_request_path(request), method: :get %></strong></p>
     <% if current_user.try(:id)==request.user_id %>
-      <p><strong><%= button_to 'Close Out Request As Completed', request_path(request), method: :delete %></strong></p>
+    
+      <p><strong><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete %></strong></p>
+ 
+     
       <%end%>
       </body>
       </div> 
