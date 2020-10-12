@@ -82,9 +82,7 @@ html {
 
 <br>
 <br>
-<h1 class="text-center">
-My Requests Page
-</h1>
+<h1 class="text-center", style="color:#ed2f2f;">My Requests Page</h1>
 <br>
 <br>
 <h3><p class="text-primary">My Sent Requests</p></h3>
@@ -96,7 +94,7 @@ My Requests Page
  <div class = "text-center">
   <div class="header">
     <h2>Request To: <%= request.recipient_name%></h2>
-    See <%= request.recipient_name%>
+    See <%= request.recipient_name%>'s
     <a><%= link_to 'Profile', user_path(request.recipient) %></a>
   </div>
   </div>
@@ -104,7 +102,21 @@ My Requests Page
   <div class="col-12 menu">
   
     <ul>
-      <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
+      <p style="color:#404040;"><u><strong>  Description:</u> <%= request.description%></strong></p> 
+     <% if request.acceptedFlag == true%>
+  <p style="color:green;"><strong>This request has been accepted by <%= request.recipient_name%>.</strong></p>
+  <%end%>
+  <% if request.acceptedFlag == false%>
+  <p style="color:#CC6633;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
+  <%end%>
+  
+ 
+  <% if request.completedFlag == true%>
+  <p style="color:green;"><strong>This request has been completed and is awaiting <%= request.sender%>'s closure of request!</strong></p>
+  <%end%>
+  <% if request.completedFlag == false%>
+  <p style="color:#CC6633;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
+  <%end%>
    </ul>
       <div class="text-center">
       <%= button_to 'See Request', request_path(request),:method => "get" %>
@@ -130,7 +142,7 @@ My Requests Page
  <div class = "text-center">
   <div class="header">
     <h2>Request From: <%= request.sender%></h2>
-    See <%= request.sender%>
+    See <%= request.sender%>'s
     <a><%= link_to 'Profile', user_path(request.user_id) %></a>
   </div>
   </div>
@@ -139,9 +151,23 @@ My Requests Page
   
     <ul>
       <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
+      <% if request.acceptedFlag == true%>
+  <p style="color:green;"><strong>This request has been accepted by <%= request.recipient_name%>.</strong></p>
+  <%end%>
+  <% if request.acceptedFlag == false%>
+  <p style="color:red;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
+  <%end%>
+ 
+  <% if request.completedFlag == true%>
+  <p style="color:green;"><strong>This request has been completed and is awaiting <%= request.sender%>'s closure of request.</strong></p>
+  <%end%>
+  <% if request.completedFlag == false%>
+  <p style="color:#CC6633;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
+  <%end%>
+
    </ul>
       <div class="text-center">
-      <%button_to 'See Request', request_path(request),:method => "get" %>
+      <%= button_to 'See Request', request_path(request),:method => "get" %>
       </div>
   </div>
       <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
@@ -152,6 +178,4 @@ My Requests Page
     </div>
 <% end %>
 <%end %>
-
-<div class="card-body">
 </body>

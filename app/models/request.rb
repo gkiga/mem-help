@@ -37,7 +37,8 @@ class Request < ApplicationRecord
     #before_destroy -> { users.each {|u| u.group = nil; u.save}}
     #def init
      # self.completedFlag  ||= false          #will set the default value only if it's nil
-      
+     
+  
   end  
 
 
