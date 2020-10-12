@@ -42,13 +42,15 @@ Edit Request
          <%# radio_button_tag "new_volunteer_hours", 4.00, 4.00 %>
      <%# label_tag "new_volunteer_hours", '4 Hours' %>
      
+
 <%end%>
+
 
 
 <% if current_user.try(:id)==request.recipient %>
   <div>
     <h5>Accept Request?</h5>
-     <%= f.radio_button "acceptedFlag", true %>
+     <%= f.radio_button "acceptedFlag",  true %>
      <%= label_tag "acceptedFlag", 'Accept Request' %>
     <%= f.radio_button "acceptedFlag", false %>
      <%= label_tag "acceptedFlag", 'Decline Request' %>
@@ -56,13 +58,13 @@ Edit Request
   
   <div>
     <h5>Completed Request?</h5>
-      <%= f.radio_button "completedFlag", true %>
+      <%= f.radio_button "completedFlag",true %>
      <%= label_tag "completedFlag", 'Complete Request' %>
     <%= f.radio_button "completedFlag", false %>
      <%= label_tag "completedFlag", 'Request Not Completed' %>
   </div>
-  <br>
-  
+
+
   <%end%>
   <%= f.submit "Update Request" %>
 
