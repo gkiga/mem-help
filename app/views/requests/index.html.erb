@@ -1,11 +1,85 @@
 <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+* {
+  box-sizing: border-box;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   width: 75%;
 }
+a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: center;
+  padding: 15px;
+}
+.text-center {
+  text-align: center;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #4082ed;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.menu li:hover {
+  background-color: #0099cc;
+}
 </style>
+</head>
+<body>
+
 <br>
 <br>
 <h1 class="text-center">
@@ -18,23 +92,24 @@ My Requests Page
 <% if current_user.try(:id)==request.user_id %>
   
   <div id="<%= dom_id(request) %>">
-    <div class="container card p-3 mb-2 bg-light text-dark">
-    <div class="card-body">
-    <div class = "text-left">
-    <ul>
-        <p><b>  Description: <%= request.description%></b></p>
-        <p><b>  Category: <%= request.category%></b></p>
-        <p><b>  Request Sender: <%= request.sender%> </b></p>
-        <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
-      
+    <div class="container card p-2 mb-2 bg-light text-dark">
+ <div class = "text-center">
+  <div class="header">
+    <h2>Request To: <%= request.recipient_name%></h2>
+    See <%= request.recipient_name%>
+    <a><%= link_to 'Profile', user_path(request.recipient) %></a>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-12 menu">
   
-      <br>
-
+    <ul>
+      <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
+   </ul>
+      <div class="text-center">
       <%= button_to 'See Request', request_path(request),:method => "get" %>
-     
-      <%# button_to 'Edit Request', edit_request_path(request),:method => "get" %>
-      <br>
-      <%# button_to 'Close Out Request As Completed', request_path(request), method: :delete %>
+      </div>
+  </div>
       <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
       
      </ul>
@@ -51,21 +126,26 @@ My Requests Page
 <% if current_user.try(:id)==request.recipient %>
   
   <div id="<%= dom_id(request) %>">
-    <div class="container card p-3 mb-2 bg-light text-dark">
-    <div class="card-body">
-    <div class = "text-left">
-    <ul>
-        <p><b>  Description: <%= request.description%></b></p>
-        <p><b>  Category: <%= request.category%></b></p>
-        <p><b>  Request Sender: <%= request.sender%> </b></p>
-        <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
-        
-       
-       <%#link_to 'Set Request Status as Declined', request_path(request.acceptedFlag = false), method: :patch %>
+    <div class="container card p-2 mb-2 bg-light text-dark">
+ <div class = "text-center">
+  <div class="header">
+    <h2>Request From: <%= request.sender%></h2>
+    See <%= request.sender%>
+    <a><%= link_to 'Profile', user_path(request.user_id) %></a>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-12 menu">
   
-<br>
-      <%= button_to 'See Request', request_path(request),:method => "get" %>
-      <%# link_to '🖋', edit_request_path(request) %>
+    <ul>
+      <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
+   </ul>
+      <div class="text-center">
+      <%button_to 'See Request', request_path(request),:method => "get" %>
+      </div>
+  </div>
+      <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
+      
      </ul>
     </div>
     </div>
@@ -74,3 +154,4 @@ My Requests Page
 <%end %>
 
 <div class="card-body">
+</body>
