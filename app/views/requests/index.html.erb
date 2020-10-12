@@ -162,7 +162,7 @@ html {
   <p style="color:green;"><strong>You have completed this request and we are awaiting <%= request.sender%>'s closure of request to award volunteer hours.</strong></p>
   <%end%>
   <% if request.completedFlag == false%>
-  <p style="color:#ed2f2f;"><strong>You have yet to complete <%= request.recipient_name%>'s request.</strong></p>
+  <p style="color:#ed2f2f;"><strong>You have yet to complete <%= request.sender%>'s request.</strong></p>
   <%end%>
 
    </ul>
