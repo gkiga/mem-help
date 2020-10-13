@@ -27,6 +27,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          after_initialize :default_values
@@ -34,6 +36,7 @@ class User < ApplicationRecord
          private
            def default_values
              self.volunteer_hours||= 0.0
+
            end
       
   has_one_attached :avatar

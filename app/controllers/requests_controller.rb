@@ -87,10 +87,12 @@ class RequestsController < ApplicationController
         # load existing object again from URL param
         request = Request.find(params[:id])
         if current_user.try(:id)==request.user_id
+        if request.completedFlag == true
             user = User.find(request.recipient)
             user.volunteer_hours += request.new_volunteer_hours
             user.save
         end
+    end
         request.destroy
         # respond_to block
         respond_to do |format|

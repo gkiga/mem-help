@@ -37,8 +37,8 @@ html {
 }
 
 .header {
-  background-color: #9933cc;
-  color: #ffffff;
+  background-color: #ebbd6a;
+  color: #30344f;
   padding: 15px;
 }
 
@@ -65,47 +65,60 @@ html {
 
 <br>
 <br>
+
 <div class="container card p-3 mb-2 bg-light text-dark">
  <div class = "text-center">
   <div class="header">
-    <h5>Request: <%= request.sender%> to <%= request.recipient_name %></h5>
+    <h2>Request: <%= request.sender%> to <%= request.recipient_name %></h2>
   </div>
   </div>
   <div class="row">
   <div class="col-12 menu">
+  
     <ul>
-        <h5><b>Request General Information:</b></h5>
-        <p style="color:purple;"><u>  Description:</u><%= request.description%></p>
-        <p style="color:purple;"><u>  Category:</u> <%= request.category%></p>
-        <p style="color:purple;"><u>  Request Sender:</u> <%= request.sender%></p>
-        <p style="color:purple;"><u>  Request Recipient:</u> <%= request.recipient_name %></p>
-        <p style="color:purple;"><u>  Learning Preference:</u> <%= request.learningPreference %></p>
-        <p style="color:purple;"><u>  Volunteer Hours to be earned with request completion:</u> <%= request.new_volunteer_hours %> </p>
+    
+        <h5 style="text-align:center;"><b>Request General Information:</b></h5>
+        <br>
+    
+        <p><u><strong>  Description:</u> <%= request.description%></strong></p>
+        <p><u><strong>  Category:</u> <%= request.category%></strong></p>
+        <p><u><strong>  Request Sender:</u> <%= request.sender%></strong></p>
+        <p><u><strong>  Request Recipient:</u> <%= request.recipient_name %></strong></p>
+        <p><u><strong>  Learning Preference:</u> <%= request.learningPreference %></strong></p>
+        <p><u><strong>  Volunteer Hours to be earned with request completion:</u> <%= request.new_volunteer_hours %></strong> </p>
+        
    </ul>
   </div>
- 
-  <div class="col-10 menu">
+
+  <div class="col-12 menu">
     <ul>
-       <h5><b>Request Active Status</b></h5>
+       <h5 style="text-align:center;"><b>Request Active Status:</b></h5>
+       <br>
         <%  if request.try(:acceptedFlag?)==true %>
-        <p style="color:purple;">  <%= request.recipient_name %> has accepted this request!</p>
+        <p style="color:green;"><strong>  <%= request.recipient_name %> has accepted this request!</strong></p>
         <%end%>
          <% if request.try(:acceptedFlag?)==false %>
-         <p style="color:purple;"> <%= request.recipient_name %> has not yet accepted the request!</p>
+         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has not yet accepted the request!</strong></p>
          <%end%>
          <% if request.try(:completedFlag?)==true %>
-        <p style="color:purple;">  This request has been completed and is waiting for <%= request.sender%> to close out the request!</p>
+        <p style="color:green;"><strong>  This request has been completed and is waiting for <%= request.sender%> to close out the request!</p>
         <%end%>
          <% if request.try(:completedFlag?)==false %>
-         <p style="color:purple;"> <%= request.recipient_name %> has yet to complete the request!</p>
+         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has yet to complete the request!</strong></p>
          <%end%>
        </ul>
     </div> 
        <div class="col-12">
-      <p style="color:purple;">Last Updated On:<%=request.updated_at%><%= button_to 'Edit Request', edit_request_path(request), method: :get %></p>
+        <% if current_user.try(:id)==request.recipient %>
+      <p><strong>Last Updated On:<%=request.updated_at%><%= button_to 'Edit Request Active Status', edit_request_path(request), method: :get %></strong></p>
+    <%end%>
     <% if current_user.try(:id)==request.user_id %>
-      <p></b><%= button_to 'Close Out Request As Completed', request_path(request), method: :delete %></p>
+    <%= button_to 'Edit Request General Information', edit_request_path(request), method: :get %>
+      <p><strong><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete %></strong></p>
+ 
+     
       <%end%>
+      </body>
       </div> 
          </div> 
             </div> 
