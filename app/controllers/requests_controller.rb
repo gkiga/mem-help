@@ -26,12 +26,8 @@ class RequestsController < ApplicationController
     
     def create
          # new object from params
-<<<<<<< HEAD
-         request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient, :sender, :acceptedFlag, :completedFlag))
-=======
          #@user = User.all
          request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag, :new_volunteer_hours, :recipient_name))
->>>>>>> dfde10b2bdd8fa6451498322c058f9d351840ed2
          # respond_to block
          request.user_id = current_user.id
          request.acceptedFlag = false

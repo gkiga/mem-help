@@ -14,18 +14,9 @@ New Request
 <br>
 
   <div class="field">
-    <h5><%= f.label :category %></h5>
-
-    <%= f.radio_button :category, "Art"%> Art <br />
-
-    <%= f.radio_button :category, "Music"%> Music<br />
-
-    <%= f.radio_button :category, "Science"%> Science<br /><br />
-
-    <i>(You can enter your own category)</i><br />
-    <%= f.text_field :category %>
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
   </div>
-
 
 
 <br>
@@ -44,17 +35,12 @@ New Request
 
 <br>
 <br>
-<<<<<<< HEAD
-
-
-  
-=======
 <div>
     <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
  <%= f.text_field :new_volunteer_hours%>
     
   </div>
->>>>>>> dfde10b2bdd8fa6451498322c058f9d351840ed2
+  <br>
 
 <%= f.hidden_field :recipient, :value => params[:recipient] %>
 <%= f.hidden_field :recipient_name, :value => params[:recipient_name] %>

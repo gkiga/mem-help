@@ -6,6 +6,7 @@
   width: 75%;
 }
 </style>
+
 <br>
 <br>
 <h1 class="text-center">
@@ -58,29 +59,26 @@ My Requests Page
         <p><b>  Description: <%= request.description%></b></p>
         <p><b>  Category: <%= request.category%></b></p>
         <p><b>  Request Sender: <%= request.sender%> </b></p>
-<<<<<<< HEAD
-        <p><b>  Request Recipient: <%= request.recipient %> </b></p>
+        <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
         <p><b>  Accepted: 
-        <% if request.acceptedFlag==true%>
-          ✔
-        <% else %>
-          ❌
-        <% end %>
+          <% if request.acceptedFlag==true%>
+            ✔
+          <% else %>
+            ❌
+          <% end %>
         </b><p>
         <p><b>  Completed: 
-        <% if request.completedFlag==true%>
-          ✔
-        <% else %>
-          ❌
-        <% end %>
+          <% if request.completedFlag==true%>
+            ✔
+          <% else %>
+            ❌
+          <% end %>
         </b><p>
     
 
-      <%= link_to '🔎', request_path(request) %>
-      <%= link_to '🖋', edit_request_path(request) %>
-      <%= button_to '🗑', request_path(request), method: :delete %>
-=======
-        <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
+      <%#= link_to '🔎', request_path(request) %>
+      <%#= link_to '🖋', edit_request_path(request) %>
+      <%#= button_to '🗑', request_path(request), method: :delete %>
         
        
        <%#link_to 'Set Request Status as Declined', request_path(request.acceptedFlag = false), method: :patch %>
@@ -88,7 +86,6 @@ My Requests Page
 <br>
       <%= button_to 'See Request', request_path(request),:method => "get" %>
       <%# link_to '🖋', edit_request_path(request) %>
->>>>>>> dfde10b2bdd8fa6451498322c058f9d351840ed2
      </ul>
     </div>
     </div>
