@@ -14,17 +14,10 @@ Edit Request
 <br>
   
   <div class="field">
-    <h5><%= f.label :category %></h5>
-
-    <%= f.radio_button :category, "Art"%> Art <br />
-
-    <%= f.radio_button :category, "Music"%> Music<br />
-
-    <%= f.radio_button :category, "Science"%> Science<br /><br />
-
-    <i>(You can enter your own category)</i><br />
-    <%= f.text_field :category %>
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
   </div>
+ 
 
 <br>
 <br>
@@ -106,9 +99,9 @@ Edit Request
 
 
   <%end%>
+  <br>
   <%= f.submit "Update Request" %>
 
 <% end %>
 
 
-  
