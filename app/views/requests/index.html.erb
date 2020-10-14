@@ -143,38 +143,6 @@ html {
 <% if current_user.try(:id)==request.recipient %>
   
   <div id="<%= dom_id(request) %>">
-<<<<<<< HEAD
-    <div class="container card p-3 mb-2 bg-light text-dark">
-    <div class="card-body">
-    <div class = "text-left">
-    <ul>
-        <p><b>  Description: <%= request.description%></b></p>
-        <p><b>  Category: <%= request.category%></b></p>
-        <p><b>  Request Sender: <%= request.sender%> </b></p>
-        <p><b>  Request Recipient: <%= request.recipient_name %> </b></p>
-        <p><b>  Accepted: 
-          <% if request.acceptedFlag==true%>
-            ✔
-          <% else %>
-            ❌
-          <% end %>
-        </b><p>
-        <p><b>  Completed: 
-          <% if request.completedFlag==true%>
-            ✔
-          <% else %>
-            ❌
-          <% end %>
-        </b><p>
-    
-
-      <%#= link_to '🔎', request_path(request) %>
-      <%#= link_to '🖋', edit_request_path(request) %>
-      <%#= button_to '🗑', request_path(request), method: :delete %>
-        
-       
-       <%#link_to 'Set Request Status as Declined', request_path(request.acceptedFlag = false), method: :patch %>
-=======
     <div class="container card p-2 mb-2 bg-light text-dark">
  <div class = "text-center">
   <div class="header">
@@ -185,7 +153,6 @@ html {
   </div>
   <div class="row">
   <div class="col-12 menu">
->>>>>>> f40e00e882c74bf4fb4df69aa0a7c7bc4bc8581b
   
     <ul>
       <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
