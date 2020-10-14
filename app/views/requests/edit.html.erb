@@ -12,21 +12,55 @@ Edit Request
   </div>
 <br>
 <br>
-  <div>
-    <h5>Category</h5>
-    <p>For example, art, music, or biology</p>
-    <%= f.text_field :category%>
+  
+  <div class="field">
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
   </div>
-<br>
-<br>
-  <div>
-    <h5>Learning Preference</h5>
-    <p>For example, Pre-recorded videos, Live Videoconferencing, or 1-on-1 meeting in person</p>
-    <%= f.text_field :learningPreference%>
-  </div>
-<br>
-<br>
+ 
 
+<br>
+<br>
+  
+  <div class="field">
+    <h5><%= f.label :learningPreference, "Learning Preference" %></h5>
+
+    <%= f.radio_button :learningPreference, "Prerecorded Video"%> Prerecorded Video<br />
+
+    <%= f.radio_button :learningPreference, "Live Zoom Meeting"%> Live Zoom Meeting<br />
+    
+    <%= f.radio_button :learningPreference, "1-in-1 in Person"%> 1-in-1 in Person<br />
+  </div>
+
+<br>
+<br>
+<% if current_user.try(:id)==request.recipient %>
+  <h5>Accept Request?</h5>
+  <div>
+    <div>
+      <%= f.radio_button :acceptedFlag, true %>
+      <%= f.label "acceptedFlag_true", 'Yes' %>
+    </div>
+    <div>
+      <%= f.radio_button :acceptedFlag, false %>
+      <%= f.label "acceptedFlag_false", 'No' %>
+    </div>
+  <div>
+
+  <br />
+
+  <h5>Completed Request?</h5>
+  <div>
+    <div>
+      <%= f.radio_button :completedFlag, true %>
+      <%= f.label "completedFlag_true", 'Yes' %>
+    </div>
+    <div>
+      <%= f.radio_button :completedFlag, false %>
+      <%= f.label "conpletedFlag_false", 'No' %>
+    </div>
+  <div>
+  <% end %>
 <%#if current_user.try(:id)==request.user_id %>
 <div>
     <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
@@ -66,9 +100,9 @@ Edit Request
 
 
   <%end%>
+  <br>
   <%= f.submit "Update Request" %>
 
 <% end %>
 
 
-  

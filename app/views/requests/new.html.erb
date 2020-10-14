@@ -12,18 +12,27 @@ New Request
   </div>
 <br>
 <br>
-  <div>
-    <h5>Category</h5>
-    <p>For example, art, music, or biology</p>
-    <%= f.text_field :category%>
+
+  <div class="field">
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
   </div>
+
+
 <br>
 <br>
-  <div>
-    <h5>Learning Preference</h5>
-    <p>For example, Pre-recorded videos, Live Videoconferencing, or 1-on-1 meeting in person</p>
-    <%= f.text_field :learningPreference%>
-  </div>
+
+   <div class="field">
+      <h5><%= f.label :learningPreference, "Learning Preference" %></h5>
+
+      <%= f.radio_button :learningPreference, "Prerecorded Video"%> Prerecorded Video<br />
+
+      <%= f.radio_button :learningPreference, "Live Zoom Meeting"%> Live Zoom Meeting<br />
+      
+      <%= f.radio_button :learningPreference, "1-in-1 in Person"%> 1-in-1 in Person<br />
+    </div>
+
+
 <br>
 <br>
 <div>
@@ -31,6 +40,7 @@ New Request
  <%= f.text_field :new_volunteer_hours%>
     
   </div>
+  <br>
 
 <%= f.hidden_field :recipient, :value => params[:recipient] %>
 <%= f.hidden_field :recipient_name, :value => params[:recipient_name] %>

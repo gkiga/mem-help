@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
     end
 
      def new
-         request = Request.new
+         request = Request.new(params[:request])
          respond_to do |format|
              format.html { render :new, locals: { request: request } }
          end
