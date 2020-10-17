@@ -13,4 +13,10 @@
 #  user_id        :bigint
 #
 class Message < ApplicationRecord
+    validates :body, presence: true
+    validates :sender_name, presence: true
+    validates :title, presence: true
+    validates :recipient_id, presence: true
+    validates :recipient_name, presence: true
 end
+    

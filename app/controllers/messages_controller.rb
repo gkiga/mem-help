@@ -23,24 +23,25 @@ class MessagesController < ApplicationController
              format.html { render :new, locals: { message: message } }
          end
      end
-    
+     
     def create
          # new object from params
          #@user = User.all
-         message = Message.new(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
+         @message = Message.new(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
          # respond_to block
-         message.user_id = current_user.id
-         message.sender_name = [current_user.first_name, current_user.last_name].join(' ')
+         @message.sender_name = [current_user.first_name, current_user.last_name].join(' ')
+         @message.user_id = current_user.id
+        
         
          respond_to do |format|
              format.html do
-                 if message.save
+                 if @message.save
                     #@user = User.find(params[:recipient])
                    # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
                      flash[:success] = "Message saved successfully"
                      # redirect to index
-                     redirect_to message_url
+                     redirect_to messages_url
                  else
                      # error message
                      flash.now[:error] = "Error: Message could not be saved"
@@ -94,5 +95,15 @@ class MessagesController < ApplicationController
                 redirect_to messages_url
             end
         end
+    end
+end
+class DemoController
+    def index
+      @some_variable = "dlroW olleH"
+      @some_variable = backwards
+    end
+    private 
+    def backwards
+       @some_variable.reverse
     end
 end
