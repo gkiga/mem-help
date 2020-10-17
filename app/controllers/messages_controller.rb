@@ -39,12 +39,12 @@ class MessagesController < ApplicationController
                     #@user = User.find(params[:recipient])
                    # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
-                     flash[:success] = "Message saved successfully"
+                     flash[:success] = "Message sent successfully"
                      # redirect to index
                      redirect_to messages_url
                  else
                      # error message
-                     flash.now[:error] = "Error: Message could not be saved"
+                     flash.now[:error] = "Error: Message could not be sent"
                      # render new
                      render :new, locals: { message: message }
                  end

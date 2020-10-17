@@ -7,12 +7,14 @@
   <div class="card">
   
   <div class="card-body">
-  <h6><strong>Message General Information</strong></h6>
+  <h6><strong>Message</strong></h6>
     <ul>
         
-        <li>Title <%=message.title %> </li>
+        <li>Title: <%=message.title %> </li>
         <li>Body: <%=message.body%> </li>
-
-    <%= button_to 'Delete Message', message_path(message), method: :delete %>
+    
+    <%= button_to 'Delete Message', message_path(message), method: :delete, :class => "btn btn-primary" %>
+    
+  
  </ul>
   

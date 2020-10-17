@@ -3,6 +3,7 @@
 <br>
 <br>
 <h1 class="text-center", style="color:#ed2f2f;">My Messages Page</h1>
+
 <br>
 
 <p class="text-secondary">You can send or read your private messages here! </p>
@@ -19,7 +20,7 @@
     
     <p>Subject: <%= message.title%> || From: <%= message.sender_name%> || To: <%= message.recipient_name%> </p>
 
-    <a><%= button_to 'See Message', message_path(message),:method => "get"  %></a>
+    <a><%= button_to 'View Message', message_path(message),:method => "get", :class => "btn btn-primary"  %></a>
   </div>
   <%end %>
   <% if current_user.try(:id) == message.recipient_id %>
@@ -28,7 +29,8 @@
     
     <p>Subject: <%= message.title%> || From: <%= message.sender_name%> || To: <%= message.recipient_name%> </p>
 
-    <a><%= button_to 'See Message', message_path(message),:method => "get"  %></a>
+    <a><%= button_to 'View Message', message_path(message),:method => "get" , :class => "btn btn-primary" %></a>
+    
   </div>
   
   <%end%>
