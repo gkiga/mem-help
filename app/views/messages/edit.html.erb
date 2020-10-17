@@ -1,0 +1,19 @@
+<h1 class="text-center">
+Edit Message
+</h1>
+
+
+<%= form_with model: message, url: message_path, method: :patch, local: true, scope: :message do |f| %>
+<% if current_user.try(:id)==message.user_id %>
+  <div>
+    <h5>Description of Your Message</h5>
+    <%= f.text_field :body %>
+  </div>
+<br>
+<br>
+  
+  <div class="field">
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
+  </div>
+ 

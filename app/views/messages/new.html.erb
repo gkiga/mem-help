@@ -1,0 +1,18 @@
+<h1 class="text-center">
+New Message
+</h1>
+
+<%= form_with model: message, url: messages_path, method: :post, local: true, scope: :Message do |f| %>
+
+  <div>
+    <h5>Description of Your Message</h5>
+    <%= f.text_field :body %>
+    <%= f.text_field :title %>
+  </div>
+
+  <%= f.hidden_field :recipient_id, :value => params[:recipient_id] %>
+  <%= f.hidden_field :recipient_name, :value => params[:recipient_name] %>
+  <%= f.submit "Send Message" %>
+
+<% end %>
+  
