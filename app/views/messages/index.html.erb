@@ -12,7 +12,8 @@
 <br>
 <h3><p class="text-primary">My Messages</p></h3>
 <% messages.each do |message| %>
-<% if current_user.try(:id)==message.user_id || message.recipient_id %>
+
+<% if current_user.try(:id)==message.user_id %>
   
   <div id="<%= dom_id(message) %>">
     
@@ -20,5 +21,15 @@
 
     <a><%= button_to 'See Message', message_path(message),:method => "get"  %></a>
   </div>
+  <%end %>
+  <% if current_user.try(:id) == message.recipient_id %>
+  
+  <div id="<%= dom_id(message) %>">
+    
+    <p>Subject: <%= message.title%> || From: <%= message.sender_name%> || To: <%= message.recipient_name%> </p>
+
+    <a><%= button_to 'See Message', message_path(message),:method => "get"  %></a>
+  </div>
+  
   <%end%>
   <%end%>
