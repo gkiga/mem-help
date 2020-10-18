@@ -1,37 +1,65 @@
-<body>
 
-<br>
-<br>
-<h1 class="text-center", style="color:#ed2f2f;">My Messages Page</h1>
+<h1 class="text-center">My Messages</h1>
 
-<br>
 
-<p class="text-secondary">You can send or read your private messages here! </p>
-<br>
-<p class="text-secondary">If you want a closer look at a message click "See Message".</p>
-
-<br>
-<h3><p class="text-primary">My Messages</p></h3>
 <% messages.each do |message| %>
+<% if current_user.try(:id)==message.recipient_id %>
+  
+  <div id="<%= dom_id(message) %>">
 
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<div class="card text-center shadow mb-5 bg-white rounded">
+  <div class="card-header font-italic">
+  <div class="card text-center">
+    <div class="card-header">
+      Receive Message
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "texy-success"%></h5>
+      <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
+      <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
+      <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
+    <div class="card-footer text-muted">
+      <small>Received <%= time_ago_in_words(message.created_at) %> ago 
+      <!--  edited <%= time_ago_in_words(message.updated_at) %> ago--></small>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+<%end%>
+<%end%>
+
+<% messages.each do |message| %>
 <% if current_user.try(:id)==message.user_id %>
   
   <div id="<%= dom_id(message) %>">
-    
-    <p>Subject: <%= message.title%> || From: <%= message.sender_name%> || To: <%= message.recipient_name%> </p>
 
-    <a><%= button_to 'View Message', message_path(message),:method => "get", :class => "btn btn-primary"  %></a>
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<div class="card text-center shadow mb-5 bg-white rounded">
+  <div class="card-header font-italic">
+  <div class="card text-center">
+    <div class="card-header">
+      Sent Message
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "texy-success"%></h5>
+      <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
+      <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
+      <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
+    <div class="card-footer text-muted">
+     <small>Sent <%= time_ago_in_words(message.created_at) %> ago 
+           <!--  edited <%= time_ago_in_words(message.updated_at) %> ago--></small>
+    </div>
   </div>
-  <%end %>
-  <% if current_user.try(:id) == message.recipient_id %>
-  
-  <div id="<%= dom_id(message) %>">
-    
-    <p>Subject: <%= message.title%> || From: <%= message.sender_name%> || To: <%= message.recipient_name%> </p>
-
-    <a><%= button_to 'View Message', message_path(message),:method => "get" , :class => "btn btn-primary" %></a>
-    
   </div>
-  
-  <%end%>
-  <%end%>
+  </div>
+  </div>
+  </div>
+<%end%>
+<%end%>

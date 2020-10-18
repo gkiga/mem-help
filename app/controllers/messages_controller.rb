@@ -58,6 +58,7 @@ class MessagesController < ApplicationController
         
         respond_to do |format|
             format.html { render :edit, locals: { message: message } }
+            redirect_to messages_url
         end
     end
 
