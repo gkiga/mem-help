@@ -1,0 +1,29 @@
+
+<div id="page-contet">
+<h1 class="text-center mt-4">New Messages</h1>
+
+<%= form_with model: message, url: messages_path, class: "shadow p-5 mb-10 bg-info", method: :post, local: true, scope: :message do |f| %>
+
+  <div class="form-group row">
+    <label for="exampleFormControlInput1">Title</label>
+    <%= f.text_field :title, placeholder:'Hello',class: "form-control shadow" %>
+   
+  </div>
+  <div class="form-group row">
+  <label for="exampleFormControlInput1">Message</label>
+    <%= f.text_area :body, placeholder: 'Say something...', class: "form-control shadow"  %>
+    
+  </div>
+ 
+<%= f.hidden_field :recipient_id, :value => params[:recipient_id] %>
+<%= f.hidden_field :recipient_name, :value => params[:recipient_name] %>
+ <%#= f.hidden_field :user_id, => value: current_user.id %>
+  <%#= f.hidden_field :sender_name, => value: [current_user.first_name, current_user.last_name].join(' ') %> 
+ 
+ <div class="form-group row">     
+  <%= f.submit "Send Message", :class => "btn btn-outline-light" %>
+ 
+
+</div>
+<% end %>
+

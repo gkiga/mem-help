@@ -20,9 +20,10 @@
     </ul>
    
     <% if user != current_user %>
-      <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>                                                                               
+    <%= link_to "Send Message", new_message_path(:recipient_id => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>                                                                                                                                               
+    <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>     
     <% else %>
-      <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
+    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary text-center" %>
     <% end %>
 
   </div>

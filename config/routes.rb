@@ -16,6 +16,16 @@ Rails.application.routes.draw do
   put 'requests/:id', to: 'requests#update' # update (full replacement)
   delete 'requests/:id', to: 'requests#destroy' # destroy
 
+  # messages
+  get 'messages', to: 'messages#index', as: 'messages' # index
+  get 'messages/new', to: 'messages#new', as: 'new_message' # new
+  post 'messages', to: 'messages#create' # create
+  get 'messages/:id', to: 'messages#show', as: 'message' # show
+  get 'messages/:id/edit', to: 'messages#edit', as: 'edit_message' # edit
+  patch 'messages/:id', to: 'messages#update' # update (as needed)
+  put 'messages/:id', to: 'messages#update' # update (full replacement)
+  delete 'messages/:id', to: 'messages#destroy' # destroy
+
 
   # users
   devise_scope :user do

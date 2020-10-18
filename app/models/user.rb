@@ -32,7 +32,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          after_initialize :default_values
-
+    
+    def username
+    return self.email.split('@')[0].capitalize
+    end   
          private
            def default_values
              self.volunteer_hours||= 0.0
