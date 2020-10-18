@@ -1,15 +1,19 @@
-<h1 class="text-center">
-Edit Message
-</h1>
+<div id="page-contet">
+<h1 class="text-center mt-4">Edit Messages</h1>
+
 
 
 <%= form_with model: message, url: message_path, method: :patch, local: true, scope: :message do |f| %>
 <% if current_user.try(:id)==message.user_id %>
   <div>
-    <h5>Description of Your Message</h5>
-    <%= f.text_field :body %>
+    <div class="form-group row">
+    <%= f.text_area :body, class: "form-control shadow"  %>
+  </div>
   </div>
 <br>
 <br>
-  
+  <div class="form-group row">     
   <%= f.submit "Update Message" %>
+  </div>
+
+  <% end %>

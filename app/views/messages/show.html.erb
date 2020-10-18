@@ -1,20 +1,28 @@
+<div id="page-contet">
+<h1 class="text-center mt-4">New Message</h1>
 <div class="container card p-3 mb-2 bg-light text-dark">
  <div class = "text-center">
-  <div class="header">
-    <h2>Message: <%= message.sender_name%> to <%= message.recipient_name %></h2>
+  <div class="card text-white bg-primary mb-5" style="max-width: 55rem;">
+  
+    <h2><%= message.sender_name%> to <%= message.recipient_name %></h2>
   </div>
   </div>
   <div class="card">
   
   <div class="card-body">
-  <h6><strong>Message</strong></h6>
+  
     <ul>
-        
-        <li>Title: <%=message.title %> </li>
-        <li>Body: <%=message.body%> </li>
-    
-    <%= button_to 'Delete Message', message_path(message), method: :delete, :class => "btn btn-primary" %>
-    
+        <div class="form-group row">
+        <label> <h5 class="card-title"> <%=message.title %> </label>
+      </div>
+       <div class="form-group row">
+       <label> <p class="card-text"> <%=message.body%></p> <label> 
+     </div>
+     <div class="form-group row">
+    <%= button_to 'Delete Message', message_path(message), method: :delete, :class => "btn btn-primary", method: :delete, data: {confirm: "Are you sure?"} %>
+     </div>
+      </div>
+       </div>
   
  </ul>
   

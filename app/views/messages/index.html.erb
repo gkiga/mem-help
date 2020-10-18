@@ -16,10 +16,11 @@
       Receive Message
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "texy-success"%></h5>
+      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
       <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
       <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+   <!--   <%= link_to 'Edit ', edit_message_path(message),class: "btn btn-outline-info", method: :get %> -->   
     </div>
     <div class="card-footer text-muted">
       <small>Received <%= time_ago_in_words(message.created_at) %> ago 
@@ -47,7 +48,7 @@
       Sent Message
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "texy-success"%></h5>
+      <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
       <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
       <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
