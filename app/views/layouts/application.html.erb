@@ -39,8 +39,18 @@
               <%= link_to 'My Requests', requests_path, class: 'nav-link' %>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
       <% if current_user %>
+      <li class="nav-item btn-group">
+        <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="">
+          <%=current_user.my_notifications.unread.count %> </span><%= '🔔'%>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+          <%current_user.my_notifications.each do |my_notification| %>
+            <a class="dropdown-item" href= <%=request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+          <% end %>
+        </div>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.username %>
