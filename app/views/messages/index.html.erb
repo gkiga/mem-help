@@ -13,14 +13,14 @@
   <div class="card-header font-italic">
   <div class="card text-center">
     <div class="card-header">
-      Received Message
+      Received Message From <%=message.sender_name if current_user %>
     </div>
     <div class="card-body">
       <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
       <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
       <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-   <!--   <%= link_to 'Edit ', edit_message_path(message),class: "btn btn-outline-info", method: :get %> -->   
+   
     </div>
     <div class="card-footer text-muted">
       <small>Received <%= time_ago_in_words(message.created_at) %> ago 
@@ -45,17 +45,18 @@
   <div class="card-header font-italic">
   <div class="card text-center">
     <div class="card-header">
-      Sent Message
+      Sent Message to <%=message.recipient_name if current_user %>
     </div>
     <div class="card-body">
       <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
       <p class="card-text"><%= truncate(message.sender_name, lenght: 100) %></p>
       <%= link_to "View", message_path(message), class: "btn btn-outline-success" %>
+     <%= link_to "Edit", edit_message_path(message),class: "btn btn-outline-info", method: :get %>
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
     <div class="card-footer text-muted">
-     <small>Sent <%= time_ago_in_words(message.created_at) %> ago 
-           <!--  edited <%= time_ago_in_words(message.updated_at) %> ago--></small>
+     <small>Sent <%= time_ago_in_words(message.created_at) %> ago, 
+            edited <%= time_ago_in_words(message.updated_at) %> ago</small>
     </div>
   </div>
   </div>
