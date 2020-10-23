@@ -19,7 +19,11 @@
        <label> <p class="card-text"> <%=message.body%></p> <label> 
      </div>
      <div class="form-group row">
-    <%= button_to 'Delete Message', message_path(message), method: :delete, :class => "btn btn-primary", method: :delete, data: {confirm: "Are you sure?"} %>
+    
+     <p><%= link_to 'Reply', new_message_path(:recipient_id => message.user_id, :recipient_name => message.sender_name), :class => "btn btn-outline-success" %></p>
+     <p><%= link_to 'Back', messages_path, :class => "btn btn-outline-primary" %></p>
+     <%= button_to 'Delete', message_path(message), method: :delete, :class => "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+     
      </div>
       </div>
        </div>

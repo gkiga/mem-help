@@ -56,6 +56,12 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if current_user.avatar.attached?%>
+      <img class="rounded-circle" height= "40" width="40" <%=image_tag(current_user.avatar)%>
+    <% else %>
+      <img class="rounded-circle" height= "40" width="40" <%=image_tag("No_user.jpg")%>
+    <% end %>
+        
           <%= current_user.username %>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

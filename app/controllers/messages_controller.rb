@@ -44,9 +44,13 @@ class MessagesController < ApplicationController
                      redirect_to messages_url
                  else
                      # error message
-                     flash.now[:error] = "Error: Message could not be sent"
+                     flash.now[:error] = if Rails.env.development? 
+                                            @message.errors.full_messages
+                                        else
+                                            "Error: Message could not be sent"
+                                        end
                      # render new
-                     render :new, locals: { message: message }
+                     render :new, locals: { message: @message }
                  end
              end
          end
@@ -58,7 +62,7 @@ class MessagesController < ApplicationController
         
         respond_to do |format|
             format.html { render :edit, locals: { message: message } }
-            redirect_to messages_url
+           
         end
     end
 
@@ -68,7 +72,7 @@ class MessagesController < ApplicationController
         # respond_to block
         respond_to do |format|
             format.html do
-                if message.update(params.message(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
+                if message.update(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
                     # success message
                     flash[:success] = 'Message updated successfully'
                     # redirect to index
