@@ -24,7 +24,7 @@ class AccountVideosController < ApplicationController
             f.html do
                 if video.save
                     flash[:success] = "Video saved successfully"
-                    redirect_to account_videos_url
+                    redirect_to user_path(current_user)
                 else
                     flash.now[:error] = "Error: Video could not be saved"
                     render :new, locals: { video: video}
