@@ -47,8 +47,11 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
           <%current_user.my_notifications.each do |my_notification| %>
-            <a class="dropdown-item" href= <%=request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+            <a class="dropdown-item" href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+            <%#= link_to my_notification.action, "#{my_notification.notifiable_type.downcase}s/#{my_notification.notifiable.id}", class:"dropdown-item" %>
           <% end %>
+          <div class="dropdown-divider"></div>
+            <%= link_to "Clear Notifications", my_notification_url(current_user.my_notifications.all), method: :delete, class:"dropdown-item" %>
         </div>
       </li>
       <li class="nav-item dropdown">

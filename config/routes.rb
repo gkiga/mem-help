@@ -59,6 +59,8 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+
+  delete 'my_notifications/:id', to: 'my_notifications#destroy' # delete
     
 
 end
