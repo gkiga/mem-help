@@ -1,20 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @video.description %>
-</p>
+<div align="center">
+  <h2><%= @video.title %></h2>
 
-<div style="width:400px; height:400px">
-  <%= video_tag(url_for(@video.clip), style:"width:100%;height: auto",controls:"") %>
+  <%= video_tag(url_for(@video.clip), style:"width:900px;height: auto",controls:"") %>
+
+  <h5 align="left">
+  <br>
+    <strong>Description:</strong>
+    <%= @video.description %>
+  </h5>
+
+  <br>
+
+  <% if current_user == @video.creator %>
+    <%= link_to 'Edit', edit_video_path(@video) %> |
+    <%= link_to 'Delete', video_path(@video), method: :delete %>
+  <% end %>
 </div>
-
-<% if current_user == @video.creator %>
-  <%= link_to 'Edit', edit_video_path(@video) %> |
-  <%= link_to 'Delete', video_path(@video), method: :delete %>
-<% end %>
