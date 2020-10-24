@@ -9,18 +9,43 @@
 
 <div class="container">
     <div class ="row">
+
         <% @results.each do |user| %>
-            <div class="card container border-primary mb-3" style ="width: 25rem">
-                    <div class="card-header row justify-content-between">
+            <div class="card container border-primary mb-3" style ="width: 35rem">
+                <div class="card-header row justify-content-between">
+                <h4 class="card-title"><%= user.first_name%> <%= user.last_name%></h4>
+                <div class="avatar">
+                    <% if user.avatar.attached?%>
+                        <img class="rounded-circle" height= "40" width="40" <%=image_tag(user.avatar)%>
+                    <% end %>
+                    </div>
+                </div>
                         <div class="card-body">
-                            <h5 class="card-title"><%= user.first_name%> <%= user.last_name%></h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%= user.interests %></h6>
+                            <h5 class="card-subtitle mb-2 text-muted"><%= user.interests %></h5>
                             <p class="card-text"> <%= user.bio %></p>
                             <a href="#" class="card-link"><%= link_to 'Find Out More', user_path(user) %></a>
                         </div>
-                    </div>
+                </div>
             </div>
+
+            <% if user.videos.present?%>
+            <% user.videos.each do |video| %>
+                    <div class="card container border-primary mb-3" style ="width: 35rem">
+                        <div class="card-header row ">
+                            <h4>Video</h4>
+                        </div>
+                        <div class="card-body">
+                                <h4 class="card-title"><%= link_to video.title, video_path(video)%></h4>
+                                <h5 class="card-text"><%= video.description %></h5>
+                        </div>      
+                        <div class="card-footer text-muted">
+                            <i>Made by <%= user.first_name%> <%= user.last_name%></i>
+                        </div>                  
+                    </div>
+                <%end%>
+            <%end%>
+
         <% end %>
-        <br />
+
     </div>
 </div>

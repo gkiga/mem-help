@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
     def index
 
-
         if params[:search].blank?
             @results = User.all
         else 
