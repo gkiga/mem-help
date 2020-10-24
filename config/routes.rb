@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
   delete 'videos/:id', to: 'videos#destroy' # delete
 
+
   #my_notifications
   resources :my_notifications do
     collection do 
@@ -60,7 +61,7 @@ Rails.application.routes.draw do
     end
   end
 
-  delete 'my_notifications/:id', to: 'my_notifications#destroy' # delete
+  delete "my_notifications/:id", to: "my_notifications#destroy"  # delete
     
 
 end
