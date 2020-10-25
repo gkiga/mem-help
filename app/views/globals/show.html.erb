@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: center;
+  padding: 15px;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #ebbd6a;
+  color: #30344f;
+  padding: 15px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+  background-color: #0099cc;
+}
+</style>
+</head>
+<body>
+
+<br>
+<br>
+
+
+ <div class = "text-center">
+  <div class="header">
+    <h2>Global Request From: <%= global.sender%></h2>
+  </div>
+  </div>
+  <div class="card">
+  
+  <div class="card-body">
+  <h6><strong>Global Request General Information</strong></h6>
+    <ul>
+        
+        <li>Description: <%=global.description %> </li>
+        <li>Category: <%=global.category%> </li>
+        <li>Global Request Sender: <%=global.sender %> </li>
+        <li>Learning Preference: <%=global.learningPreference %> </li>
+        <li>Volunteer Hours to be earned upon global request completion: <%=global.new_volunteer_hours %> </li>
+        <li>Last Updated On:<%=global.updated_at%></li>
+    </ul>
+   
+
+
+
+ 
+    
+    <h6><strong>Global Request Active Status:</strong></h6>
+<ul>
+    <p style="color:#404040;"><u><strong>  Description:</u> <%= global.description%></strong></p> 
+    <% if global.acceptedFlag == true%>
+        <p style="color:green;"><strong>This global request has been accepted by <%= global.recipient_name%>.</strong></p>
+            <%end%>
+    <% if global.acceptedFlag == false%>
+        <p style="color:#ed2f2f;"><strong>This global request has not been accepted yet.</strong></p>
+            <%end%>
+ 
+    <% if global.completedFlag == true%>
+        <p style="color:green;"><strong>This global request has been completed and <%= global.recipient_name%>  is awaiting your closure of request!</strong></p>
+            <%end%>
+    <% if global.completedFlag == false%>
+        <p style="color:#ed2f2f;"><strong>This global request has not been completed yet. </strong></p>
+            <%end%>
+</ul>
+</div> 
+       
+  <% if current_user.try(:id)!=global.user_id %>
+  <% if global.acceptedFlag ==false %>
+  <ul>
+    <%= button_to 'Accept Global Request', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", class: "btn btn-primary"), method: :get %>
+ </ul>
+  <%end%>
+  <%end%>
+  <% if current_user.try(:id)==global.user_id %>
+ 
+  <ul>
+   <%= button_to 'Edit Request General Information', edit_global_path(global), method: :get %>
+    <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global), method: :delete %>
+    <br>
+    <%end%>
+ 
+<% if global.recipient == current_user.id %>
+<%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", class: "btn btn-primary"), method: :get %>
+      <%end%>
+      </body>
+      </div> 
+         </div> 
+            </div> 
+    

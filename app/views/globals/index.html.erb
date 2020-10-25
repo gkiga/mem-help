@@ -1,0 +1,59 @@
+
+
+<% globals.each do |global| %>
+
+  
+  <div id="<%= dom_id(global) %>">
+
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<div class="card text-center shadow mb-5 bg-white rounded">
+  <div class="card-header font-italic">
+  <div class="card text-center">
+    <div class="card-header">
+      Posted by <%=global.sender%>
+    </div>
+    <div class="card-body">
+      <%= link_to user_path(global.user_id) do %>
+<%= image_tag((url_for(@user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
+<% end %>
+
+      <p style="color:#404040;"><u><strong>  Description:</u> <%= global.description%></strong></p> 
+     <% if global.acceptedFlag == true%>
+  <p style="color:green;"><strong>This request has been accepted by <a><%= link_to global.recipient_name, user_path(global.user_id) %></a>.</strong></p>
+  <%end%>
+  <% if global.acceptedFlag == false%>
+  <p style="color:#ed2f2f;"><strong>This request has not been accepted yet.</strong></p>
+  <%end%>
+  
+ 
+  <% if global.completedFlag == true%>
+  <p style="color:green;"><strong>This request has been completed and <a><%= link_to global.recipient_name, user_path(global.user_id) %></a>is awaiting your closure of request!</strong></p>
+  <%end%>
+  <% if global.completedFlag == false%>
+  <p style="color:#ed2f2f;"><strong>This request has not been completed yet. </strong></p>
+  <%end%>
+ 
+      <div class="text-center">
+      <%= button_to 'See Global Request', global_path(global),:method => "get" %>
+      </div>
+  </div>
+      <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
+      <div class="card-footer text-muted">
+     <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
+            edited <%= time_ago_in_words(global.updated_at) %> ago</small>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+
+    </div>
+    
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+<%end%>

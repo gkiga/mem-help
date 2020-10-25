@@ -1,0 +1,111 @@
+
+<h1 class="text-center">
+Edit Request
+</h1>
+
+
+<%= form_with model: global, url: global_path, method: :patch, local: true, scope: :global do |f| %>
+<% if current_user.try(:id)==global.user_id %>
+  <div>
+    <h5>Description of Your Request</h5>
+    <%= f.text_field :description %>
+  </div>
+<br>
+<br>
+  
+  <div class="field">
+    <h5><%= f.label :category, "Category" %></h5>
+    <%= f.text_field :category, placeholder: "Ex. Art, Science, Music" %>
+  </div>
+ 
+
+<br>
+<br>
+  
+  <div class="field">
+    <h5><%= f.label :learningPreference, "Learning Preference" %></h5>
+
+    <%= f.radio_button :learningPreference, "Prerecorded Video"%> Prerecorded Video<br />
+
+    <%= f.radio_button :learningPreference, "Live Zoom Meeting"%> Live Zoom Meeting<br />
+    
+    <%= f.radio_button :learningPreference, "1-in-1 in Person"%> 1-in-1 in Person<br />
+  </div>
+
+<br>
+<br>
+<% if current_user.try(:id)==global.recipient %>
+  <h5>Accept Request?</h5>
+  <div>
+    <div>
+      <%= f.radio_button :acceptedFlag, true %>
+      <%= f.label "acceptedFlag_true", 'Yes' %>
+    </div>
+    <div>
+      <%= f.radio_button :acceptedFlag, false %>
+      <%= f.label "acceptedFlag_false", 'No' %>
+    </div>
+  <div>
+
+  <br />
+
+  <h5>Completed Request?</h5>
+  <div>
+    <div>
+      <%= f.radio_button :completedFlag, true %>
+      <%= f.label "completedFlag_true", 'Yes' %>
+    </div>
+    <div>
+      <%= f.radio_button :completedFlag, false %>
+      <%= f.label "conpletedFlag_false", 'No' %>
+    </div>
+  <div>
+  <% end %>
+<%#if current_user.try(:id)==request.user_id %>
+<div>
+    <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
+ <%= f.text_field :new_volunteer_hours%>
+    
+  </div>
+      <%# radio_button_tag "new_volunteer_hours", 1.00, 1.00 %>
+     <%#label_tag "new_volunteer_hours", '1 Hour' %>
+      <%# radio_button_tag "new_volunteer_hours", 2.00, 2.00 %>
+     <%# label_tag "new_volunteer_hours", '2 Hours' %>
+         <%# radio_button_tag "new_volunteer_hours", 3.00, 3.00 %>
+     <%# label_tag "new_volunteer_hours", '3 Hours' %>
+         <%# radio_button_tag "new_volunteer_hours", 4.00, 4.00 %>
+     <%# label_tag "new_volunteer_hours", '4 Hours' %>
+     
+
+<%end%>
+
+
+
+<% if current_user.try(:id)!= global.user_id %>
+  <div>
+    <h5>Accept Request?</h5>
+     <%= f.radio_button "acceptedFlag",  true %>
+     <%= label_tag "acceptedFlag", 'Accept Request' %>
+    <%= f.radio_button "acceptedFlag", false %>
+     <%= label_tag "acceptedFlag", 'Decline Request' %>
+  </div>
+  
+  <div>
+    <h5>Completed Request?</h5>
+      <%= f.radio_button "completedFlag",true %>
+     <%= label_tag "completedFlag", 'Complete Request' %>
+    <%= f.radio_button "completedFlag", false %>
+     <%= label_tag "completedFlag", 'Request Not Completed' %>
+  </div>
+
+  <%end%>
+
+  <%#= f.hidden_field :recipient, value: current_user.id%>
+<%#= f.hidden_field :recipient_name, value: [current_user.first_name, current_user.last_name].join(' ')%>
+
+  <br>
+
+
+  <%= f.submit "Update Request" %>
+
+<% end %>

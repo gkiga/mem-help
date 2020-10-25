@@ -1,0 +1,40 @@
+# == Schema Information
+#
+# Table name: globals
+#
+#  id                  :bigint           not null, primary key
+#  acceptedFlag        :boolean
+#  category            :string
+#  completedFlag       :boolean
+#  description         :string
+#  learningPreference  :string
+#  new_volunteer_hours :float
+#  recipient           :integer
+#  recipient_name      :string
+#  sender              :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint
+#
+
+one:
+  acceptedFlag: false
+  category: MyString
+  completedFlag: false
+  description: MyString
+  learningPreference: MyString
+  new_volunteer_hours: 1.5
+  recipient: 1
+  recipient_name: MyString
+  sender: MyString
+
+two:
+  acceptedFlag: false
+  category: MyString
+  completedFlag: false
+  description: MyString
+  learningPreference: MyString
+  new_volunteer_hours: 1.5
+  recipient: 1
+  recipient_name: MyString
+  sender: MyString
