@@ -51,7 +51,11 @@
           <%current_user.my_notifications.each do |my_notification| %>
             <div class ="dropdown-item">
             <%= link_to "🗑", my_notification_path(my_notification), method: :delete %>
-            <a href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+            <% if my_notification.notifiable_type == "Request" %>
+              <a href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+            <% else %>
+            <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
+            <% end %>
             </div>
             <% end %>
           <%else%>
