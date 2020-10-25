@@ -34,7 +34,7 @@
 html {
   font-family: "Lucida Sans", sans-serif;
 }
-
+.buttonHolder{ text-align: center; }
 .header {
   background-color: #ebbd6a;
   color: #30344f;
@@ -46,7 +46,13 @@ html {
   margin: 0;
   padding: 0;
 }
-
+.padding {
+  text-align: center;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-left: 50px;
+}
 .menu li {
   padding: 8px;
   margin-bottom: 7px;
@@ -82,14 +88,8 @@ html {
         <li>Global Request Sender: <%=global.sender %> </li>
         <li>Learning Preference: <%=global.learningPreference %> </li>
         <li>Volunteer Hours to be earned upon global request completion: <%=global.new_volunteer_hours %> </li>
-        <li>Last Updated On:<%=global.updated_at%></li>
+     
     </ul>
-   
-
-
-
- 
-    
     <h6><strong>Global Request Active Status:</strong></h6>
 <ul>
     <p style="color:#404040;"><u><strong>  Description:</u> <%= global.description%></strong></p> 
@@ -107,8 +107,7 @@ html {
         <p style="color:#ed2f2f;"><strong>This global request has not been completed yet. </strong></p>
             <%end%>
 </ul>
-</div> 
-       
+</div>   
   <% if current_user.try(:id)!=global.user_id %>
   <% if global.acceptedFlag ==false %>
   <ul>
@@ -116,19 +115,31 @@ html {
  </ul>
   <%end%>
   <%end%>
+  <br>
   <% if current_user.try(:id)==global.user_id %>
- 
   <ul>
+  <div class="buttonHolder">
+  <div class="padding">
    <%= button_to 'Edit Request General Information', edit_global_path(global), method: :get %>
+</div>
+<div class="padding">
     <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global), method: :delete %>
     <br>
     <%end%>
- 
+    </div>
+    </div>
+    <div class="buttonHolder">
 <% if global.recipient == current_user.id %>
 <%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", class: "btn btn-primary"), method: :get %>
       <%end%>
+      </div>
       </body>
-      </div> 
+    <div class="card-footer text-muted">
+    <div class="buttonHolder">
+     <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
+            edited <%= time_ago_in_words(global.updated_at) %> ago</small>
+    </div>
+    </div>
+</div> 
          </div> 
             </div> 
-    

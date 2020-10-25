@@ -2,7 +2,7 @@
         before_action :authenticate_user!
       
          def index
-         
+              @users = User.all
               globals = Global.all
               respond_to do |format|
                   format.html { render :index, locals: { globals: globals } }
@@ -66,9 +66,11 @@
          def update
              # load existing object again from URL param
              global = Global.find(params[:id])
-             global.recipient_name = [current_user.first_name, current_user.last_name].join(' ')
+             if global.user_id != current_user.id
+                global.recipient_name = [current_user.first_name, current_user.last_name].join(' ')
              # respond_to block
              global.recipient = current_user.id
+             end
              respond_to do |format|
                  format.html do
                      if global.update(params.require(:global).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))

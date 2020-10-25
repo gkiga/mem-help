@@ -17,4 +17,5 @@
 #  user_id             :bigint
 #
 class Global < ApplicationRecord
+  
 end
