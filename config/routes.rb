@@ -52,6 +52,16 @@ Rails.application.routes.draw do
   put 'videos/:id', to: 'videos#update' # update
 
   delete 'videos/:id', to: 'videos#destroy' # delete
+
+
+  #my_notifications
+  resources :my_notifications do
+    collection do 
+      post :mark_as_read
+    end
+  end
+
+  delete "my_notifications/:id", to: "my_notifications#destroy"  # delete
     
 
 end

@@ -18,6 +18,8 @@ class UsersController < ApplicationController
                                        lower(last_name) LIKE :search OR
                                        lower(interests) LIKE :search OR
                                        lower(major) LIKE :search", search: "%#{@parameter}%")
+                        #                &&
+                        # User.joins(:videos).where("lower(videos.title) LIKE :search", search: "%#{@parameter}%")               
         end
     end
 
