@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
              format.html do
                  if request.save
                     # notification
-                    MyNotification.create(recipient_id: request.recipient, actor: current_user, action: "New Request", notifiable: request)
+                    MyNotification.create(recipient_id: request.recipient, actor: current_user, action: "New Request", notifiable: request, request_id: request.id)
 
                     #@user = User.find(params[:recipient])
                    # request.recipient_name = [@user.first_name, @user.last_name].join(' ')

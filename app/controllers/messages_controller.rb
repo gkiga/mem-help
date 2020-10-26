@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
              format.html do
                  if @message.save
 
-                    MyNotification.create(recipient_id: @message.recipient_id, actor: current_user, action: "New Message", notifiable: @message)
+                    MyNotification.create(recipient_id: @message.recipient_id, actor: current_user, action: "New Message", notifiable: @message, message_id: @message.id)
                     #@user = User.find(params[:recipient])
                    # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
