@@ -39,6 +39,8 @@ class Request < ApplicationRecord
      # self.completedFlag  ||= false          #will set the default value only if it's nil
     
     belongs_to :user
+
+    has_many :my_notifications, dependent: :destroy
      
   end  
 
