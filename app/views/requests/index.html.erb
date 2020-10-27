@@ -1,186 +1,88 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 75%;
-}
-a {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-[class*="col-"] {
-  float: center;
-  padding: 15px;
-}
-.text-center {
-  text-align: center;
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-html {
-  font-family: "Lucida Sans", sans-serif;
-}
-
-.header {
-  background-color: #4082ed;
-  color: #ffffff;
-  padding: 5px;
-}
-
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.menu li:hover {
-  background-color: #0099cc;
-}
-</style>
-</head>
-<body>
 
 <br>
-<br>
-<h1 class="text-center", style="color:#ed2f2f;">My Requests Page</h1>
+<h1 class="text-center text-primary">My Requests Page</h1>
 <br>
 
-<p class="text-secondary">You can send a request to another student by searching for them on the  homepage and clicking "Direct Request" on their profile! </p>
+<p class="text-secondary"><strong>You can send a request to another student by searching for them on the  homepage and clicking "Direct Request" on their profile!</strong></p>
 <br>
-<p class="text-secondary">If you want a closer look at your requests, click "See Request".</p>
+<p class="text-secondary"><strong>If you want a closer look at your requests, click "See Request".</strong></p>
 
 <br>
-<h3><p class="text-primary">My Sent Requests</p></h3>
-<% requests.each do |request| %>
-<% if current_user.try(:id)==request.user_id %>
-  
-  <div id="<%= dom_id(request) %>">
-    <div class="container card p-2 mb-2 bg-light text-dark">
- <div class = "text-center">
-  <div class="header">
-    <h2>Request To: <%= request.recipient_name%></h2>
-    See <%= request.recipient_name%>'s
-    <a><%= link_to 'Profile', user_path(request.recipient) %></a>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-12 menu">
-  
-    <ul>
-      <p style="color:#404040;"><u><strong>  Description:</u> <%= request.description%></strong></p> 
-     <% if request.acceptedFlag == true%>
-  <p style="color:green;"><strong>This request has been accepted by <%= request.recipient_name%>.</strong></p>
-  <%end%>
-  <% if request.acceptedFlag == false%>
-  <p style="color:#ed2f2f;"><strong>This request has not been accepted by <%= request.recipient_name%> yet.</strong></p>
-  <%end%>
-  
- 
-  <% if request.completedFlag == true%>
-  <p style="color:green;"><strong>This request has been completed and <%= request.recipient_name%> is awaiting your closure of request!</strong></p>
-  <%end%>
-  <% if request.completedFlag == false%>
-  <p style="color:#ed2f2f;"><strong>This request has not been completed by <%= request.recipient_name%> yet.</strong></p>
-  <%end%>
-   </ul>
-      <div class="text-center">
-      <%= button_to 'See Request', request_path(request),:method => "get" %>
-      </div>
-  </div>
-      <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
-      
-     </ul>
-    </div>
-    </div>
-    </div>
-<% end %>
-<%end %>
-<br>
-<br>
-<h3><p class="text-primary">My Received Requests</p></h3>
+<h3 class="text-secondary">My Sent Requests</h3>
+
 <% requests.each do |request| %>
 
-<% if current_user.try(:id)==request.recipient %>
-  
-  <div id="<%= dom_id(request) %>">
-    <div class="container card p-2 mb-2 bg-light text-dark">
- <div class = "text-center">
-  <div class="header">
-    <h2>Request From: <%= request.sender%></h2>
-    See <%= request.sender%>'s
-    <a><%= link_to 'Profile', user_path(request.user_id) %></a>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-12 menu">
-  
-    <ul>
-      <p><u><strong>  Description:</u> <%= request.description%></strong></p>  
-      <% if request.acceptedFlag == true%>
-  <p style="color:green;"><strong>You have accepted this request!.</strong></p>
-  <%end%>
-  <% if request.acceptedFlag == false%>
-  <p style="color:#ed2f2f;"><strong>You have not accepted this request. See request to change the status!</strong></p>
-  <%end%>
- 
-  <% if request.completedFlag == true%>
-  <p style="color:green;"><strong>You have completed this request and we are awaiting <%= request.sender%>'s closure of request to award volunteer hours.</strong></p>
-  <%end%>
-  <% if request.completedFlag == false%>
-  <p style="color:#ed2f2f;"><strong>You have yet to complete <%= request.sender%>'s request.</strong></p>
-  <%end%>
-
-   </ul>
-      <div class="text-center">
-      <%= button_to 'See Request', request_path(request),:method => "get" %>
-      </div>
-  </div>
-      <%# button_to '🗑', request_path(request), method: :delete, user.request.recipient. %>
+    <% if current_user.try(:id)==request.user_id %>
+      <div id="<%= dom_id(request) %>">
       
-     </ul>
-    </div>
-    </div>
-    </div>
-<% end %>
+        <div class="card border-info mb-3" style="max-width: 35rem; margin: 0 auto%">
+          <div class="card-header bg-transparent border-info text-center text-info">
+            <h2>Request to: <br> <%= link_to request.recipient_name, user_path(request.recipient) %></h2>
+          </div>
+          <div class="card-body text-info">
+            <h5 class="card-title">Description: <%=request.description %></h5>
+            <% if request.acceptedFlag == true%>
+              <p class="card-text text-success"><strong>Accepted: ✔ </strong></p>
+            <% else %>
+              <p class="card-text text-danger"><strong>Accepted: ❌</strong></p>
+            <%end%>
+          
+            <% if request.completedFlag == true%>
+              <p class="card-text text-success"><strong>Completed: ✔</strong></p>
+              <i class="card-text text-success">You can close out this request!</i>
+              <br><br>            
+            <% else %>
+              <p class="card-text text-danger"><strong>Completed: ❌</strong></p>
+            <%end%>
+            
+            <%= link_to 'See Request', request_path(request), :class => "btn btn-info btn-center text-center" %>
+            
+          </div>
+        </div>
+
+      </div>
+
+  <% end %>
+
 <%end %>
-</body>
+
+<br>
+
+<h3 class="text-secondary">My Received Requests</h3>
+<% requests.each do |request| %> 
+
+      <% if current_user.try(:id)==request.recipient %>
+        <div id="<%= dom_id(request) %>">
+        
+          <div class="card border-info mb-3" style="max-width: 35rem;">
+            <div class="card-header bg-transparent border-info text-center text-info">
+                <h2>Request from: <br> <%= link_to request.sender, user_path(request.user_id) %></h2>
+            </div>
+              <div class="card-body text-info">
+                <h5 class="card-title">Description: <%=request.description %></h5>
+
+                <% if request.acceptedFlag == true %>
+                  <p class="card-text text-success"><strong>Accepted: ✔ </strong></p>
+                <% else %>
+                  <p class="card-text text-danger"><strong>Accepted: ❌</strong></p>
+                <%end%>
+              
+                <% if request.completedFlag == true %>
+                  <p class="card-text text-success"><strong>Completed: ✔</strong></p>
+                  <i class="card-text text-success">Waiting for <%= request.sender %>'s request closure to award volunteer hours.</i>
+                              
+                <% else %>
+                  <p class="card-text text-danger"><strong>Completed: ❌</strong></p>
+                <%end%>
+                
+                <%= link_to 'See Request', request_path(request), :class => "btn btn-info btn-center text-center" %>
+                
+              </div>
+            </div>
+        
+        </div>
+        
+      <% end %>
+
+<%end %>
+
