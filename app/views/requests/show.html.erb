@@ -1,127 +1,52 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-[class*="col-"] {
-  float: center;
-  padding: 15px;
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-html {
-  font-family: "Lucida Sans", sans-serif;
-}
-
-.header {
-  background-color: #ebbd6a;
-  color: #30344f;
-  padding: 15px;
-}
-
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.menu li:hover {
-  background-color: #0099cc;
-}
-</style>
-</head>
-<body>
-
 <br>
-<br>
-
-<div class="container card p-3 mb-2 bg-light text-dark">
- <div class = "text-center">
-  <div class="header">
-    <h2>Request: <%= request.sender%> to <%= request.recipient_name %></h2>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-12 menu">
+<div class="card border-info  p-3 mb-3 bg-light text-dark">
   
-    <ul>
-    
-        <h5 style="text-align:center;"><b>Request General Information:</b></h5>
-        <br>
-    
-        <p><u><strong>  Description:</u> <%= request.description%></strong></p>
-        <p><u><strong>  Category:</u> <%= request.category%></strong></p>
-        <p><u><strong>  Request Sender:</u> <%= request.sender%></strong></p>
-        <p><u><strong>  Request Recipient:</u> <%= request.recipient_name %></strong></p>
-        <p><u><strong>  Learning Preference:</u> <%= request.learningPreference %></strong></p>
-        <p><u><strong>  Volunteer Hours to be earned with request completion:</u> <%= request.new_volunteer_hours %></strong> </p>
-        
-   </ul>
+  <div class="card-header bg-transparent border-info text-center text-info">
+    <h2>Request: <br> <%= request.sender%> to <%= request.recipient_name %></h2>
   </div>
+  <div class="card-body text-info">
+    <ul class="list-group list-group-flush ">
+      <li class="list-group-item border-info bg-transparent">
+        <h3 style="text-align:center;">General Information</h3>
+        <br>
+        <h5>  <u>Description:</u> <%= request.description%><h5>
+        <h5>  <u>Category:</u> <%= request.category%><h5>
+        <h5>  <u>Sender:</u> <%= request.sender%><h5>
+        <h5>  <u>Recipient:</u> <%= request.recipient_name %><h5>
+        <h5>  <u>Learning Preference:</u> <%= request.learningPreference %><h5>
+        <h5>  <u>Volunteer Hours:</u> <%= request.new_volunteer_hours %><h5>
+      </li>
 
-  <div class="col-12 menu">
-    <ul>
-       <h5 style="text-align:center;"><b>Request Active Status:</b></h5>
-       <br>
-        <%  if request.try(:acceptedFlag?)==true %>
-        <p style="color:green;"><strong>  <%= request.recipient_name %> has accepted this request!</strong></p>
-        <%end%>
-         <% if request.try(:acceptedFlag?)==false %>
-         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has not yet accepted the request!</strong></p>
-         <%end%>
-         <% if request.try(:completedFlag?)==true %>
-        <p style="color:green;"><strong>  This request has been completed and is waiting for <%= request.sender%> to close out the request!</p>
-        <%end%>
-         <% if request.try(:completedFlag?)==false %>
-         <p style="color:#ed2f2f;"><strong> <%= request.recipient_name %> has yet to complete the request!</strong></p>
-         <%end%>
-       </ul>
-    </div> 
-       <div class="col-12">
-        <% if current_user.try(:id)==request.recipient %>
-      <p><strong>Last Updated On:<%=request.updated_at%><%= button_to 'Edit Request Active Status', edit_request_path(request), method: :get %></strong></p>
-    <%end%>
-    <% if current_user.try(:id)==request.user_id %>
-    <%= button_to 'Edit Request General Information', edit_request_path(request), method: :get %>
+      <li class="list-group-item border-info bg-transparent">
+        <h3 style="text-align:center;">Active Status:</h3>
+        <br>
+          <%  if request.try(:acceptedFlag?)==true %>
+            <h5><i class="card-text text-success">  <%= request.recipient_name %> has accepted this request!</i></h5>
+          <% else %>
+            <h5><i class="card-text text-danger"> <%= request.recipient_name %> has not yet accepted the request!</i></h5>
+          <%end%>
+          <br>
+          <% if request.try(:completedFlag?)==true %>
+            <h5><i class="card-text text-success"> This request has been completed and is waiting for <%= request.sender%> to close out the request!</i></h5>
+          <% else %>
+            <h5><i class="card-text text-danger"> <%= request.recipient_name %> has yet to complete the request!</i></h5>
+          <%end%>
+      </li>
+    </ul>
+
+    <br>
+    <% if current_user.try(:id)==request.recipient %>
+      <p class="card-text"><strong>Last Updated On: <%=request.updated_at%></strong></p>
+      <%= link_to 'Edit Request Active Status', edit_request_path(request), method: :get, :class => "btn btn-info text-center"%>
+    <% else %>
+      <%= link_to 'Edit Request General Information', edit_request_path(request), method: :get, :class => "btn btn-primary text-center" %>
       <p><strong><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete %></strong></p>
- 
-     
-      <%end%>
-      </body>
-      </div> 
-         </div> 
-            </div> 
+    <%end%>
+    
+  </div>
+</div> 
+
     
    
     
