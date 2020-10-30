@@ -142,7 +142,7 @@ html {
         <p style="color:green;"><small><i>Accepted by <%= global.recipient_name%>.</i></small></p>
             <%end%>
     <% if global.acceptedFlag == false%>
-        <p style="color:blue;"><small><i>Not yet accepted<%= global.recipient_name%>.</i></small></p>
+        <p style="color:blue;"><small><i>Not yet accepted.</i></small></p>
             <%end%>
     
      <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 

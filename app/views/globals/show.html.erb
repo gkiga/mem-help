@@ -107,7 +107,7 @@ html {
         <p style="color:#ed2f2f;"><strong>This global request has not been completed yet. </strong></p>
             <%end%>
 </ul>
-</div>   
+
   <% if current_user.try(:id)!=global.user_id %>
   <% if global.acceptedFlag ==false %>
   <ul>
@@ -127,19 +127,18 @@ html {
     <br>
     <%end%>
     </div>
-    </div>
+    
     <div class="buttonHolder">
 <% if global.recipient == current_user.id %>
 <%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", class: "btn btn-primary"), method: :get %>
       <%end%>
       </div>
-      </body>
+      
     <div class="card-footer text-muted">
     <div class="buttonHolder">
      <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
             edited <%= time_ago_in_words(global.updated_at) %> ago</small>
     </div>
     </div>
-</div> 
-         </div> 
-            </div> 
+  
+            </body>
