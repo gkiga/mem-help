@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_205942) do
+ActiveRecord::Schema.define(version: 2020_10_26_154533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,21 @@ ActiveRecord::Schema.define(version: 2020_10_24_205942) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "my_notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.string "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "message_id"
+    t.bigint "request_id"
+    t.index ["message_id"], name: "index_my_notifications_on_message_id"
+    t.index ["request_id"], name: "index_my_notifications_on_request_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "description"
     t.string "category"
@@ -108,6 +123,8 @@ ActiveRecord::Schema.define(version: 2020_10_24_205942) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "my_notifications", "messages"
+  add_foreign_key "my_notifications", "requests"
   add_foreign_key "requests", "users"
   add_foreign_key "videos", "users"
 end

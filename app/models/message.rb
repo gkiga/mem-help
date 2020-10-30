@@ -18,5 +18,7 @@ class Message < ApplicationRecord
     validates :title, presence: true
     validates :recipient_id, presence: true
     validates :recipient_name, presence: true
+
+    has_many :my_notifications, dependent: :destroy
 end
     

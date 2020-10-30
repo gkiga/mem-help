@@ -91,4 +91,7 @@ class User < ApplicationRecord
     inverse_of: :creator
   )
 
+  has_many :my_notifications, foreign_key: :recipient_id
+  has_many :requests
+
 end
