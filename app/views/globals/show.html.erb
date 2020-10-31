@@ -1,0 +1,78 @@
+
+<br>
+<div class="card border-info  p-3 mb-3 bg-light text-dark">
+  
+  <div class="card-header bg-transparent border-info text-center text-info">
+    <h2><h2>Global Request From: <%= global.sender%></h2></h2>
+  </div>
+  <div class="card-body text-info">
+    <ul class="list-group list-group-flush ">
+      <li class="list-group-item border-info bg-transparent">
+        <h3 style="text-align:center;">General Information</h3>
+        <br>
+        <h5>  <u>Description:</u> <%= global.description%><h5>
+        <h5>  <u>Category:</u> <%= global.category%><h5>
+        <h5>  <u>Sender:</u> <%= global.sender%><h5>
+        <h5>  <u>Recipient:</u> <%= global.recipient_name %><h5>
+        <h5>  <u>Learning Preference:</u> <%= global.learningPreference %><h5>
+        <h5>  <u>Volunteer Hours:</u> <%= global.new_volunteer_hours %><h5>
+      </li>
+
+    
+         <h3 style="text-align:center;">Active Status</h3>
+<ul>
+    <br>
+    <% if global.acceptedFlag == true%>
+         <h5><i class="card-text text-success">This global request has been accepted by <%= global.recipient_name%>.</i></h5>
+            <br>
+            <%end%>
+    <% if global.acceptedFlag == false%>
+        <h5><i class="card-text text-danger">This global request has not been accepted yet.</p></i>
+            <br>
+            <%end%>
+ 
+    <% if global.completedFlag == true%>
+         <h5><i class="card-text text-success">This global request has been completed and <%= global.recipient_name%>  is awaiting your closure of request!</i></h5>
+           <br>
+            <%end%>
+    <% if global.completedFlag == false%>
+        <h5><i class="card-text text-danger">This global request has not been completed yet.</p></i>
+            <br>
+            <%end%>
+</ul>
+
+    <% if current_user.try(:id)!=global.user_id %>
+  <% if global.acceptedFlag ==false %>
+  <ul>
+    <%= button_to 'Accept Global Request', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}"), method: :get, class: "btn btn-info text-center" %>
+ </ul>
+  <%end%>
+  <%end%>
+  <br>
+  <% if current_user.try(:id)==global.user_id %>
+  <ul>
+  <div class="buttonHolder">
+  <div class="padding">
+   <%= button_to 'Edit Request General Information', edit_global_path(global), method: :get, :class => "btn btn-info text-center" %>
+</div>
+<br>
+<div class="padding">
+    <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global), method: :delete, :class => "btn btn-info text-center"%>
+    <br>
+    <%end%>
+    </div>
+    
+    <div class="buttonHolder">
+<% if global.recipient == current_user.id %>
+<ul>
+<%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}"), method: :get, :class => "btn btn-info text-center" %>
+      <%end%>
+ </ul>     
+      </div>
+     
+    <div class="card-footer text-muted">
+    <div class="buttonHolder">
+     <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
+            edited <%= time_ago_in_words(global.updated_at) %> ago</small>
+    </div>
+    </div>

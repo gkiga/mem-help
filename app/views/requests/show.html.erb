@@ -1,4 +1,3 @@
-
 <br>
 <div class="card border-info  p-3 mb-3 bg-light text-dark">
   
@@ -38,10 +37,11 @@
     <br>
     <% if current_user.try(:id)==request.recipient %>
       <p class="card-text"><strong>Last Updated On: <%=request.updated_at%></strong></p>
-      <%= link_to 'Edit Request Active Status', edit_request_path(request), method: :get, :class => "btn btn-info text-center"%>
+      <%= link_to 'Edit Request Active Status', edit_request_path(request), method: :get, :class => "btn btn-info text-center" %>
     <% else %>
-      <%= link_to 'Edit Request General Information', edit_request_path(request), method: :get, :class => "btn btn-primary text-center" %>
-      <p><strong><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete %></strong></p>
+      <p><%= link_to 'Edit Request General Information', edit_request_path(request), method: :get, :class => "btn btn-info text-center"  %></p>
+      
+     <p><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete,  :class => "btn btn-info text-center"  %></p>
     <%end%>
     
   </div>

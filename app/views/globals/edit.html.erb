@@ -4,8 +4,8 @@ Edit Request
 </h1>
 
 
-<%= form_with model: request, url: request_path, method: :patch, local: true, scope: :request do |f| %>
-<% if current_user.try(:id)==request.user_id %>
+<%= form_with model: global, url: global_path, method: :patch, local: true, scope: :global do |f| %>
+<% if current_user.try(:id)==global.user_id %>
   <div>
     <h5>Description of Your Request</h5>
     <%= f.text_field :description %>
@@ -34,7 +34,7 @@ Edit Request
 
 <br>
 <br>
-<% if current_user.try(:id)==request.recipient %>
+<% if current_user.try(:id)==global.recipient %>
   <h5>Accept Request?</h5>
   <div>
     <div>
@@ -81,7 +81,7 @@ Edit Request
 
 
 
-<% if current_user.try(:id)==request.recipient %>
+<% if current_user.try(:id)!= global.user_id %>
   <div>
     <h5>Accept Request?</h5>
      <%= f.radio_button "acceptedFlag",  true %>
@@ -98,11 +98,14 @@ Edit Request
      <%= label_tag "completedFlag", 'Request Not Completed' %>
   </div>
 
-
   <%end%>
+
+  <%#= f.hidden_field :recipient, value: current_user.id%>
+<%#= f.hidden_field :recipient_name, value: [current_user.first_name, current_user.last_name].join(' ')%>
+
   <br>
+
+
   <%= f.submit "Update Request", :class => "btn btn-outline-info" %>
 
 <% end %>
-
-

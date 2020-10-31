@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 2020_10_26_154533) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "globals", force: :cascade do |t|
+    t.boolean "acceptedFlag"
+    t.string "category"
+    t.boolean "completedFlag"
+    t.string "description"
+    t.string "learningPreference"
+    t.float "new_volunteer_hours"
+    t.integer "recipient"
+    t.string "recipient_name"
+    t.string "sender"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.text "body"

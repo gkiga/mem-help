@@ -27,6 +27,17 @@ Rails.application.routes.draw do
   delete 'messages/:id', to: 'messages#destroy' # destroy
 
 
+# requests
+get 'globals', to: 'globals#index', as: 'globals' # index
+get 'globals/new', to: 'globals#new', as: 'new_global' # new
+post 'globals', to: 'globals#create' # create
+get 'globals/:id', to: 'globals#show', as: 'global' # show
+get 'globals/:id/edit', to: 'globals#edit', as: 'edit_global' # edit
+patch 'globals/:id', to: 'globals#update' # update (as needed)
+put 'globals/:id', to: 'globals#update' # update (full replacement)
+delete 'globals/:id', to: 'globals#destroy' # destroy
+
+
   # users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

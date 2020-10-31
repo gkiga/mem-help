@@ -1,88 +1,189 @@
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+.hero-image {
+  background-image: url("https://image.freepik.com/free-photo/close-up-students-writing-reading-exam-answer-sheets-exercises-classroom-school-with-stress_73622-858.jpg");
+  background-color: #cccccc;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.hero-image2 {
+  background-image: url("https://image.freepik.com/free-photo/business-women-signature-document_1388-90.jpg");
+  background-color: #cccccc;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text2 {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+</style>
+</head>
+
+
+
+<div class="big_header">
+            <h1 class="blue" style="color:#2196F3;">My Requests Page</h1>
+            
+        </div>
+        
 <br>
-<h1 class="text-center text-primary">My Requests Page</h1>
-<br>
+<div class = "padding">
+
+
 
 <p class="text-info"><strong>You can send a request to another student by searching for them on the  homepage and clicking "Direct Request" on their profile!</strong></p>
 <br>
 <p class="text-info"><strong>If you want a closer look at your requests, click "See Request".</strong></p>
+</div>
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:50px">My Sent Requests</h1>
+  </div>
+</div>
 
 <br>
-<h3 class="text-primary">My Sent Requests</h3>
-
 <% requests.each do |request| %>
 
     <% if current_user.try(:id)==request.user_id %>
       <div id="<%= dom_id(request) %>">
       
-        <div class="card border-info mb-3" style="max-width: 35rem;">
-          <div class="card-header bg-transparent border-info text-center text-info">
-            <h2>Request to: <br> <%= link_to request.recipient_name, user_path(request.recipient) %></h2>
-          </div>
-          <div class="card-body text-info">
-            <h5 class="card-title">Description: <%=request.description %></h5>
-            <% if request.acceptedFlag == true%>
-              <p class="card-text text-success"><strong>Accepted: ✔ </strong></p>
-            <% else %>
-              <p class="card-text text-danger"><strong>Accepted: ❌</strong></p>
+    
+    <% if request.acceptedFlag == true%>
+<div class="container card p-2 mb-2 bg-success text-dark">
+<%end%>
+<% if request.acceptedFlag == false%>
+<div class="container card p-2 mb-2 bg-danger text-dark">
+<%end%>
+ <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a><%=link_to 'Teacher Profile', user_path(request.recipient), class: 'nav-link' %></a>
+      </li>
+      <li class="nav-item">
+        <a><%= link_to 'See Request', request_path(request), class: 'nav-link' %></a>
+      </li>
+     
+        <% if request.recipient != current_user.id %>
+         <li class="nav-item">
+    <%= link_to "Send Message", new_message_path(:recipient_id => request.recipient, :recipient_name => request.recipient_name, class: "btn btn-primary"), class: 'nav-link'  %>                                                                                                                                    
+      </li>
+      <%end%>
+    </ul>
+  </div>
+    <div class="card-body">
+    <h5 class="card-title">You sent a request to <%=request.recipient_name%>!</h5>
+    <p class="card-text"><%= request.description%></p>
+    
+ 
+    <br>
+     <div class="card-footer text-muted">
+     <div class = "text-left">
+     <% if request.acceptedFlag == true%>
+           <p style="color:green;"><strong>Accepted by <%= request.recipient_name%>  ✔</strong></p>
             <%end%>
-          
-            <% if request.completedFlag == true%>
-              <p class="card-text text-success"><strong>Completed: ✔</strong></p>
-              <i class="card-text text-success">You can close out this request!</i>
-              <br><br>            
-            <% else %>
-              <p class="card-text text-danger"><strong>Completed: ❌</strong></p>
+    <% if request.acceptedFlag == false%>
+        <p style="color:red;"><strong>Not yet accepted ❌</strong></p>
+        
             <%end%>
-            
-            <%= link_to 'See Request', request_path(request), :class => "btn btn-info btn-center text-center" %>
-            
-          </div>
-        </div>
-
-      </div>
-
+    
+     <small>Sent <%= time_ago_in_words(request.created_at) %> ago, 
+            edited <%= time_ago_in_words(request.updated_at) %> ago</small>
+    </div>
+  </div>
+</div>
+</div>
+</div>
   <% end %>
 
 <%end %>
 
 <br>
-
-<h3 class="text-primary">My Received Requests</h3>
+<div class="hero-image2">
+  <div class="hero-text2">
+    <h1 style="font-size:50px">My Recieved Requests</h1>
+  </div>
+</div>
+<br>
 <% requests.each do |request| %> 
 
       <% if current_user.try(:id)==request.recipient %>
         <div id="<%= dom_id(request) %>">
         
-          <div class="card border-info mb-3" style="max-width: 35rem;">
-            <div class="card-header bg-transparent border-info text-center text-info">
-                <h2>Request from: <br> <%= link_to request.sender, user_path(request.user_id) %></h2>
-            </div>
-              <div class="card-body text-info">
-                <h5 class="card-title">Description: <%=request.description %></h5>
 
-                <% if request.acceptedFlag == true %>
-                  <p class="card-text text-success"><strong>Accepted: ✔ </strong></p>
-                <% else %>
-                  <p class="card-text text-danger"><strong>Accepted: ❌</strong></p>
-                <%end%>
-              
-                <% if request.completedFlag == true %>
-                  <p class="card-text text-success"><strong>Completed: ✔</strong></p>
-                  <i class="card-text text-success">Waiting for <%= request.sender %>'s request closure to award volunteer hours.</i>
-                  <br><br>        
-                <% else %>
-                  <p class="card-text text-danger"><strong>Completed: ❌</strong></p>
-                <%end%>
-                
-                <%= link_to 'See Request', request_path(request), :class => "btn btn-info btn-center text-center" %>
-                
-              </div>
-            </div>
+<div class = "padding">
+<% if request.acceptedFlag == true%>
+<div class="container card p-2 mb-2 bg-success text-dark">
+<%end%>
+<% if request.acceptedFlag == false%>
+<div class="container card p-2 mb-2 bg-danger text-dark">
+<%end%>
+ <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a><%=link_to 'Student Profile', user_path(request.user_id), class: 'nav-link' %></a>
+      </li>
+      <li class="nav-item">
+        <a><%= link_to 'See Request', request_path(request), class: 'nav-link' %></a>
+      </li>
+     
+        <% if request.user_id != current_user.id %>
+         <li class="nav-item">
+    <%= link_to "Send Message", new_message_path(:recipient_id => request.user_id, :recipient_name => request.sender, class: "btn btn-primary"), class: 'nav-link'  %>                                                                                                                                    
+      </li>
+      <%end%>
+    </ul>
+  </div>
+    <div class="card-body">
+    <h5 class="card-title"><%=request.sender%> has asked you for help!</h5>
+    <p class="card-text"><%= request.description%></p>
+    
+ 
+    <br>
+     <div class="card-footer text-muted">
+     <div class = "text-left">
+     <% if request.acceptedFlag == true%>
+        <p style="color:green;"><strong>Accepted by <%= request.recipient_name%>  ✔</strong></p>
+            <%end%>
+    <% if request.acceptedFlag == false%>
+      <p style="color:red;"><strong>Not yet accepted ❌</strong></p>
+            <%end%>
+    
+     <small>Sent <%= time_ago_in_words(request.created_at) %> ago, 
+            edited <%= time_ago_in_words(request.updated_at) %> ago</small>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<%end%>
+<%end%>
+
+
         
-        </div>
-        
-      <% end %>
-
-<%end %>
-
+          
