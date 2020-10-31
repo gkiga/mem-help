@@ -1,122 +1,68 @@
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-* {
-  box-sizing: border-box;
-}
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 75%;
-}
-a {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-[class*="col-"] {
-  float: center;
-  padding: 20px;
-}
-.text-center {
-  text-align: center;
-}
-.text-left{
-  text-align: left;
-}
-.padding {
-  text-align: center;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-html {
-  font-family: "Lucida Sans", sans-serif;
-}
-
-.header {
-  background-color: #4082ed;
-  color: #ffffff;
-  padding: 5px;
-}
-
-.menu ul {
-  list-style-type: none;
+body {
   margin: 0;
-  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.hero-image3 {
+  background-image: url("https://theglobalscholars.com/wp-content/uploads/2018/08/34512613_xl-1.jpg");
+  background-color: #cccccc;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-.menu li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.vertical-center {
-  margin: 0;
+.hero-text3 {
+  text-align: center;
   position: absolute;
   top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
-.menu li:hover {
-  background-color: #0099cc;
-}
-
-
-
 </style>
-</head>
-<body>
-
-
-<div class="big_header">
-            <h1 class="blue" style="color:#2196F3;">Global Request Forum </h1>
-            
-        </div>
-        
 <br>
-<div class = "padding">
+<div class="big_header">
+            <h1 class="blue" style="color:#2196F3;">Global Request Forum </h1>  
+        </div>
+   <br>
+<p class="text-info"><strong>Can't find someone to help you? You can post a request to the MemHelp community and help is on the way!</strong></p>
+<br>
+<p class="text-info"><strong>Once a user changes the status to "accepted" the request is locked between the user who posted the request and the user who accepted the request</strong></p>
+<br>
 
+
+
+<div class="hero-image3">
+  <div class="hero-text3">
+    <div class = "padding">
+ <div class="text-center">
 <%= link_to "Post New Global Request", new_global_path,:class => "btn btn-primary text-center" %>   
 </div>
-
+</div>
+  </div>
+</div>    
+<br>
 
 <% globals.each do |global| %>
 
   
   <div id="<%= dom_id(global) %>">
 <div class = "padding">
-<div class="container card p-2 mb-2 bg-light text-dark">
+<% if global.acceptedFlag == true%>
+<div class="container card p-2 mb-2 bg-success text-dark">
+<%end%>
+<% if global.acceptedFlag == false%>
+<div class="container card p-2 mb-2 bg-danger text-dark">
+<%end%>
  <div class="card text-center">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
+
         <a><%=link_to 'Poster Profile', user_path(global.user_id), class: 'nav-link' %></a>
       </li>
       <li class="nav-item">
@@ -139,10 +85,10 @@ html {
      <div class="card-footer text-muted">
      <div class = "text-left">
      <% if global.acceptedFlag == true%>
-        <p style="color:green;"><small><i>Accepted by <%= global.recipient_name%>.</i></small></p>
+           <p style="color:green;"><strong>Accepted by <%= global.recipient_name%>  ✔</strong></p>
             <%end%>
     <% if global.acceptedFlag == false%>
-        <p style="color:blue;"><small><i>Not yet accepted.</i></small></p>
+        <p style="color:red;"><strong>Not yet accepted ❌</strong></p>
             <%end%>
     
      <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
@@ -156,8 +102,8 @@ html {
     </div>
     </div>
 
-    
-    
+    </div>
+    <br>
     
 <%end%>
 
