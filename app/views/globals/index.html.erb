@@ -66,12 +66,12 @@ body {
         <a><%=link_to 'Poster Profile', user_path(global.user_id), class: 'nav-link' %></a>
       </li>
       <li class="nav-item">
-        <a><%= link_to 'See Global Request', global_path(global), class: 'nav-link' %></a>
+        <a><%= link_to 'See Global Request', global_path(global),:class => 'nav-link' %></a>
       </li>
      
         <% if global.user_id != current_user.id %>
          <li class="nav-item">
-    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), class: 'nav-link'  %>                                                                                                                                    
+    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), :class => 'nav-link'  %>                                                                                                                                    
       </li>
       <%end%>
     </ul>
