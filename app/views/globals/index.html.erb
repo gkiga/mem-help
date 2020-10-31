@@ -93,17 +93,15 @@ html {
 </style>
 </head>
 <body>
+<br>
 
 
-<div class="big_header">
-            <h1 class="blue" style="color:#2196F3;">Global Request Forum </h1>
-            
-        </div>
-        
+            <h1 class="text-center text-primary">Global Request Forum </h1>
+                   
 <br>
 <div class = "padding">
 
-<%= link_to "Post New Global Request", new_global_path,:class => "btn btn-primary text-center" %>   
+<%= link_to "Post New Global Request", new_global_path,:class => "btn btn-outline-success" %>   
 </div>
 
 
@@ -117,15 +115,15 @@ html {
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a><%=link_to 'Poster Profile', user_path(global.user_id), class: 'nav-link' %></a>
+        <a><%=link_to 'Poster Profile', user_path(global.user_id), :class => "btn btn-info btn-center text-center" %></a>
       </li>
       <li class="nav-item">
-        <a><%= link_to 'See Global Request', global_path(global), class: 'nav-link' %></a>
+        <a><%= link_to 'See Global Request', global_path(global),:class => "btn btn-info btn-center text-center" %></a>
       </li>
      
         <% if global.user_id != current_user.id %>
          <li class="nav-item">
-    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), class: 'nav-link'  %>                                                                                                                                    
+    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), :class => "btn btn-info btn-center text-center"  %>                                                                                                                                    
       </li>
       <%end%>
     </ul>
@@ -139,10 +137,10 @@ html {
      <div class="card-footer text-muted">
      <div class = "text-left">
      <% if global.acceptedFlag == true%>
-        <p style="color:green;"><small><i>Accepted by <%= global.recipient_name%>.</i></small></p>
+        <p style="color:green;"><small><i>Accepted by: ✔ <%= global.recipient_name%>.</i></small></p>
             <%end%>
     <% if global.acceptedFlag == false%>
-        <p style="color:blue;"><small><i>Not yet accepted.</i></small></p>
+        <p style="color:blue;"><small><i>Not yet accepted: ❌</i></small></p>
             <%end%>
     
      <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 

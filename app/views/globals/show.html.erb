@@ -120,17 +120,17 @@ html {
   <ul>
   <div class="buttonHolder">
   <div class="padding">
-   <%= button_to 'Edit Request General Information', edit_global_path(global), method: :get %>
+   <%= button_to 'Edit Request General Information', edit_global_path(global),:class => "btn btn-outline-warning", method: :get %>
 </div>
 <div class="padding">
-    <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global), method: :delete %>
+    <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global),:class => "btn btn-outline-warning", method: :delete %>
     <br>
     <%end%>
     </div>
     
     <div class="buttonHolder">
 <% if global.recipient == current_user.id %>
-<%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", class: "btn btn-primary"), method: :get %>
+<%= button_to 'Edit Global Request Active Status', edit_global_path(:recipient_id => current_user.id, :recipient_name => "#{current_user.first_name} #{ current_user.last_name}", :class => "btn btn-info btn-center text-center"), method: :get %>
       <%end%>
       </div>
       

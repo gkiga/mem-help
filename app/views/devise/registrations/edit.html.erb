@@ -69,13 +69,13 @@
  </div>
 <br>
   <div class="actions">
-    <%= f.submit "Update Changed Fields" %>
+    <%= f.submit "Update Changed Fields", :class => "btn btn-outline-dark" %>
   </div>
 <% end %>
 <br>
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "btn btn-outline-danger" %></p>
 
 <%#= link_to "Back", :back %>
 <%= link_to 'Back to My Profile', user_path(current_user.id) %></a>
