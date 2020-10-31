@@ -24,8 +24,10 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
 
+    @review= Review.new(params.require(:review).permit(:comment, :rating, :user_id))
+    # respond_to block
+    
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }

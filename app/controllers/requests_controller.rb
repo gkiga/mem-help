@@ -97,6 +97,7 @@ class RequestsController < ApplicationController
             user.save
         end
     end
+    
         request.destroy
         # respond_to block
         respond_to do |format|
