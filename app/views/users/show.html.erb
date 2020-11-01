@@ -20,12 +20,12 @@
     </ul>
    
     <% if user != current_user %>
-    <%= link_to "Send Message", new_message_path(:recipient_id => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>                                                                                                                                               
-    <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-primary text-center" %>     
-    <%= link_to "Add New Review", new_review_path(:user_id=> user.id),:class => "btn btn-primary primary" %> 
-    <%= link_to "See Reviews", reviews_path(:user_id=> user.id),:class => "btn btn-primary primary" %> 
+    <%= link_to "Send Message", new_message_path(:recipient_id => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary"%>                                                                                                                                               
+    <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary" %>     
+    <%= link_to "Add New Review", new_review_path(:user_id=> user.id),:class => "btn btn-outline-primary" %> 
+  
     <% else %>
-    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-primary primary" %>
+    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-outline-primary" %>
     <% end %>
 
   </div>
@@ -50,7 +50,7 @@
     </ul>
         
     <% if user == current_user %>
-      <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-primary" %>
+      <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-outline-primary" %>
     <% end %>
 
   </div>

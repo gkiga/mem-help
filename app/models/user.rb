@@ -93,5 +93,6 @@ class User < ApplicationRecord
 
   has_many :my_notifications, foreign_key: :recipient_id
   has_many :requests
+  has_many :reviews, dependent: :destroy
 
 end
