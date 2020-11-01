@@ -22,6 +22,8 @@ th, td {
 }
 </style>
 
+
+<p id="notice"><%= notice %></p>
 <div class="hero-image4">
   <div class="hero-text4">
     <h1 style="font-size:50px">My Reviews</h1>
@@ -29,16 +31,22 @@ th, td {
 </div>
 
 <% @reviews.each do |review| %>
-<% if current_user.try(:id)==review.user_id %>
-      <div id="<%= dom_id(review) %>">
-<div class="card text-center">
-  <div class="card-header">
-    <td class="card-text"><%= truncate(review.user.username, lenght: 100) %></td>
-  </div>
 
-  <div class="card-body">    
-    <tbody>
-       <tr>
+    <% if current_user.try(:id)==review.user_id %>
+      <div id="<%= dom_id(review) %>">
+
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+      <tr>
          <% if review.rating  == 1 %>
          <td>⭐</td>
          <%end%>
@@ -54,32 +62,15 @@ th, td {
          <% if review.rating  == 5 %>
          <td>⭐⭐⭐⭐⭐</td>
           <%end%>
-      
-    <h5 class="card-text"></h5>
-    <td class="card-text"><%= truncate (review.comment) %></td>
-   
-    <td></td>
-  </div>
-  <div class="card-footer text-muted">
-   <%= link_to 'Delete', review, :class => "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-</div>
-
-     <% end %>
+        <td><%= review.comment %></td>
+        
+        <td><%#= link_to 'Show', review %></td>
+        <td><%#= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
 <br>
 <%end%>
-
-
-<!--
-  </div>
-  </div>
-  </div>
- 
-        <td><%#= link_to 'Show', review %></td>
-        <td><%#= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
--->

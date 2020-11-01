@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   def create
 
     @review= Review.new(params.require(:review).permit(:comment, :rating, :user_id))
-    @review.user_id =current_user.id
+    
     # respond_to block
     
     respond_to do |format|
