@@ -1,0 +1,23 @@
+<div id="page-contet">
+<h1 class="text-center mt-4">New Review</h1>
+
+
+  <div class="card text-center">
+  <div class="card-header"><%= @review.user.username %></div>
+  <div class="card-body text-dark">
+  <p>
+  <div class="form-group">
+  <label><strong for="exampleFormControlInput1">Ratings:</strong></label>
+  <%= @review.rating %>  
+  </p>  
+  <p>
+  <div class="form-group">
+  <label><strong for="exampleFormControlTextarea1">Comments:</strong></label>
+
+  <%= @review.comment %>
+  </p>
+  </div>
+  </div>
+ <div class="card-footer bg-transparent border-success"><%= link_to 'Review ', reviews_path, :class => "btn btn-outline-dark" %>
+</div>
+</div>

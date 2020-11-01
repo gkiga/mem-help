@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   devise_for :users
   #root route
   root to: redirect('/home', status:302)
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   delete 'messages/:id', to: 'messages#destroy' # destroy
 
 
-# requests
+# globals
 get 'globals', to: 'globals#index', as: 'globals' # index
 get 'globals/new', to: 'globals#new', as: 'new_global' # new
 post 'globals', to: 'globals#create' # create
