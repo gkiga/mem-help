@@ -33,6 +33,7 @@ th, td {
 <% @reviews.each do |review| %>
 
     <% if current_user.try(:id)==review.user_id %>
+   
       <div id="<%= dom_id(review) %>">
 
 <table>
