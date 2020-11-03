@@ -91,8 +91,22 @@ class User < ApplicationRecord
     inverse_of: :creator
   )
 
+  # MyNotifications
   has_many :my_notifications, foreign_key: :recipient_id
+
+  # Requests
   has_many :requests
+
+  # Reviews
   has_many :reviews, dependent: :destroy
+
+  # Given instance is the followed user
+  has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow" # follows for given user instance
+  has_many :followers, through: :received_follows, source: :followers              # users who follow given user intance
+
+  # Given instance is the follower
+  has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"         # follows a user gave someone else
+  has_many :followings, through: :given_follows, source: :followed_user            # other users this user has followed
+
 
 end
