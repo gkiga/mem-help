@@ -32,6 +32,11 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if @review.save
+
+        # notification
+        MyNotification.create(recipient_id: @review.user_id, actor: current_user, action: "New Review", notifiable: @review, review_id: @review.id)
+
+
         format.html { redirect_to @review, notice: 'Review was successfully sent.' }
         format.json { render :show, status: :created, location: @review }
       else

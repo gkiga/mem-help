@@ -58,8 +58,15 @@
             <%= link_to "🗑", my_notification_path(my_notification), method: :delete %>
             <% if my_notification.notifiable_type == "Request" %>
               <a href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+            <% elsif my_notification.notifiable_type == "Review" %>
+              <a href= 
+              <%= review_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: 
+                <% my_notification.notifiable.rating.times do %> 
+                  ⭐
+                <% end %>
+              </a>
             <% else %>
-            <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
+              <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
             <% end %>
             </div>
             <% end %>
