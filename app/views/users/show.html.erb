@@ -20,12 +20,11 @@
     </ul>
    
     <% if user != current_user %>
-    <%= link_to "Send Message", new_message_path(:recipient_id => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary"%>                                                                                                                                               
-    <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary" %>     
-    <%= link_to "Add New Review", new_review_path(:user_id=> user.id),:class => "btn btn-outline-primary" %> 
-  
+      <%= link_to "Send Message", new_message_path(:recipient_id => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary"%>                                                                                                                                               
+      <%= link_to "Direct Request", new_request_path(:recipient => user.id, :recipient_name => "#{user.first_name} #{ user.last_name}", class: "btn btn-primary"),:class => "btn btn-outline-primary" %>     
+      <%= link_to "Add New Review", new_review_path(:user_id=> user.id),:class => "btn btn-outline-primary" %> 
     <% else %>
-    <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-outline-primary" %>
+      <%= link_to 'Personalize Profile', edit_user_registration_path, :class => "btn btn-outline-primary" %>
     <% end %>
 
   </div>
@@ -51,11 +50,25 @@
         
     <% if user == current_user %>
       <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-outline-primary" %>
+    <% elsif current_user.followings.include?(user) %>
+      <%= link_to "Unfollow", unfollow_user_path, method: "POST", :class => "btn btn-outline-primary" %> 
+    <% else %>
+      <%= link_to "Follow", follow_user_path, method: "POST", :class => "btn btn-outline-primary" %>
     <% end %>
 
   </div>
 
 </div>
+
+<br>
+
+<h3>Followed By</h3>
+  <ul>
+    <% user.received_follows.each do |f| %>
+      <li><%= f.follower.first_name %></li>
+    <% end %>
+
+  </ul>
 
 
 

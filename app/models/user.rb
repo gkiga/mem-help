@@ -93,7 +93,7 @@ class User < ApplicationRecord
 
   # MyNotifications
   has_many :my_notifications, foreign_key: :recipient_id
-
+ 
   # Requests
   has_many :requests
 
