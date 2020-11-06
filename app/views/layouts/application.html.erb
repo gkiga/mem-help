@@ -24,10 +24,10 @@
           </li>
           <li class="nav-item">
           <% if user_signed_in? %>
-            <%# <%= link_to 'My Profile', user_path(current_user), class: 'nav-link'%>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Profile </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profile </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <%= link_to 'My Page', user_path(current_user), class: "dropdown-item"%>
                 <%= link_to "Followed Users", account_follows_path, class:"dropdown-item" %>
               </div>
             </li>
