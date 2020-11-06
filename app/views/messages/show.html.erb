@@ -1,3 +1,4 @@
+<link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
 <div id="page-contet">
 <h1 class="text-center mt-4">New Message</h1>
 <div class="container card p-3 mb-2 bg-light text-dark">
@@ -23,7 +24,7 @@
      <p><%= link_to 'Reply', new_message_path(:recipient_id => message.user_id, :recipient_name => message.sender_name), :class => "btn btn-outline-success" %></p>
      <p><%= link_to 'Back', messages_path, :class => "btn btn-outline-primary" %></p>
      <%= button_to 'Delete', message_path(message), method: :delete, :class => "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-     
+      <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
      </div>
       </div>
        </div>
