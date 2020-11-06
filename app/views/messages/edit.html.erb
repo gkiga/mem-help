@@ -3,21 +3,21 @@
 
 
 
-<%= form_with model: message, url: message_path, class: "shadow p-5 mb-10 bg-info", method: :patch, local: true, scope: :message do |f| %>
+<%= form_with model: message, url: message_path, class: "shadow p-5 mb-10 bg-white", method: :patch, local: true, scope: :message do |f| %>
 <% if current_user.try(:id)==message.user_id %>
-  <div class="form-group row">
-    <label for="exampleFormControlInput1">Title</label>
+  <div >
+   <strong><label>Title</label></strong>
     <%= f.text_field :title, placeholder:'Hello',class: "form-control shadow" %>
    
   </div>
-  <div class="form-group row">
-  <label for="exampleFormControlInput1">Message</label>
-    <%= f.text_area :body, placeholder: '',rows:10, class: "form-control shadow"  %>
+ <div>
+  <strong><label>Message</label></strong>
+    <%= f.rich_text_area :body, placeholder:'Say something...' %>
     
-  </div>
+ </div>
 <br>
 <br>
-  <div class="form-group row">     
+  <div >     
   <%= f.submit "Update", :class => "btn btn-outline-warning" %>
 </div>
 

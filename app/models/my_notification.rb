@@ -9,7 +9,6 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  actor_id        :integer
-#  follow_id       :bigint
 #  message_id      :bigint
 #  notifiable_id   :string
 #  recipient_id    :integer

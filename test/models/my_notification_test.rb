@@ -9,7 +9,6 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  actor_id        :integer
-#  follow_id       :bigint
 #  message_id      :bigint
 #  notifiable_id   :string
 #  recipient_id    :integer
@@ -19,7 +18,6 @@
 #
 # Indexes
 #
-#  index_my_notifications_on_follow_id   (follow_id)
 #  index_my_notifications_on_message_id  (message_id)
 #  index_my_notifications_on_request_id  (request_id)
 #  index_my_notifications_on_review_id   (review_id)
@@ -27,7 +25,6 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (follow_id => follows.id)
 #  fk_rails_...  (message_id => messages.id)
 #  fk_rails_...  (request_id => requests.id)
 #  fk_rails_...  (review_id => reviews.id)
