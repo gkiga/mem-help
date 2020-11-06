@@ -11,7 +11,7 @@
 class Follow < ApplicationRecord
     # User giving the follow
     belongs_to :follower, foreign_key: :follower_id, class_name: "User"
-
+ 
     # User being followed
     belongs_to :followed_user, foreign_key: :followed_user_id, class_name: "User"
 end

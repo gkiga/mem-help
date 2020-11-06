@@ -1,0 +1,29 @@
+<br>
+
+<h1>Followed Users</h1>
+
+<br>
+
+<% followings.each do |user| %>
+
+    <div class="card container border-dark mb-3" style ="width: 30rem">
+        <div class="card-header row">
+            <div class="avatar">
+                <% if user.avatar.attached? %>
+                    <img class="rounded-circle" height= "40" width="40" <%=image_tag(user.avatar)%>
+                <% end %>
+            </div>
+            &nbsp&nbsp
+            <h4 class="card-title">
+                <%= link_to "#{user.first_name} #{user.last_name}", user_path(user)%>
+            </h4>
+            </div>
+                <div class="card-body">
+                    <h5 class="card-subtitle mb-2 text-muted"><%= user.interests %></h5>
+                    <p class="card-text"> <%= user.bio %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% end %>

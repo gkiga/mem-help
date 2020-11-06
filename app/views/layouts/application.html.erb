@@ -24,7 +24,13 @@
           </li>
           <li class="nav-item">
           <% if user_signed_in? %>
-            <%= link_to 'My Profile', user_path(current_user), class: 'nav-link'%>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profile </a>
+              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <%= link_to 'My Page', user_path(current_user), class: "dropdown-item"%>
+                <%= link_to "Followed Users", account_follows_path, class:"dropdown-item" %>
+              </div>
+            </li>
           <% else %>
             <%= link_to 'My Profile', new_user_session_path, class: 'nav-link' %>
           <% end %>
@@ -65,6 +71,8 @@
                   ⭐
                 <% end %>
               </a>
+            <% elsif my_notification.notifiable_type == "User" %>
+              <a href= <%= user_path(my_notification.actor)%> ><%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %> followed you!</a>
             <% else %>
               <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
             <% end %>

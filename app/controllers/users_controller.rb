@@ -30,6 +30,31 @@ class UsersController < ApplicationController
         end
     end
 
+    def follow
+        user = User.find(params[:id])
+        current_user.followings << user
+        MyNotification.create(recipient_id: user.id, actor: current_user, action: "New Follow", notifiable: user, user_id: user.id)
+
+        if current_user.followings.include?(user)
+            flash[:success] = "Followed successfully"
+        else 
+            flash[:error] = "Could not follow successfully"
+        end
+        redirect_to user_path(user)
+    end
+
+    def unfollow
+        user = User.find(params[:id])
+        current_user.followings.delete(user)
+
+        if !current_user.followings.include?(user)
+            flash[:success] = "Unfollowed successfully"
+        else 
+            flash[:error] = "Could not unfollow successfully"
+        end
+        redirect_to user_path(user)
+    end
+
     def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :bio, :search)
     end

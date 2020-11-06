@@ -75,5 +75,12 @@ delete 'globals/:id', to: 'globals#destroy' # destroy
 
   delete "my_notifications/:id", to: "my_notifications#destroy"  # delete
     
+  # follows
+  post '/users/:id/follow', to: "users#follow", as: "follow_user"
+  post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"
+
+  get 'account/follows', to: 'account_follows#index', as: 'account_follows' # my follows page
+
+
 
 end
