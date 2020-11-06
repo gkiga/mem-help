@@ -20,5 +20,6 @@ class Message < ApplicationRecord
     validates :recipient_name, presence: true
 
     has_many :my_notifications, dependent: :destroy
+    has_rich_text :body
 end
     
