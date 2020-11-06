@@ -71,6 +71,8 @@
                   ⭐
                 <% end %>
               </a>
+            <% elsif my_notification.notifiable_type == "User" %>
+              <a href= <%= user_path(my_notification.actor)%> ><%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %> followed you!</a>
             <% else %>
               <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
             <% end %>

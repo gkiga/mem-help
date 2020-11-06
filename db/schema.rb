@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_212528) do
+ActiveRecord::Schema.define(version: 2020_11_06_011002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,9 +81,13 @@ ActiveRecord::Schema.define(version: 2020_11_03_212528) do
     t.bigint "message_id"
     t.bigint "request_id"
     t.bigint "review_id"
+    t.bigint "follow_id"
+    t.bigint "user_id"
+    t.index ["follow_id"], name: "index_my_notifications_on_follow_id"
     t.index ["message_id"], name: "index_my_notifications_on_message_id"
     t.index ["request_id"], name: "index_my_notifications_on_request_id"
     t.index ["review_id"], name: "index_my_notifications_on_review_id"
+    t.index ["user_id"], name: "index_my_notifications_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -140,9 +144,11 @@ ActiveRecord::Schema.define(version: 2020_11_03_212528) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "my_notifications", "follows"
   add_foreign_key "my_notifications", "messages"
   add_foreign_key "my_notifications", "requests"
   add_foreign_key "my_notifications", "reviews"
+  add_foreign_key "my_notifications", "users"
   add_foreign_key "requests", "users"
   add_foreign_key "videos", "users"
 end

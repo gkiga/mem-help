@@ -33,6 +33,8 @@ class UsersController < ApplicationController
     def follow
         user = User.find(params[:id])
         current_user.followings << user
+        MyNotification.create(recipient_id: user.id, actor: current_user, action: "New Follow", notifiable: user, user_id: user.id)
+
         if current_user.followings.include?(user)
             flash[:success] = "Followed successfully"
         else 
@@ -44,6 +46,7 @@ class UsersController < ApplicationController
     def unfollow
         user = User.find(params[:id])
         current_user.followings.delete(user)
+
         if !current_user.followings.include?(user)
             flash[:success] = "Unfollowed successfully"
         else 
