@@ -23,12 +23,13 @@ th, td {
 </style>
 
 
-<p id="notice"><%= notice %></p>
+
 <div class="hero-image4">
   <div class="hero-text4">
     <h1 style="font-size:50px">My Reviews</h1>
   </div>
 </div>
+
 
 <% @reviews.each do |review| %>
 
@@ -40,6 +41,7 @@ th, td {
     <tr>
       <th>Rating</th>
       <th>Comment</th>
+      <th>Sent by</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -63,11 +65,15 @@ th, td {
          <td>⭐⭐⭐⭐⭐</td>
           <%end%>
         <td><%= review.comment %></td>
-        
+        <td> <%=review.sender_name %></td>
         <td><%#= link_to 'Show', review %></td>
-        <td><%#= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Edit', edit_review_path(review) %></td> 
       </tr>
+       <div class="card-footer text-muted">
+       <small>Received <%= time_ago_in_words(review.created_at) %> ago </small>
+       <td><%= link_to 'Delete', review, class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       </div>
+       </div>
     <% end %>
   </tbody>
 </table>
