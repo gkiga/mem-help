@@ -15,6 +15,7 @@
 #  request_id      :bigint
 #  review_id       :bigint
 #  user_id         :bigint
+#  video_id        :bigint
 #
 # Indexes
 #
@@ -22,6 +23,7 @@
 #  index_my_notifications_on_request_id  (request_id)
 #  index_my_notifications_on_review_id   (review_id)
 #  index_my_notifications_on_user_id     (user_id)
+#  index_my_notifications_on_video_id    (video_id)
 #
 # Foreign Keys
 #
@@ -29,6 +31,7 @@
 #  fk_rails_...  (request_id => requests.id)
 #  fk_rails_...  (review_id => reviews.id)
 #  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (video_id => videos.id)
 #
 class MyNotification < ApplicationRecord
     belongs_to :recipient, class_name: "User"

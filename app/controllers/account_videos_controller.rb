@@ -23,6 +23,12 @@ class AccountVideosController < ApplicationController
         respond_to do |f|
             f.html do
                 if video.save
+                    
+                        current_user.followers.each do |follower|
+                            MyNotification.create(recipient_id: follower.id, actor: current_user, action: "New Video", notifiable: video, video_id: video.id)
+                        end
+                    
+
                     flash[:success] = "Video saved successfully"
                     redirect_to user_path(current_user)
                 else
@@ -36,7 +42,7 @@ class AccountVideosController < ApplicationController
     def destroy
         @video.destroy
         respond_to do |format|
-            format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
+            format.html { redirect_to user_path(@video.creator), notice: 'Video was successfully destroyed.' }
             format.json { head :no_content }
         end
     end
