@@ -17,5 +17,19 @@
 #  user_id             :bigint
 #
 class Global < ApplicationRecord
-  
+ 
+    def self.filter(filter)
+        if filter and not filter.empty?
+            @globals = Global.all
+            @globals= @globals.where(sender: filter)
+            
+
+            #byebug
+            return @globals
+        else
+            Global.all
+        end 
+    end
+ 
+
 end

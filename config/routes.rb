@@ -29,7 +29,11 @@ Rails.application.routes.draw do
 
 
 # globals
+#get 'globals/myglobals', to: 'my_globals#myglobals', as: 'my_globals'
+#resources :globals, only: [:index, :show]
 get 'globals', to: 'globals#index', as: 'globals' # index
+
+
 get 'globals/new', to: 'globals#new', as: 'new_global' # new
 post 'globals', to: 'globals#create' # create
 get 'globals/:id', to: 'globals#show', as: 'global' # show

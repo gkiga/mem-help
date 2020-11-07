@@ -1,14 +1,17 @@
     class GlobalsController < ApplicationController
-        before_action :authenticate_user!
-      
+
          def index
               @users = User.all
-              globals = Global.all
+              @globals = Global.all
+              @globals = Global.filter(params[:sender])
+              
               respond_to do |format|
-                  format.html { render :index, locals: { globals: globals } }
+                  format.html { render :index, locals: { globals: @globals } }
               end
           end
-     
+          
+          
+
          def show
              
              global = Global.find(params[:id])

@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <style>
 body {
   margin: 0;
@@ -23,7 +24,11 @@ body {
   transform: translate(-50%, -50%);
   color: white;
 }
+
+
+
 </style>
+
 <br>
 <div class="big_header">
             <h1 class="blue" style="color:#2196F3;">Global Request Forum </h1>  
@@ -44,10 +49,19 @@ body {
 </div>
 </div>
   </div>
+  
 </div>    
 <br>
 
-<% globals.each do |global| %>
+
+<h4>Filter by:</h4>
+    <%= form_tag(globals_path, method: "get") do %>
+        <%= select_tag "sender", options_from_collection_for_select(Global.all.to_a.uniq{ |o| o.sender}, :sender, :sender), prompt: 'Sender'%>
+        <input type="submit" value="Submit">
+    <% end %> <!-- end of form -->
+
+
+<% @globals.each do |global| %>
 
   
   <div id="<%= dom_id(global) %>">
