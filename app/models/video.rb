@@ -26,4 +26,7 @@ class Video < ApplicationRecord
         foreign_key: 'user_id',
         inverse_of: 'videos'
     )
+
+    has_many :my_notifications, dependent: :destroy
+
 end

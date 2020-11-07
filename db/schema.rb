@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_041921) do
+ActiveRecord::Schema.define(version: 2020_11_06_204914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,10 +92,12 @@ ActiveRecord::Schema.define(version: 2020_11_06_041921) do
     t.bigint "request_id"
     t.bigint "review_id"
     t.bigint "user_id"
+    t.bigint "video_id"
     t.index ["message_id"], name: "index_my_notifications_on_message_id"
     t.index ["request_id"], name: "index_my_notifications_on_request_id"
     t.index ["review_id"], name: "index_my_notifications_on_review_id"
     t.index ["user_id"], name: "index_my_notifications_on_user_id"
+    t.index ["video_id"], name: "index_my_notifications_on_video_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -156,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_041921) do
   add_foreign_key "my_notifications", "requests"
   add_foreign_key "my_notifications", "reviews"
   add_foreign_key "my_notifications", "users"
+  add_foreign_key "my_notifications", "videos"
   add_foreign_key "requests", "users"
   add_foreign_key "videos", "users"
 end

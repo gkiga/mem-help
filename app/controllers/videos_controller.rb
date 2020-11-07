@@ -57,7 +57,7 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     respond_to do |format|
-      format.html { redirect_to account_videos_path, notice: 'Video was successfully destroyed.' }
+      format.html { redirect_to user_path(@video.creator), notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
