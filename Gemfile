@@ -66,4 +66,5 @@ gem 'annotate', group: :development
 gem 'jquery-rails'
 
 
-
+gem 'has_scope'
+gem 'simple_form'
