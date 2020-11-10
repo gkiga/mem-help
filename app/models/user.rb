@@ -97,6 +97,9 @@ class User < ApplicationRecord
   # Requests
   has_many :requests
 
+  # Requests
+  has_many :globals
+
   # Reviews
   has_many :reviews, dependent: :destroy
 

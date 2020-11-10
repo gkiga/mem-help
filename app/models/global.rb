@@ -17,7 +17,11 @@
 #  user_id             :bigint
 #
 class Global < ApplicationRecord
- 
+
+belongs_to :user
+
+has_many :my_notifications, dependent: :destroy
+         
     def self.filter(filter)
         if filter and not filter.empty?
             @globals = Global.all

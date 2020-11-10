@@ -73,11 +73,18 @@
                 global.recipient_name = [current_user.first_name, current_user.last_name].join(' ')
              # respond_to block
              global.recipient = current_user.id
+            
              end
              respond_to do |format|
                  format.html do
                      if global.update(params.require(:global).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))
                          # success message
+                         if current_user.id == global.recipient
+                         MyNotification.create(recipient_id: global.user_id, actor: current_user, action: "Update Global", notifiable: global, global_id: global.id)
+                         end
+                         if current_user.id == global.user_id
+                         MyNotification.create(recipient_id: global.recipient, actor: current_user, action: "Update Global", notifiable: global, global_id: global.id)
+                         end
                          flash[:success] = 'Global Request Accepted Successfully'
                          # redirect to index
                          redirect_to globals_url
@@ -101,6 +108,7 @@
                  user.save
              end
          end
+             
              global.destroy
              # respond_to block
              respond_to do |format|
