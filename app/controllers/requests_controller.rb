@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
    before_action :authenticate_user!
- 
+    @@please_review = 0
+
+
     def index
     
          requests = Request.all
@@ -89,15 +91,17 @@ class RequestsController < ApplicationController
     def destroy
         # load existing object again from URL param
         request = Request.find(params[:id])
+        @@please_review = request.recipient
         if current_user.try(:id)==request.user_id
         if request.completedFlag == true
     
             user = User.find(request.recipient)
             user.volunteer_hours += request.new_volunteer_hours
             user.save
+        
         end
     end
-    
+
         request.destroy
         # respond_to block
         respond_to do |format|
@@ -105,7 +109,8 @@ class RequestsController < ApplicationController
                 # success message
                 flash[:success] = 'Request removed successfully'
                 # redirect to index
-                redirect_to requests_url
+                redirect_to new_review_path(:user_id => @@please_review)
+              
             end
         end
     end

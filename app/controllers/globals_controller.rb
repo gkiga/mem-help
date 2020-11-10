@@ -1,5 +1,5 @@
     class GlobalsController < ApplicationController
-
+@@please_review_global = 0
          def index
               @users = User.all
               @globals = Global.all
@@ -101,6 +101,9 @@
          def destroy
              # load existing object again from URL param
              global = Global.find(params[:id])
+             if global.recipient 
+             @@please_review_global = global.recipient
+             end
              if current_user.try(:id)==global.user_id
              if global.completedFlag == true
                  user = User.find(global.recipient)
@@ -116,12 +119,17 @@
                      # success message
                      flash[:success] = 'Global Request removed successfully'
                      # redirect to index
-                     redirect_to globals_url
+                     if @@please_review_global != 0
+                        redirect_to new_review_path(:user_id => @@please_review_global)
+                        @@please_review_global = 0
+                     else
+                        redirect_to globals_url
+                        
                  end
              end
          end
      end
-     
+    end 
      class DemoController
          def index
            @some_variable = "dlroW olleH"
