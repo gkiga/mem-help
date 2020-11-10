@@ -43,21 +43,19 @@
             
           </li>
           <% if user_signed_in? %>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Requests</a>
-              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                <%= link_to 'My Direct Requests ', requests_path, class: "dropdown-item"%>
-                  <%= link_to "My Global Requests", home_path, class:"dropdown-item" %>
-              </div>
+            <li class="nav-item">
+                <%= link_to 'My Direct Requests ', requests_path, class: "nav-link"%>
+                
+             
             </li>
           <% end %>
-
 
             <li class="nav-item">
           <%= link_to "My Reviews", reviews_path, class: 'nav-link' %>
             
           </li>
         </ul>
+         </div>
       <ul class="navbar-nav ml-auto">
       
       <% if current_user %>

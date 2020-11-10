@@ -61,16 +61,17 @@ body {
     <% end %> <!-- end of form -->
 
 
+<br>
 <% @globals.each do |global| %>
 
   
   <div id="<%= dom_id(global) %>">
 <div class = "padding">
 <% if global.acceptedFlag == true%>
-<div class="container card p-2 mb-2 bg-success text-dark">
+<div class="container card p-1 mb-1 bg-success text-dark">
 <%end%>
 <% if global.acceptedFlag == false%>
-<div class="container card p-2 mb-2 bg-danger text-dark">
+<div class="container card p-1 mb-1 bg-danger text-dark">
 <%end%>
  <div class="card text-center">
   <div class="card-header">
