@@ -33,6 +33,8 @@
 
 <br />
 
+
+
 <div class="card">
   <div class="card-header">
     <h5>Videos</h5>
@@ -42,7 +44,11 @@
     <ul>
       <% videos.each do |video| %>
       <li>
-          <%= link_to video.title, video_path(video)%>
+        <div align="center" style="width:200px; height:200px">
+          <%= video.title%>
+          <%= link_to image_tag(video.thumbnail), video_path(video)%>
+        </div>
+        <br><br><br>
       </li>
 
       <% end %>
