@@ -74,6 +74,13 @@ class RequestsController < ApplicationController
         respond_to do |format|
             format.html do
                 if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))
+                        if current_user.id == request.recipient
+                        MyNotification.create(recipient_id: request.user_id, actor: current_user, action: "Updated Request", notifiable: request, request_id: request.id)
+                        end
+                        if current_user.id == request.user_id
+                        MyNotification.create(recipient_id: request.recipient, actor: current_user, action: "Updated Request", notifiable: request, request_id: request.id)
+                        end
+                    
                     # success message
                     flash[:success] = 'Request updated successfully'
                     # redirect to index
