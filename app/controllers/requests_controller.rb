@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
    before_action :authenticate_user!
- 
+    @@please_review = 0
+
+
     def index
     
          requests = Request.all
@@ -72,6 +74,13 @@ class RequestsController < ApplicationController
         respond_to do |format|
             format.html do
                 if request.update(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag,:new_volunteer_hours))
+                        if current_user.id == request.recipient
+                        MyNotification.create(recipient_id: request.user_id, actor: current_user, action: "Updated Request", notifiable: request, request_id: request.id)
+                        end
+                        if current_user.id == request.user_id
+                        MyNotification.create(recipient_id: request.recipient, actor: current_user, action: "Updated Request", notifiable: request, request_id: request.id)
+                        end
+                    
                     # success message
                     flash[:success] = 'Request updated successfully'
                     # redirect to index
@@ -89,15 +98,17 @@ class RequestsController < ApplicationController
     def destroy
         # load existing object again from URL param
         request = Request.find(params[:id])
+        @@please_review = request.recipient
         if current_user.try(:id)==request.user_id
         if request.completedFlag == true
     
             user = User.find(request.recipient)
             user.volunteer_hours += request.new_volunteer_hours
             user.save
+        
         end
     end
-    
+
         request.destroy
         # respond_to block
         respond_to do |format|
@@ -105,7 +116,8 @@ class RequestsController < ApplicationController
                 # success message
                 flash[:success] = 'Request removed successfully'
                 # redirect to index
-                redirect_to requests_url
+                redirect_to new_review_path(:user_id => @@please_review)
+              
             end
         end
     end

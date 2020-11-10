@@ -24,7 +24,7 @@
   <div class="form-group">
     <%= f.submit"Submit Review", :class => "btn btn-outline-warning" %>
   
-  <%= link_to 'Back', reviews_path, :class => "btn btn-outline-warning" %>
+    <%= link_to 'Back To My Page', user_path(current_user), class: "btn btn-outline-warning" %> 
   </div>
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
 <% end %>

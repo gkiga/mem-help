@@ -42,6 +42,8 @@
       <p><%= link_to 'Edit Request General Information', edit_request_path(request), method: :get, :class => "btn btn-info text-center"  %></p>
       
      <p><%= button_to 'Close Out Request (Hours rewarded if request completed)', request_path(request), method: :delete,  :class => "btn btn-info text-center"  %></p>
+    <p>Warning: After closing any request you will automatically be redirected to review the teacher. <p>
+    
     <%end%>
     
   </div>
