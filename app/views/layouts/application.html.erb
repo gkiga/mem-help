@@ -72,10 +72,11 @@ div.t > input {
 <div class = "a" style="width: 300px, color: black">
     <div class="t"> <!-- This is the wrapper div around the text input -->
         <%= form_tag users_path, :method => "get" do %>
-<p><%= text_field_tag :search, params[:search], class: "form-control" %>
+    <p><%= text_field_tag :search, params[:search], class: "navbar-dark bg-dark" %></p>
     </div>
-    <%= submit_tag "Search", :email => nil %>
+    <button submit_tag="Search" class="btn btn-outline-dark">Search</button>
 </div>
+
 
 
 
