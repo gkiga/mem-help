@@ -98,7 +98,7 @@ class User < ApplicationRecord
   has_many :requests
 
   # Requests
-  #has_many :globals
+  has_many :globals
 
   # Reviews
   has_many :reviews, dependent: :destroy
@@ -112,6 +112,6 @@ class User < ApplicationRecord
   has_many :followings, through: :given_follows, source: :followed_user            # other users this user has followed
 
   #Global_Listing
-  has_many :global_listings
-  has_many :globals, :though => :global_listings  
+  #has_many :global_listings
+  #has_many :globals, :through => :global_listings  
 end

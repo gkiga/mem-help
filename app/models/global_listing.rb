@@ -8,6 +8,7 @@
 #
 class GlobalListing < ApplicationRecord
 
-    belongs_to :user
-    belongs_to :global
+    #belongs_to :user
+    #belongs_to :global
+    has_many :globals
 end
