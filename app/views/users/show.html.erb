@@ -4,7 +4,7 @@
 <% if user.avatar.attached? %>
   <%= image_tag((url_for(user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
 <%end%>
-
+<br>
 <div class="card">
   <div class="card-header">
     <h5>About</h5>
@@ -33,32 +33,39 @@
 
 
 <br />
+<br>
 
-<h3>Videos</h3>
+<h1><%=user.first_name%>'s Videos</h1>
+<br>
+<div align="center">
 <% if user == current_user %>
     <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-outline-primary" %>
     <br> 
   <% elsif current_user.followings.include?(user) %>
+    <h6><i>You can unfollow a user to stop getting updates when they post videos.</i></h6>
+    <br>
     <%= link_to "Unfollow", unfollow_user_path, method: "POST", :class => "btn btn-outline-primary" %> 
   <% else %>
+    <h6><i>You can follow a user to get updates when they post videos!</i></h6>
+    <br>
     <%= link_to "Follow", follow_user_path, method: "POST", :class => "btn btn-outline-primary" %>
+    <br>
 <% end %>
+</div>
 
 <br>
 
 <% videos.each do |video| %>
-<div class="card container border-dark mb-3" style ="max-width: 30rem">
-  <div class="card-header">
-    <h5><%= video.title%></h5>
-  </div>
-  <div class="card-body">
-    <div style="width:300px; height:300px">
-      <%= link_to image_tag(video.thumbnail, style:"width:100%;height:auto"), video_path(video)%>
+
+  <div class="card container mb-3" style ="max-width: 40rem">
+    <img class="card-img-top" src="<%= url_for(video.thumbnail, )%>" alt="Card image cap">
+    <div class="card-footer">
+      <h5>Title: <%= link_to video.title, video_path(video) %></h5>
+      <h5 class="card-text">Description: <%= video.description%></h5>
     </div>
   </div>
-</div>
 
-<br>
+  <br>
 
 <% end %>
 
