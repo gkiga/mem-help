@@ -42,6 +42,14 @@ patch 'globals/:id', to: 'globals#update' # update (as needed)
 put 'globals/:id', to: 'globals#update' # update (full replacement)
 delete 'globals/:id', to: 'globals#destroy' # destroy
 
+get 'global_listings', to: 'global_listings#index', as: 'global_listings' # index
+get 'global_listings/new', to: 'global_listings#new', as: 'new_global_global_listings' # new
+post 'global_listings', to: 'global_listings#create' # create
+get 'global_listings/:id', to: 'global_listings#show', as: 'global_listing' # show
+get 'global_listings/:id/edit', to: 'global_listings#edit', as: 'edit_global_listing' # edit
+patch 'global_listings/:id', to: 'global_listings#update' # update (as needed)
+put 'global_listings/:id', to: 'global_listings#update' # update (full replacement)
+delete 'global_listings/:id', to: 'global_listings#destroy' # destroy
 
   # users
   devise_scope :user do
