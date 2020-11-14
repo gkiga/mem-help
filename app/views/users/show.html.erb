@@ -1,3 +1,4 @@
+
 <h1><%=user.first_name%> <%=user.last_name%></h1><br />
 
 <% if user.avatar.attached? %>
@@ -46,16 +47,15 @@
 <br>
 
 <% videos.each do |video| %>
-<div class="card container border-dark mb-3" style ="width: 30rem">
+<div class="card container border-dark mb-3" style ="max-width: 30rem">
   <div class="card-header">
     <h5><%= video.title%></h5>
   </div>
   <div class="card-body">
-    <div style="width:200px; height:200px">
+    <div style="width:300px; height:300px">
       <%= link_to image_tag(video.thumbnail, style:"width:100%;height:auto"), video_path(video)%>
     </div>
   </div>
-
 </div>
 
 <br>
