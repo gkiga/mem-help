@@ -1,0 +1,2 @@
+module GlobalListingsHelper
+end

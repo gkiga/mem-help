@@ -1,0 +1,2 @@
+class GlobalListingsController < ApplicationController
+end

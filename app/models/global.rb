@@ -18,7 +18,9 @@
 #
 class Global < ApplicationRecord
 
-belongs_to :user
+#belongs_to :user
+has_many :global_listings
+has_many :users, :though => :global_listings
 
 has_many :my_notifications, dependent: :destroy
          
