@@ -1,5 +1,27 @@
 <p id="notice"><%= notice %></p>
+<style>
+th, td {
+  padding: 10px;
+}
+.hero-image4 {
+  background-image: url("https://t4.ftcdn.net/jpg/02/33/43/27/240_F_233432777_dUvLZxOOxSgjJlLu8Zbx2rZgNw0EGZBk.jpg");
+  background-color: #cccccc;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 
+.hero-text4 {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+</style>
 
 <div align="center">
   <h2><%= @video.title %></h2>
@@ -11,11 +33,86 @@
     <strong>Description:</strong>
     <%= @video.description %>
   </h5>
-
   <br>
+  
+
+  <% @reviews.each do |review| %>
+  
+    <% if review.try(:vkey)==@video.id %>
+      <div id="<%= dom_id(review) %>">
+  
+   
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>Comment</th>
+      <th>Reviewer Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+      <tr>
+         <% if review.rating  == 1 %>
+         <td>⭐</td>
+         <%end%>
+         <% if review.rating  == 2 %>
+         <td>⭐⭐</td>
+          <%end%>
+         <% if review.rating  == 3 %>
+         <td>⭐⭐⭐</td>
+          <%end%>
+         <% if review.rating  == 4 %>
+         <td>⭐⭐⭐⭐</td>
+          <%end%>
+         <% if review.rating  == 5 %>
+         <td>⭐⭐⭐⭐⭐</td>
+          <%end%>
+        <td><%= review.comment %></td>
+        <td> <%=review.sender_name %></td>
+        <td><%#= link_to 'Show', review %></td>
+        <td><%#= link_to 'Edit', edit_review_path(review) %></td> 
+      </tr>
+       <div class="card-footer text-muted">
+       <small>Received <%= time_ago_in_words(review.created_at) %> ago </small>
+       <%if [current_user.first_name, current_user.last_name].join(' ') == review.sender_name%>
+       <td><%= link_to 'Delete', review, class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <%end%>
+       <%if current_user.id == @video.user_id%>
+       <td><%= link_to 'Delete', review, class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <%end%>
+       </div>
+       </div>
+
+  </tbody>
+</table>
+<%end%>
+<%end%>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <% if current_user == @video.creator %>
     <%= link_to 'Edit', edit_video_path(@video) %> |
     <%= link_to 'Delete', video_path(@video), method: :delete %>
+  <%else%>
+  <%= link_to 'Review Video', new_review_path( :user_id => @video.user_id,:vkey => @video.id) %>
+  
   <% end %>
 </div>

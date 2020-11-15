@@ -5,12 +5,14 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
+    @reviews = Review.all
     @videos = Video.all
   end
 
   # GET /videos/1
   # GET /videos/1.json
   def show
+    @reviews = Review.all
   end
 
   # # GET /videos/new

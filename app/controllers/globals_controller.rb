@@ -120,7 +120,7 @@
                      flash[:success] = 'Global Request removed successfully'
                      # redirect to index
                      if @@please_review_global != 0
-                        redirect_to new_review_path(:user_id => @@please_review_global)
+                        redirect_to new_review_path(:user_id => @@please_review_global, :vkey => 10000)
                         @@please_review_global = 0
                      else
                         redirect_to globals_url

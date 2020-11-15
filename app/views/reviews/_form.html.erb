@@ -27,4 +27,5 @@
     <%= link_to 'Back To My Page', user_path(current_user), class: "btn btn-outline-warning" %> 
   </div>
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.hidden_field :vkey, :value => params[:vkey]%>
 <% end %>
