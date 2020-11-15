@@ -18,7 +18,7 @@ class AccountVideosController < ApplicationController
     end
 
     def create
-        video = current_user.videos.build(params.require(:video).permit(:title, :description, :clip))
+        video = current_user.videos.build(params.require(:video).permit(:title, :description, :clip, :thumbnail))
         
         respond_to do |f|
             f.html do

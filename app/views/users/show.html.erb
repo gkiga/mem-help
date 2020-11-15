@@ -1,9 +1,10 @@
+
 <h1><%=user.first_name%> <%=user.last_name%></h1><br />
 
 <% if user.avatar.attached? %>
   <%= image_tag((url_for(user.avatar)), style: 'display: block; margin: auto; width: 20%;')%>
 <%end%>
-
+<br>
 <div class="card">
   <div class="card-header">
     <h5>About</h5>
@@ -32,32 +33,40 @@
 
 
 <br />
+<br>
 
-<div class="card">
-  <div class="card-header">
-    <h5>Videos</h5>
-  </div>
-  <div class="card-body">
-    
-    <ul>
-      <% videos.each do |video| %>
-      <li>
-          <%= link_to video.title, video_path(video)%>
-      </li>
-
-      <% end %>
-    </ul>
-        
-    <% if user == current_user %>
-      <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-outline-primary" %>
-    <% elsif current_user.followings.include?(user) %>
-      <%= link_to "Unfollow", unfollow_user_path, method: "POST", :class => "btn btn-outline-primary" %> 
-    <% else %>
-      <%= link_to "Follow", follow_user_path, method: "POST", :class => "btn btn-outline-primary" %>
-    <% end %>
-
-  </div>
-
+<h1><%=user.first_name%>'s Videos</h1>
+<br>
+<div align="center">
+<% if user == current_user %>
+    <%= link_to 'Add Video', new_account_video_path, :class => "btn btn-outline-primary" %>
+    <br> 
+  <% elsif current_user.followings.include?(user) %>
+    <h6><i>You can unfollow a user to stop getting updates when they post videos.</i></h6>
+    <br>
+    <%= link_to "Unfollow", unfollow_user_path, method: "POST", :class => "btn btn-outline-primary" %> 
+  <% else %>
+    <h6><i>You can follow a user to get updates when they post videos!</i></h6>
+    <br>
+    <%= link_to "Follow", follow_user_path, method: "POST", :class => "btn btn-outline-primary" %>
+    <br>
+<% end %>
 </div>
 
+<br>
 
+<% videos.each do |video| %>
+
+  <div class="card container mb-3" style ="max-width: 40rem">
+    <img class="card-img-top" src="<%= url_for(video.thumbnail, )%>" alt="Card image cap">
+    <div class="card-footer">
+      <h5>Title: <%= link_to video.title, video_path(video) %></h5>
+      <h5 class="card-text">Description: <%= video.description%></h5>
+    </div>
+  </div>
+
+  <br>
+
+<% end %>
+
+<br>

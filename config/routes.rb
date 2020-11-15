@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   #homepage
   get 'home', to: 'static_pages#home', as: 'home'
+  get 'about', to: 'static_pages#about', as: 'about'
 
   # requests
   get 'requests', to: 'requests#index', as: 'requests' # index
