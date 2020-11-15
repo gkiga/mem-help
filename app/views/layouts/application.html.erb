@@ -73,26 +73,18 @@ div.t > input {
             
           </li>
         </ul>
-         </div>
 
-  <div class = "a" style="width: 300px, color: black">
-    <div class="t" style= "color: black"> <!-- This is the wrapper div around the text input -->
+        <div class = "a" style="width: 300px, color: black">
+    <div class="t"> <!-- This is the wrapper div around the text input -->
         <%= form_tag users_path, :method => "get" do %>
-    <p><%= text_field_tag :search, params[:search], class: "navbar-dark bg-dark", :size => 25 %>
-  
-    <button submit_tag="Search" class="btn btn-outline-info">Search</button></p>
-
-  </form>
-      </div>
+   <p><%= text_field_tag :search, params[:search], class: "navbar-dark bg-dark", placeholder: "Find Tutors Here!" %></p>
+    </div>
+    <button submit_tag="Search" class="btn btn-outline-info">Search</button>
 </div>
 <% end %>
-        
+         </div>
         <ul class="navbar-nav ml-auto">
         </form>
-
-
-
-      <ul class="navbar-nav ml-auto">
       
       <% if current_user %>
       <li class="nav-item btn-group">
