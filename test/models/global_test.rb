@@ -14,7 +14,16 @@
 #  sender              :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  global_listing_id   :bigint
 #  user_id             :bigint
+#
+# Indexes
+#
+#  index_globals_on_global_listing_id  (global_listing_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (global_listing_id => global_listings.id)
 #
 require 'test_helper'
 

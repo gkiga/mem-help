@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.hero-image3 {
+  background-image: url("https://theglobalscholars.com/wp-content/uploads/2018/08/34512613_xl-1.jpg");
+  background-color: #cccccc;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text3 {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+
+
+</style>
+
+<br>
+<div class="big_header">
+            <h1 class="blue" style="color:#2196F3;">My Global Requests </h1>  
+        </div>
+   <br>
+<p class="text-info"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This is a listing of current global requests you have posted or have accepted!</strong></p>
+<br>
+
+<div class="hero-image3">
+  <div class="hero-text3">
+    <div class = "padding">
+ <div class="text-center">
+ 
+</div>
+</div>
+  </div>
+</div>    
+<br>
+<br>
+<% @global.each do |global| %>
+  <% if current_user.try(:id)==global.recipient %>
+ 
+ <div id="<%= dom_id(global) %>">
+
+  
+
+<div class = "padding">
+<% if global.acceptedFlag == true%>
+<div class="container card p-1 mb-1 bg-success text-dark">
+<%end%>
+<% if global.acceptedFlag == false%>
+<div class="container card p-1 mb-1 bg-danger text-dark">
+<%end%>
+ <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+
+        <a><%=link_to 'Poster Profile', user_path(global.user_id), class: 'nav-link' %></a>
+      </li>
+      <li class="nav-item">
+        <a><%= link_to 'See Global Request', global_path(global),:class => 'nav-link' %></a>
+      </li>
+     
+        <% if global.user_id != current_user.id %>
+         <li class="nav-item">
+    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), :class => 'nav-link'  %>                                                                                                                                    
+      </li>
+      <%end%>
+    </ul>
+  </div>
+    <div class="card-body">
+    <h5 class="card-title">A Request to the Community From <%=global.sender%></h5>
+    <p class="card-text"><%= global.description%></p>
+    
+ 
+    <br>
+     <div class="card-footer text-muted">
+     <div class = "text-left">
+     <% if global.acceptedFlag == true%>
+           <p style="color:green;"><strong>Accepted by <%= global.recipient_name%>  ✔</strong></p>
+            <%end%>
+    <% if global.acceptedFlag == false%>
+        <p style="color:red;"><strong>Not yet accepted ❌</strong></p>
+            <%end%>
+    
+     <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
+            edited <%= time_ago_in_words(global.updated_at) %> ago</small>
+    </div>
+  </div>
+</div>
+    
+    
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <br>
+    
+<%end%>
+<%end%>
+
+<% @global.each do |global| %>
+ <% if current_user.try(:id)==global.user_id %>
+ <div id="<%= dom_id(global) %>">
+
+<div class = "padding">
+<% if global.acceptedFlag == true%>
+<div class="container card p-1 mb-1 bg-success text-dark">
+<%end%>
+<% if global.acceptedFlag == false%>
+<div class="container card p-1 mb-1 bg-danger text-dark">
+<%end%>
+ <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+
+        <a><%=link_to 'Poster Profile', user_path(global.user_id), class: 'nav-link' %></a>
+      </li>
+      <li class="nav-item">
+        <a><%= link_to 'See Global Request', global_path(global),:class => 'nav-link' %></a>
+      </li>
+     
+        <% if global.user_id != current_user.id %>
+         <li class="nav-item">
+    <%= link_to "Send Message", new_message_path(:recipient_id => global.user_id, :recipient_name => global.sender, class: "btn btn-primary"), :class => 'nav-link'  %>                                                                                                                                    
+      </li>
+      <%end%>
+    </ul>
+  </div>
+    <div class="card-body">
+    <h5 class="card-title">A Request to the Community From <%=global.sender%></h5>
+    <p class="card-text"><%= global.description%></p>
+    
+ 
+    <br>
+     <div class="card-footer text-muted">
+     <div class = "text-left">
+     <% if global.acceptedFlag == true%>
+           <p style="color:green;"><strong>Accepted by <%= global.recipient_name%>  ✔</strong></p>
+            <%end%>
+    <% if global.acceptedFlag == false%>
+        <p style="color:red;"><strong>Not yet accepted ❌</strong></p>
+            <%end%>
+    
+     <small>Sent <%= time_ago_in_words(global.created_at) %> ago, 
+            edited <%= time_ago_in_words(global.updated_at) %> ago</small>
+    </div>
+  </div>
+</div>
+    
+    
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <br>
+    
+<%end%>
+<%end%>
+
+
+
+<%# @global.each do |global| %>
+<%#if current_user.id = global.user_id%>
+<%#= global.sender%> 

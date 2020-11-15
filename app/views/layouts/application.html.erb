@@ -8,7 +8,13 @@ div.t {
 div.t > input {
     width: 100%;
 }
+#submitColor {
+    color: "black";
+  
+}
 </style>
+
+
 <html>
   <head>
     <title>MemHelp</title>
@@ -49,22 +55,25 @@ div.t > input {
             <%= link_to "Messages", messages_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-          <%= link_to "Global Requests", globals_path, class: 'nav-link' %>
+          <%= link_to "Global Request Forum", globals_path, class: 'nav-link' %>
             
           </li>
+         
           <% if user_signed_in? %>
-            <li class="nav-item">
-                <%= link_to 'My Direct Requests ', requests_path, class: "nav-link"%>
-                
-             
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Requests </a>
+              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <%= link_to 'Direct Requests', requests_path, class: "dropdown-item"%>
+                <%= link_to "Global Requests", global_listings_path, class:"dropdown-item" %>
+              </div>
             </li>
-          <% end %>
-
+<% end %>
             <li class="nav-item">
           <%= link_to "My Reviews", reviews_path, class: 'nav-link' %>
             
           </li>
         </ul>
+
         <div class = "a" style="width: 300px, color: black">
     <div class="t"> <!-- This is the wrapper div around the text input -->
         <%= form_tag users_path, :method => "get" do %>
@@ -163,6 +172,8 @@ div.t > input {
       <div class="col-8">
         <%= yield %>
       </div>
+       </div>
+        </div>
 
   </body>
 </html>

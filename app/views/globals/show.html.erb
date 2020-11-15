@@ -57,7 +57,8 @@
 </div>
 <br>
 <div class="padding">
-    <%= button_to 'Close Out Global Request (Hours rewarded if request completed)', global_path(global), method: :delete, :class => "btn btn-info text-center"%>
+    <%= button_to 'Close Out Request and Review Teacher', global_path(global), method: :delete, :class => "btn btn-info text-center"%>
+    <p><b>Warning: Volunteer hours only rewarded if teacher has marked the request as completed!.</b> <p>
     <br>
     <%end%>
     </div>

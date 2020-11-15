@@ -1,19 +1,14 @@
 # == Schema Information
 #
-# Table name: reviews
+# Table name: global_listings
 #
 #  id         :bigint           not null, primary key
-#  comment    :text
-#  rating     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint
 #
+class GlobalListing < ApplicationRecord
 
-one:
-  rating: 1
-  comment: MyText
-
-two:
-  rating: 1
-  comment: MyText
+    #belongs_to :user
+    #belongs_to :global
+    has_many :globals
+end
