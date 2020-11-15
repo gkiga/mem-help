@@ -6,6 +6,7 @@
 #  comment     :text
 #  rating      :integer
 #  sender_name :string
+#  vkey        :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint

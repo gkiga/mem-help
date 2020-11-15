@@ -6,13 +6,16 @@
 #  comment     :text
 #  rating      :integer
 #  sender_name :string
+#  vkey        :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint
 #
 class Review < ApplicationRecord
-    belongs_to :user
-
+    belongs_to :user, optional: true
+    belongs_to :video, optional: true
     has_many :my_notifications, dependent: :destroy
+    
+  end    
 
-end
+

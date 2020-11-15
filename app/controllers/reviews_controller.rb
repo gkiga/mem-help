@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
 
-    @review= Review.new(params.require(:review).permit(:comment, :rating, :user_id, :sender_name))
+    @review= Review.new(params.require(:review).permit(:comment, :rating, :user_id, :sender_name, :vkey))
     @review.sender_name = [current_user.first_name, current_user.last_name].join(' ')
     # respond_to block
     
