@@ -15,9 +15,10 @@ class MyNotificationsController < ApplicationController
     # DELETE /my_notifications/1.json
     def destroy
         @my_notification = MyNotification.find(params[:id])
+        link = @my_notification.actor
         @my_notification.destroy
         respond_to do |format|
-            format.html { redirect_to root_path, notice: 'Notification successfully destroyed.' }
+            format.html { redirect_back(fallback_location: root_path) }
             format.json { head :no_content }
         end
     end
