@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-
+<%#Allows for style rules and image posting from jpg for style. %>
 <style>
 body {
   margin: 0;
@@ -52,7 +52,7 @@ body {
   
 </div>    
 <br>
-
+<%#Filter function--works by filtering by sender name. %>
 
 <h4>Filter by:</h4>
     <%= form_tag(globals_path, method: "get") do %>
@@ -62,6 +62,7 @@ body {
 
 
 <br>
+<%#Loop through all global objects and display based upon attribute values. %>
 <% @globals.each do |global| %>
 
   

@@ -1,5 +1,7 @@
-<!DOCTYPE html>
+<%# A personal index for user's own global requests%>
 
+<!DOCTYPE html>
+<%# A style div that allows for picture from web to show as decoration%>
 <style>
 body {
   margin: 0;
@@ -48,6 +50,7 @@ This is a listing of current global requests you have posted or have accepted!</
 </div>    
 <br>
 <br>
+<%# Looping through each global object and pulling those the current user is attached to (accepted)%>
 <% @global.each do |global| %>
   <% if current_user.try(:id)==global.recipient %>
  
@@ -111,7 +114,7 @@ This is a listing of current global requests you have posted or have accepted!</
     
 <%end%>
 <%end%>
-
+<%# Looping through each global object and pulling those the current user is attached to (sent)%>
 <% @global.each do |global| %>
  <% if current_user.try(:id)==global.user_id %>
  <div id="<%= dom_id(global) %>">
@@ -175,6 +178,3 @@ This is a listing of current global requests you have posted or have accepted!</
 
 
 
-<%# @global.each do |global| %>
-<%#if current_user.id = global.user_id%>
-<%#= global.sender%> 

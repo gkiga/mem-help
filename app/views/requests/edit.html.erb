@@ -1,4 +1,6 @@
 
+<%# Allows for updating of direct request, view depends upon whether current user is teacher or student%>
+
 <h1 class="text-center">
 Edit Request
 </h1>
@@ -34,47 +36,14 @@ Edit Request
 
 <br>
 <br>
-<% if current_user.try(:id)==request.recipient %>
-  <h5>Accept Request?</h5>
-  <div>
-    <div>
-      <%= f.radio_button :acceptedFlag, true %>
-      <%= f.label "acceptedFlag_true", 'Yes' %>
-    </div>
-    <div>
-      <%= f.radio_button :acceptedFlag, false %>
-      <%= f.label "acceptedFlag_false", 'No' %>
-    </div>
-  <div>
 
-  <br />
 
-  <h5>Completed Request?</h5>
-  <div>
-    <div>
-      <%= f.radio_button :completedFlag, true %>
-      <%= f.label "completedFlag_true", 'Yes' %>
-    </div>
-    <div>
-      <%= f.radio_button :completedFlag, false %>
-      <%= f.label "conpletedFlag_false", 'No' %>
-    </div>
-  <div>
-  <% end %>
-<%#if current_user.try(:id)==request.user_id %>
 <div>
     <h5>How many hours do you think this teacher will need to complete the task requested?</h5>
  <%= f.text_field :new_volunteer_hours%>
     
   </div>
-      <%# radio_button_tag "new_volunteer_hours", 1.00, 1.00 %>
-     <%#label_tag "new_volunteer_hours", '1 Hour' %>
-      <%# radio_button_tag "new_volunteer_hours", 2.00, 2.00 %>
-     <%# label_tag "new_volunteer_hours", '2 Hours' %>
-         <%# radio_button_tag "new_volunteer_hours", 3.00, 3.00 %>
-     <%# label_tag "new_volunteer_hours", '3 Hours' %>
-         <%# radio_button_tag "new_volunteer_hours", 4.00, 4.00 %>
-     <%# label_tag "new_volunteer_hours", '4 Hours' %>
+
      
 
 <%end%>

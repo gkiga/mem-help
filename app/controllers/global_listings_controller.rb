@@ -1,6 +1,7 @@
 class GlobalListingsController < ApplicationController
 
-
+#A Controller that calls on Global model 
+#Global_listing made for intent of displaying personal global requests for each individual user
   
         
     def index
@@ -12,17 +13,7 @@ class GlobalListingsController < ApplicationController
         
         
         
-        #@users = User.all
-        #@globals = Global.find 
-        #@global_listings = Global_Listings.all
-        #@my_model = MyModel.find 1
-        #@my_model.other_model_name
-        
-        #respond_to do |format|
-         #   format.html { render :index, locals: { global_listings: @global_listings} }
-        #end
-    #end
-
+       
 
 
 

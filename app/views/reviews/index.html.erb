@@ -1,3 +1,4 @@
+<%#= personalindex for reviews--shows reviews made to you %>
 <style>
 th, td {
   padding: 10px;
@@ -30,7 +31,7 @@ th, td {
   </div>
 </div>
 
-
+<%# will loop through all reviews and display them if they were for current_user (both from prior completed requests and reviews for the current user's videos%>
 <% @reviews.each do |review| %>
 
     <% if current_user.try(:id)==review.user_id %>
@@ -66,8 +67,6 @@ th, td {
           <%end%>
         <td><%= review.comment %></td>
         <td> <%=review.sender_name %></td>
-        <td><%#= link_to 'Show', review %></td>
-        <td><%#= link_to 'Edit', edit_review_path(review) %></td> 
       </tr>
        <div class="card-footer text-muted">
        <small>Received <%= time_ago_in_words(review.created_at) %> ago </small>

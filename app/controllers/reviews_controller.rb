@@ -1,3 +1,5 @@
+#unlike other controllers this model (review) was created via scaffolding shortcut. Hence, the methods are not shown below but are hidden
+#reviews work similar to other models like request or message, and users can leave reviews for videos and requests. 
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!

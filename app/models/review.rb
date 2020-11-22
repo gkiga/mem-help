@@ -12,6 +12,7 @@
 #  user_id     :bigint
 #
 class Review < ApplicationRecord
+#Allows for users to review teachers upon request closure and review posted videos
     belongs_to :user, optional: true
     belongs_to :video, optional: true
     has_many :my_notifications, dependent: :destroy

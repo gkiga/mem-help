@@ -67,4 +67,5 @@ gem 'jquery-rails'
 
 
 gem 'has_scope'
+#used for sender name filter for global requests
 gem 'simple_form'

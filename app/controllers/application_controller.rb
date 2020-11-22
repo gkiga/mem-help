@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
         protected
 
         
-          
+#allows other attributes to be inputted from devise forms into user class          
         def configure_permitted_parameters
             devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
             devise_parameter_sanitizer.permit(:sign_up, keys: [:contact_info]) 
