@@ -1,8 +1,7 @@
 class MessagesController < ApplicationController
     before_action :authenticate_user!
  
-    def index
-    
+    def index  
          messages = Message.all
          respond_to do |format|
              format.html { render :index, locals: { messages: messages } }
@@ -30,13 +29,11 @@ class MessagesController < ApplicationController
          @message = Message.new(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
          # respond_to block
          @message.sender_name = [current_user.first_name, current_user.last_name].join(' ')
-         @message.user_id = current_user.id
-        
-        
+         @message.user_id = current_user.id      
          respond_to do |format|
              format.html do
                  if @message.save
-
+                    # added notification
                     MyNotification.create(recipient_id: @message.recipient_id, actor: current_user, action: "New Message", notifiable: @message, message_id: @message.id)
                     #@user = User.find(params[:recipient])
                    # request.recipient_name = [@user.first_name, @user.last_name].join(' ')

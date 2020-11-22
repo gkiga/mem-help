@@ -11,7 +11,6 @@ th, td {
   background-size: cover;
   position: relative;
 }
-
 .hero-text4 {
   text-align: center;
   position: absolute;
@@ -22,20 +21,16 @@ th, td {
 }
 </style>
 
-
-
 <div class="hero-image4">
   <div class="hero-text4">
     <h1 style="font-size:50px">My Reviews</h1>
   </div>
 </div>
 
-
 <% @reviews.each do |review| %>
 
     <% if current_user.try(:id)==review.user_id %>
       <div id="<%= dom_id(review) %>">
-
 <table>
   <thead>
     <tr>
@@ -47,7 +42,7 @@ th, td {
   </thead>
 
   <tbody>
-  
+ 
       <tr>
          <% if review.rating  == 1 %>
          <td>⭐</td>
@@ -66,8 +61,6 @@ th, td {
           <%end%>
         <td><%= review.comment %></td>
         <td> <%=review.sender_name %></td>
-        <td><%#= link_to 'Show', review %></td>
-        <td><%#= link_to 'Edit', edit_review_path(review) %></td> 
       </tr>
        <div class="card-footer text-muted">
        <small>Received <%= time_ago_in_words(review.created_at) %> ago </small>
