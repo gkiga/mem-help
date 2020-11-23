@@ -1,8 +1,5 @@
 <div id="page-contet">
 <h1 class="text-center mt-4">Edit Messages</h1>
-
-
-
 <%= form_with model: message, url: message_path, class: "shadow p-5 mb-10 bg-white", method: :patch, local: true, scope: :message do |f| %>
 <% if current_user.try(:id)==message.user_id %>
   <div >

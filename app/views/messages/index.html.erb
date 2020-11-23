@@ -1,19 +1,14 @@
-
 <h1 class="text-center">My Messages</h1>
-
-
 <% messages.each do |message| %>
-<% if current_user.try(:id)==message.recipient_id %>
-  
-  <div id="<%= dom_id(message) %>">
-
+<% if current_user.try(:id)==message.recipient_id %> 
+<div id="<%= dom_id(message) %>">
 <div class="row justify-content-md-center">
 <div class="col-8 mt-4">
 <div class="card text-center shadow mb-5 bg-white rounded">
   <div class="card-header font-italic">
   <div class="card text-center">
     <div class="card-header">
-      Received Message From <%=message.sender_name if current_user %>
+      Received Message From <%=message.sender_name if current_user %> <%# sender_name %>
     </div>
     <div class="card-body">
       <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
@@ -22,9 +17,9 @@
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
    
     </div>
+    <%# time in words %>
     <div class="card-footer text-muted">
-      <small>Received <%= time_ago_in_words(message.created_at) %> ago 
-      <!--  edited <%= time_ago_in_words(message.updated_at) %> ago--></small>
+      <small>Received <%= time_ago_in_words(message.created_at) %> ago </small>
     </div>
   </div>
   </div>
@@ -45,7 +40,7 @@
   <div class="card-header font-italic">
   <div class="card text-center">
     <div class="card-header">
-      Sent Message to <%=message.recipient_name if current_user %>
+      Sent Message to <%=message.recipient_name if current_user %> <%# recipient_name %>
     </div>
     <div class="card-body">
       <h5 class="card-title"><%= link_to message.title, message_path(message), class: "text-success"%></h5>
@@ -54,6 +49,7 @@
      <%= link_to "Edit", edit_message_path(message),class: "btn btn-outline-info", method: :get %>
       <%= link_to "Delete", message_path(message), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
+    <%# time in words %>
     <div class="card-footer text-muted">
      <small>Sent <%= time_ago_in_words(message.created_at) %> ago, 
             edited <%= time_ago_in_words(message.updated_at) %> ago</small>

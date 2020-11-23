@@ -27,7 +27,10 @@ div.t > input {
   </head>
 
   <body>
+
+    <%# Navbar %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
       <a class="navbar-brand" >MemHelp</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,10 +38,13 @@ div.t > input {
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
+          <%# Home %>
           <li class="nav-item active">
             <%= link_to 'Home', home_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
+
+          <%# Profile %>
           <% if user_signed_in? %>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profile </a>
@@ -48,110 +54,144 @@ div.t > input {
               </div>
             </li>
           <% else %>
-            <%= link_to 'My Profile', new_user_session_path, class: 'nav-link' %>
+            <%= link_to 'Profile', new_user_session_path, class: 'nav-link' %>
           <% end %>
           </li>
+
+          <%# Messages %>
           <li class="nav-item">
             <%= link_to "Messages", messages_path, class: 'nav-link' %>
           </li>
+
+          <%# Global Request Forum%>
           <li class="nav-item">
-          <%= link_to "Global Request Forum", globals_path, class: 'nav-link' %>
-            
+            <%= link_to "Global Request Forum", globals_path, class: 'nav-link' %>
           </li>
          
+         <%# Requests %>
           <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Requests </a>
-              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                <%= link_to 'Direct Requests', requests_path, class: "dropdown-item"%>
-                <%= link_to "Global Requests", global_listings_path, class:"dropdown-item" %>
-              </div>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Requests </a>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                  <%= link_to 'Direct Requests', requests_path, class: "dropdown-item"%>
+                  <%= link_to "Global Requests", global_listings_path, class:"dropdown-item" %>
+                </div>
             </li>
-<% end %>
+          <% end %>
+
+          <%# Reviews%>
             <li class="nav-item">
-          <%= link_to "My Reviews", reviews_path, class: 'nav-link' %>
-            
+              <%= link_to "My Reviews", reviews_path, class: 'nav-link' %>
           </li>
         </ul>
 
+        <%# Search Bar %>
         <div class = "a" style="width: 300px, color: black">
-    <div class="t"> <!-- This is the wrapper div around the text input -->
-        <%= form_tag users_path, :method => "get" do %>
-   <p><%= text_field_tag :search, params[:search], class: "navbar-dark bg-dark", placeholder: "Find Tutors Here!" %></p>
-    </div>
-    <button submit_tag="Search" class="btn btn-outline-info">Search</button>
-</div>
-<% end %>
-         </div>
-        <ul class="navbar-nav ml-auto">
-        </form>
-      
-      <% if current_user %>
-      <li class="nav-item btn-group">
-        <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="">
-          <%=current_user.my_notifications.unread.count %> </span><%= '🔔'%>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-        <% if current_user.my_notifications.present?%>
-          <%current_user.my_notifications.each do |my_notification| %>
-            <div class ="dropdown-item">
-            <%= link_to "🗑", my_notification_path(my_notification), method: :delete %>
-            <%if my_notification.notifiable_type == "Global" %>
-              <a href= <%= global_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
-              <%end%>
-            <% if my_notification.notifiable_type == "Request" %>
-              <a href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
-            <% elsif my_notification.notifiable_type == "Review" %>
-              <a href= 
-              <%= review_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: 
-                <% my_notification.notifiable.rating.times do %> 
-                  ⭐
-                <% end %>
-              </a>
-            <% elsif my_notification.notifiable_type == "User" %>
-              <a href= <%= user_path(my_notification.actor)%> ><%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %> followed you!</a>
-            <% elsif my_notification.notifiable_type == "Video" %>
-              <a href= <%= video_path(my_notification.notifiable)%> >Watch <%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %>'s <%= my_notification.action %>: <%= my_notification.notifiable.title %></a>
-            <% elsif my_notification.notifiable_type == "Message" %>
-              <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
-            <% end %>
-            </div>
-            <% end %>
-          <%else%>
-            <p class="dropdown-item">You're all up to date!</p>
-          <%end%>
+          <div class="t"> <!-- This is the wrapper div around the text input -->
+              <%= form_tag users_path, :method => "get" do %>
+                <p><%= text_field_tag :search, params[:search], class: "navbar-dark bg-dark", placeholder: "Find Tutors Here!" %></p>
+              <% end %>
+          </div>
+          <button submit_tag="Search" class="btn btn-outline-info">Search</button>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if current_user.avatar.attached?%>
-      <img class="rounded-circle" height= "40" width="40" <%=image_tag(current_user.avatar)%>
-    <% else %>
-      <img class="rounded-circle" height= "40" width="40" <%=image_tag("No_user.jpg")%>
-    <% end %>
         
-          <%= current_user.username %>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <%= link_to "Edit Profile", edit_user_registration_path, class:"dropdown-item" %>
-           <%= link_to "Messages", messages_path, class:"dropdown-item" %>
-          
-          <div class="dropdown-divider"></div>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
         </div>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <%= link_to "Sign Up", new_user_registration_path, class:'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sign In", new_user_session_path, class:'nav-link' %>
-      </li>
-      <% end %>
-      </ul>
+
+        <ul class="navbar-nav ml-auto">
+        
+          <%# Notifications %>
+          <% if current_user %>
+
+          <li class="nav-item btn-group">
+            <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="">
+              <%=current_user.my_notifications.unread.count %> </span><%= '🔔'%>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                <% if current_user.my_notifications.present?%>
+                <%current_user.my_notifications.each do |my_notification| %>
+                  <div class ="dropdown-item">
+                    <%= link_to "🗑", my_notification_path(my_notification), method: :delete %>
+                    
+                    <%# Global Notification %>
+                    <% if my_notification.notifiable_type == "Global" %>
+                      <a href= <%= global_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+
+                    <%# Request Notification %>
+                    <% elsif my_notification.notifiable_type == "Request" %>
+                      <a href= <%= request_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.description %></a>
+                    
+                    <%# Review Notification %>
+                    <% elsif my_notification.notifiable_type == "Review" %>
+                      <a href= 
+                      <%= review_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: 
+                        <% my_notification.notifiable.rating.times do %> 
+                          ⭐
+                        <% end %>
+                      </a>
+
+                    <%# User Notification %>
+                    <% elsif my_notification.notifiable_type == "User" %>
+                      <a href= <%= user_path(my_notification.actor)%> ><%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %> followed you!</a>
+                    
+                    <%# Video Notification %>
+                    <% elsif my_notification.notifiable_type == "Video" %>
+                      <a href= <%= video_path(my_notification.notifiable)%> >Watch <%=  my_notification.actor.first_name %> <%=  my_notification.actor.last_name %>'s <%= my_notification.action %>: <%= my_notification.notifiable.title %></a>
+                    
+                    <%# Message Notification %>
+                    <% elsif my_notification.notifiable_type == "Message" %>
+                      <a href= <%= message_path(my_notification.notifiable)%> ><%= my_notification.action %> from <%=  my_notification.actor.first_name %>: <%= my_notification.notifiable.title %></a>
+                    <% end %>
+
+                  </div>
+                  <% end %>
+
+                <%else%>
+                  <p class="dropdown-item">You're all up to date!</p>
+                <%end%>
+
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+
+            <%# Profile Image and Name %>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.avatar.attached? %>
+                <img class="rounded-circle" height= "40" width="40" <%=image_tag(current_user.avatar)%>
+              <% else %>
+                <img class="rounded-circle" height= "40" width="40" <%=image_tag("No_user.jpg")%>
+              <% end %>
+              <%= current_user.username %>
+            </a>
+
+            <%# Profile/Sign Out %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Edit Profile", edit_user_registration_path, class:"dropdown-item" %>
+              <%= link_to "Messages", messages_path, class:"dropdown-item" %>
+              
+              <div class="dropdown-divider"></div>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+            </div>
+          </li>
+
+          <% else %>
+
+            <%# Sign In/Sign Up %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class:'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class:'nav-link' %>
+            </li>
+          <% end %>
+
+        </ul>
 
       </div>
     </nav>
+
+    <%# Flash Messages%>
     <div id="flash-message-wrapper">
     <% flash.each do |key, message| %>
         <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
@@ -164,8 +204,7 @@ div.t > input {
 </div>
 
 </div> 
-   
-    
+
     <main role="main" class="flex-shrink-0">
     <div class="container-fluid">
     <div class="row justify-content-center">

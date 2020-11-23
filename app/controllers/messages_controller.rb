@@ -4,6 +4,7 @@
 class MessagesController < ApplicationController
     before_action :authenticate_user!
  
+
     def index
          messages = Message.all
          respond_to do |format|
@@ -30,8 +31,7 @@ class MessagesController < ApplicationController
          @message = Message.new(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
          @message.sender_name = [current_user.first_name, current_user.last_name].join(' ')
          @message.user_id = current_user.id
-        
-         # respond_to block
+                 # respond_to block
          respond_to do |format|
              format.html do
                  if @message.save
