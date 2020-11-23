@@ -1,3 +1,5 @@
+<%# form for making new review--new review forms are either automatically populated for student 
+after closure of request or can be voluntarily undertaken when reviewing another user's posted video(s)%>
 <%= form_with model: review, url: reviews_path,class: "shadow p-5 mb-10 bg-info", method: :post, local: true, scope: :review do |f| %>
   <% if review.errors.any? %>
     <div id="error_explanation">

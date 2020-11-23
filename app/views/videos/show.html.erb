@@ -58,13 +58,15 @@ th, td {
 
   <br>
   
+<%# Allows for reviews to show for each video--will loop through review objects and if review vkey attribute matches video id attribute will show object information below respective video%>
 
   <% @reviews.each do |review| %>
   
     <% if review.try(:vkey)==@video.id %>
       <div id="<%= dom_id(review) %>">
   
-   
+  <%# All reviews contain rating 1-5 integer and comment; integer rating will correspond with stars upon display%>
+
 <table>
   <thead>
     <tr>
@@ -95,8 +97,7 @@ th, td {
           <%end%>
         <td><%= review.comment %></td>
         <td> <%=review.sender_name %></td>
-        <td><%#= link_to 'Show', review %></td>
-        <td><%#= link_to 'Edit', edit_review_path(review) %></td> 
+
       </tr>
        <div class="card-footer text-muted">
        <small>Received <%= time_ago_in_words(review.created_at) %> ago </small>
@@ -112,23 +113,7 @@ th, td {
 <%end%>
 <%end%>
 <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%# if its your video you can edit and delete it; if you are vistior you can review the video%>
   <% if current_user == @video.creator %>
     <%= link_to 'Edit', edit_video_path(@video) %> |
     <%= link_to 'Delete', video_path(@video), method: :delete %>

@@ -30,11 +30,7 @@ Rails.application.routes.draw do
 
 
 # globals
-#get 'globals/myglobals', to: 'my_globals#myglobals', as: 'my_globals'
-#resources :globals, only: [:index, :show]
 get 'globals', to: 'globals#index', as: 'globals' # index
-
-
 get 'globals/new', to: 'globals#new', as: 'new_global' # new
 post 'globals', to: 'globals#create' # create
 get 'globals/:id', to: 'globals#show', as: 'global' # show
@@ -43,6 +39,7 @@ patch 'globals/:id', to: 'globals#update' # update (as needed)
 put 'globals/:id', to: 'globals#update' # update (full replacement)
 delete 'globals/:id', to: 'globals#destroy' # destroy
 
+#global_listings
 get 'global_listings', to: 'global_listings#index', as: 'global_listings' # index
 get 'global_listings/new', to: 'global_listings#new', as: 'new_global_global_listings' # new
 post 'global_listings', to: 'global_listings#create' # create
@@ -61,7 +58,7 @@ delete 'global_listings/:id', to: 'global_listings#destroy' # destroy
 
   get 'profile', to: 'static_pages#profile', as: 'profile'
   get 'users', to: 'users#index', as: 'users'
-  #get "/users/id", to: "static_pages#profile"
+
   
 
   # videos
@@ -94,6 +91,6 @@ delete 'global_listings/:id', to: 'global_listings#destroy' # destroy
 
   get 'account/follows', to: 'account_follows#index', as: 'account_follows' # my follows page
 
-
-
+#NOTE
+#reviews model made with scaffolding shortcut will need to run rails routes command in terminal to see specific routes
 end

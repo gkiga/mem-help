@@ -1,7 +1,11 @@
+#Messages work like an email system and are populated in each user's own message index
+#users can send messages with videos, and reply back to messages from options within a received message.
+#you can send messages with options on a user's profile or on options on requests
 class MessagesController < ApplicationController
     before_action :authenticate_user!
  
-    def index  
+
+    def index
          messages = Message.all
          respond_to do |format|
              format.html { render :index, locals: { messages: messages } }
@@ -9,7 +13,6 @@ class MessagesController < ApplicationController
      end
 
     def show
-        #@user = User.find(params[:id])
         message = Message.find(params[:id])
         respond_to do |format|
             format.html { render :show, locals: { message: message } }
@@ -25,18 +28,15 @@ class MessagesController < ApplicationController
      
     def create
          # new object from params
-         #@user = User.all
          @message = Message.new(params.require(:message).permit(:body, :title, :recipient_name,:sender_name, :recipient_id))
-         # respond_to block
          @message.sender_name = [current_user.first_name, current_user.last_name].join(' ')
-         @message.user_id = current_user.id      
+         @message.user_id = current_user.id
+                 # respond_to block
          respond_to do |format|
              format.html do
                  if @message.save
-                    # added notification
+                    #Notifications enabled for messages
                     MyNotification.create(recipient_id: @message.recipient_id, actor: current_user, action: "New Message", notifiable: @message, message_id: @message.id)
-                    #@user = User.find(params[:recipient])
-                   # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
                      flash[:success] = "Message sent successfully"
                      # redirect to index
@@ -58,10 +58,8 @@ class MessagesController < ApplicationController
 
     def edit
         message = Message.find(params[:id])
-        
         respond_to do |format|
             format.html { render :edit, locals: { message: message } }
-           
         end
     end
 

@@ -26,20 +26,20 @@
 #  fk_rails_...  (global_listing_id => global_listings.id)
 #
 class Global < ApplicationRecord
-
+#model for global requests, that is, requests made to the community and accepted by an unknown community user
+#as opposed to request model, where a user makes a direct request to a particular user
 belongs_to :user
-#has_many :global_listings
-#has_many :users, :through => :global_listings
 
 has_many :my_notifications, dependent: :destroy
-belongs_to :global_listing, optional: true      
+belongs_to :global_listing, optional: true  
+#setting filter for sender name    
     def self.filter(filter)
         if filter and not filter.empty?
             @globals = Global.all
             @globals= @globals.where(sender: filter)
             
 
-            #byebug
+            
             return @globals
         else
             Global.all

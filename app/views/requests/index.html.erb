@@ -1,3 +1,5 @@
+<%# Index for direct requests--a personal listing for each user%>
+<%# Allows for style formatting and picture decorations off of jpg%>
 <style>
 body {
   margin: 0;
@@ -66,6 +68,7 @@ body {
 </div>
 
 <br>
+<%# loop through all requests and display based upon attribute status%>
 <% requests.each do |request| %>
 
     <% if current_user.try(:id)==request.user_id %>

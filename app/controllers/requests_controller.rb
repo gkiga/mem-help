@@ -1,10 +1,12 @@
 class RequestsController < ApplicationController
+#The controller class for direct requests
+#direct requests are requests from users made directly to another user
    before_action :authenticate_user!
+   #global variable @@please_review allows for users to review their teachers upon closure of request
     @@please_review = 0
 
 
     def index
-    
          requests = Request.all
          respond_to do |format|
              format.html { render :index, locals: { requests: requests } }
@@ -12,7 +14,6 @@ class RequestsController < ApplicationController
      end
 
     def show
-        #@user = User.find(params[:id])
         request = Request.find(params[:id])
         respond_to do |format|
             format.html { render :show, locals: { request: request } }
@@ -27,23 +28,18 @@ class RequestsController < ApplicationController
      end
     
     def create
-         # new object from params
-         #@user = User.all
          request = Request.new(params.require(:request).permit(:description, :category, :learningPreference, :recipient,:sender, :acceptedFlag, :completedFlag, :new_volunteer_hours, :recipient_name))
-         # respond_to block
+         # need to initialize some attributes upon creation of new request
          request.user_id = current_user.id
          request.acceptedFlag = false
          request.completedFlag = false
          request.sender = [current_user.first_name, current_user.last_name].join(' ')
-        
+         # respond_to block
          respond_to do |format|
              format.html do
                  if request.save
-                    # notification
+                    # notification enabled for request creation and updates of request (see below update method)
                     MyNotification.create(recipient_id: request.recipient, actor: current_user, action: "New Request", notifiable: request, request_id: request.id)
-
-                    #@user = User.find(params[:recipient])
-                   # request.recipient_name = [@user.first_name, @user.last_name].join(' ')
                      # success message
                      flash[:success] = "Request saved successfully"
                      # redirect to index
@@ -61,7 +57,6 @@ class RequestsController < ApplicationController
 
     def edit
         request = Request.find(params[:id])
-        
         respond_to do |format|
             format.html { render :edit, locals: { request: request } }
         end
@@ -98,17 +93,17 @@ class RequestsController < ApplicationController
     def destroy
         # load existing object again from URL param
         request = Request.find(params[:id])
+        # allows for student to review teacher per request destroy
         @@please_review = request.recipient
         if current_user.try(:id)==request.user_id
         if request.completedFlag == true
-    
+            #volunteer hours rewarded if request has been marked as completed by the teacher
             user = User.find(request.recipient)
             user.volunteer_hours += request.new_volunteer_hours
             user.save
         
         end
     end
-
         request.destroy
         # respond_to block
         respond_to do |format|

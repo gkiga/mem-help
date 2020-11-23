@@ -97,7 +97,7 @@ class User < ApplicationRecord
   # Requests
   has_many :requests
 
-  # Requests
+  # Globals
   has_many :globals
 
   # Reviews
@@ -111,7 +111,5 @@ class User < ApplicationRecord
   has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"         # follows a user gave someone else
   has_many :followings, through: :given_follows, source: :followed_user            # other users this user has followed
 
-  #Global_Listing
-  #has_many :global_listings
-  #has_many :globals, :through => :global_listings  
+  
 end

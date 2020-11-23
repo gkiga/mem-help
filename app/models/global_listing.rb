@@ -7,8 +7,6 @@
 #  updated_at :datetime         not null
 #
 class GlobalListing < ApplicationRecord
-
-    #belongs_to :user
-    #belongs_to :global
+# A model whose sole purpose is to provide a personal index for users to see their global requests
     has_many :globals
 end
