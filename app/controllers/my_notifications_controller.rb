@@ -1,4 +1,7 @@
 class MyNotificationsController < ApplicationController
+    # Notifications are created in the controller of the notifiable model
+    # So to add a new notification for reviews, it will have to be created in reviews_controller.rb
+    
     before_action :authenticate_user!
 
     def index

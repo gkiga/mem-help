@@ -28,6 +28,7 @@
         <%= form.file_field :thumbnail %>
     </div>
 
+    <%# The video must be in a mp4 format%>
     <div class="field">
         <%= form.label :clip %>
         <%= form.file_field :clip %>
@@ -37,7 +38,3 @@
 
 <% end %>
 
-
-<%#= render 'form', video: @video %>
-
-<%#= link_to 'Back', videos_path %>

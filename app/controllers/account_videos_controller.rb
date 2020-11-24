@@ -1,4 +1,6 @@
 class AccountVideosController < ApplicationController
+    # This controller has the purpose of showing users videos where they are the creator
+    
     before_action :authenticate_user!
     before_action :require_permission, only: [:edit, :update, :destroy]
 

@@ -104,10 +104,12 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   # Given instance is the followed user
+  # Calling "followers" returns the given instance's list of users that follow them
   has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow" # follows for given user instance
   has_many :followers, through: :received_follows, source: :follower               # users who follow given user intance
 
   # Given instance is the follower
+  # Calling "following" returns the given instance's list of users they follow
   has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"         # follows a user gave someone else
   has_many :followings, through: :given_follows, source: :followed_user            # other users this user has followed
 
