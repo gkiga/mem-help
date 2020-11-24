@@ -1,4 +1,8 @@
 class FollowsController < ApplicationController
+    # When a user is followed, they are added to the 'followings' list
+    # On the other hand, the person giving the follow will be added to the opposite users 'followers' list
+    # This occurs in the
+
     before_action :authenticate_user!
 
     def index

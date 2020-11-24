@@ -39,6 +39,9 @@
 class MyNotification < ApplicationRecord
     belongs_to :recipient, class_name: "User"
     belongs_to :actor, class_name: "User"
+
+    # 'notifiable' is the object that will have a notification linked to it
+    # ex. the 'notifible' in a review notification is the Review model
     belongs_to :notifiable, polymorphic: true
 
     scope :unread, -> {where(read_at: nil)}

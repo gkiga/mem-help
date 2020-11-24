@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    # def index
-    #     users = User.all
-    #     respond_to do |f|
-    #         f.html {render :index, locals: {users: users}}
-    #     end
-    # end
 
     def index
 
@@ -17,9 +11,7 @@ class UsersController < ApplicationController
                                        lower(first_name) LIKE :search OR
                                        lower(last_name) LIKE :search OR
                                        lower(interests) LIKE :search OR
-                                       lower(major) LIKE :search", search: "%#{@parameter}%")
-                        #                &&
-                        # User.joins(:videos).where("lower(videos.title) LIKE :search", search: "%#{@parameter}%")               
+                                       lower(major) LIKE :search", search: "%#{@parameter}%")               
         end
     end
 
@@ -30,10 +22,13 @@ class UsersController < ApplicationController
         end
     end
 
+
     def follow
+        # When a user is followed, they are added to the 'followings' list
+        # On the other hand, the person giving the follow will be added to the opposite users 'followers' list
+
         user = User.find(params[:id])
         current_user.followings << user
-
 
         MyNotification.create(recipient_id: user.id, actor: current_user, action: "New Follow", notifiable: user, user_id: user.id)
 
@@ -46,6 +41,8 @@ class UsersController < ApplicationController
     end
 
     def unfollow
+        # This function simply removes a user from the 'followings' list
+        
         user = User.find(params[:id])
         current_user.followings.delete(user)
 
